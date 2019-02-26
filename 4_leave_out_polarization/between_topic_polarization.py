@@ -1,29 +1,17 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from __future__ import division
-import os
-import re
-import string
-from collections import Counter
-import gc
 import numpy as np
 import pandas as pd
-import operator
-import sys
-from joblib import Parallel, delayed
-import multiprocessing
-import copy
 import gc
 import json
-import glob
-import scipy.sparse as sp
 
 
-events = open('all_events/event_names.txt', 'r').read().splitlines()
+DATA_DIR = '../data/'
+TWEET_DIR = '../data/tweets/'
 
-NUM_TOPICS = 6
-cluster_labels = np.load('all_events/glove/cluster_labels_'+str(NUM_TOPICS)+'.npy')
-
+NUM_CLUSTERS = 6
+events = open(DATA_DIR + 'event_names.txt', 'r').read().splitlines()
 
 def split_party(data):
     part_tweets = data[~data['dem_follows'].isnull() & ~data['rep_follows'].isnull() & (data['dem_follows'] != data['rep_follows'])]
@@ -41,16 +29,14 @@ def polarization(dem_tweets, rep_tweets):
         cluster_rep_counts[i] = len(set(g['user_id']))
     for i, r in cluster_rep_counts.items():
         total = r + cluster_dem_counts[i]
-        cluster_rep_probs[i] = .5 if total < 10 else (r / total) # republican user proportion
+        cluster_rep_probs[i] = .5 if total < 10 else (r / total)  # republican user proportion
 
-    for i in range(NUM_TOPICS):
+    for i in range(NUM_CLUSTERS):
         if i not in cluster_rep_probs:
             cluster_rep_probs[i] = .5
     print(cluster_rep_probs)
     dem_val = 0
     rep_val = 0
-    #dem_u = set(dem_tweets['user_id'])
-    #rep_u = set(rep_tweets['user_id'])
 
     # for each user, calculate the posterior probability of their true party
     # (as a mean of the probabilities of all topics they discuss)
@@ -59,14 +45,7 @@ def polarization(dem_tweets, rep_tweets):
     for u, g in rep_tweets.groupby('user_id'):
         rep_val += np.mean([cluster_rep_probs[t] for t in g['topic']])
 
-    #for u in dem_u:
-    #    labels = dem_tweets[dem_tweets['user_id'] == u]['topic']
-    #   dem_val += np.nanmean([(1 - cluster_rep_probs[l]) for l in labels])
-    #rep_val = 0
-    #for u in rep_u:
-    #    labels = rep_tweets[rep_tweets['user_id'] == u]['topic']
-    #    rep_val += np.nanmean([cluster_rep_probs[l] for l in labels])
-    return (dem_val + rep_val) / (len(set(dem_tweets['user_id'])) + len(set(rep_tweets['user_id']))) # these should be equal
+    return (dem_val + rep_val) / (len(set(dem_tweets['user_id'])) + len(set(rep_tweets['user_id'])))
 
 def get_value(data):
     print(len(data))
@@ -106,26 +85,40 @@ def get_value(data):
     return [val, random_val]
 
 
-def get_polarization(event):
-    data = pd.read_csv('all_events/' + event + '/' + event + '.csv', sep='\t', lineterminator='\n',
-                       usecols=['user_id', 'dem_follows', 'rep_follows',  'remove'])
-    indices = np.load('all_events/' + event + '/' + event + '_cleaned_indices_partisan.npy')
-    #labels = np.load('all_events/' + event + '/' + event + '_cluster_labels_' + str(NUM_TOPICS) + '.npy')
-    strict_indices = np.load('all_events/' + event + '/' + event + '_comp_cluster_indices.npy')
-    strict_labels = np.load('all_events/' + event + '/' + event + '_comp_cluster_labels.npy')
+def get_polarization(event, cluster_method = None):
+    '''
 
+    :param event: name of the event (str)
+    :param cluster_method: None, "relative" or "absolute" (see 5_assign_tweets_to_clusters.py); must have relevant files
+    :return: tuple: (true value, random value)
+    '''
+    data = pd.read_csv('all_events/' + event + '/' + event + '.csv', sep='\t', lineterminator='\n',
+                       usecols=['user_id', 'dem_follows', 'rep_follows', 'remove', 'isRT'])
+    data = data[~data['remove']]
+    if cluster_method:
+        cluster_method = '_' + cluster_method
+    else:
+        cluster_method = ''
+    indices = np.load(TWEET_DIR + event + '/' + event + '_cluster_assigned_tweet_indices' + cluster_method + '.npy')
+    labels = np.load(TWEET_DIR + event + '/' + event + '_cluster_labels_' + str(NUM_CLUSTERS) + cluster_method + '.npy')
     data = data.iloc[indices]
     data.reset_index(drop=True, inplace=True)
-    data = data.iloc[strict_indices]
-    data['topic'] = strict_labels
-    data = data[~data['remove']]
+    data['topic'] = labels
+
+    print(event, len(data))
+
     return get_value(data[['user_id', 'dem_follows', 'rep_follows', 'topic']])
 
-between_topic_polarization = {}
-for e in events:
-    print(e)
-    between_topic_polarization[e] = tuple(get_polarization(e))
+if __name__ == "__main__":
+    between_topic_polarization = {}
+    cluster_method = None
+    for e in events:
+        between_topic_polarization[e] = tuple(get_polarization(e, cluster_method))
 
-with open('all_events/between_strict_topic_polarization.json', 'w') as f:
-    f.write(json.dumps(between_topic_polarization))
+    if cluster_method:
+        cluster_method = '_' + cluster_method
+    else:
+        cluster_method = ''
+    with open(DATA_DIR + 'between_topic_polarization ' + cluster_method + ' .json', 'w') as f:
+        f.write(json.dumps(between_topic_polarization))
 

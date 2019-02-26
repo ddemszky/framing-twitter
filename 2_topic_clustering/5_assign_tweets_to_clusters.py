@@ -6,10 +6,11 @@ from nltk.cluster.util import cosine_distance
 
 
 NUM_CLUSTERS = 6
-folder = '../data/tweets/'
+DATA_DIR = '../data/'
+TWEET_DIR = '../data/tweets/'
 print('loading...')
-means = np.load(folder + 'cluster_'+str(NUM_CLUSTERS)+'_means.npy')
-events = open('../data/event_names.txt', 'r').read().splitlines()
+means = np.load(TWEET_DIR + 'cluster_'+str(NUM_CLUSTERS)+'_means.npy')
+events = open(DATA_DIR + 'event_names.txt', 'r').read().splitlines()
 
 def assign_tweets(method = None):
     '''
@@ -20,7 +21,7 @@ def assign_tweets(method = None):
     :return:
     '''
     for e in events:
-        embeddings = np.load('all_events/' + e + '/' + e + '_embeddings_partisan.npy')
+        embeddings = np.load(TWEET_DIR + e + '/' + e + '_embeddings_partisan.npy')
         print(e, len(embeddings))
 
         indices = []
@@ -46,8 +47,8 @@ def assign_tweets(method = None):
             method = '_' + method
         else:
             method = ''
-        np.save(folder + e + '/' + e + '_cluster_assigned_tweet_indices' + method + '.npy', np.array(indices))
-        np.save(folder + e + '/' + e + '_cluster_labels_' + str(NUM_CLUSTERS) + method + '.npy',
+        np.save(TWEET_DIR + e + '/' + e + '_cluster_assigned_tweet_indices' + method + '.npy', np.array(indices))
+        np.save(TWEET_DIR + e + '/' + e + '_cluster_labels_' + str(NUM_CLUSTERS) + method + '.npy',
                 np.array(clusters))
 
 if __name__ == "__main__":
