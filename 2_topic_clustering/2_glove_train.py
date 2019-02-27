@@ -17,7 +17,7 @@ with open(DATA_DIR + 'joint_vocab.txt', 'r') as f:
 
 
 print('Training model...')
-glove_model = GloVe(d, max_iter=10000, learning_rate=0.1)
+glove_model = GloVe(d, max_iter=5000, learning_rate=0.1)
 embeddings = glove_model.fit(coocc)
 
 embeddings = pd.DataFrame(embeddings, index=vocab)

@@ -9,7 +9,7 @@ NUM_CLUSTERS = 6
 DATA_DIR = '../data/'
 TWEET_DIR = '../data/tweets/'
 print('loading...')
-means = np.load(TWEET_DIR + 'cluster_'+str(NUM_CLUSTERS)+'_means.npy')
+means = np.load(DATA_DIR + 'cluster_'+str(NUM_CLUSTERS)+'_means.npy')
 events = open(DATA_DIR + 'event_names.txt', 'r').read().splitlines()
 
 def assign_tweets(method = None):
@@ -20,16 +20,19 @@ def assign_tweets(method = None):
                     Note: in the paper, we use "relative"
     :return:
     '''
+    if method:
+        method_name = '_' + method
+    else:
+        method_name = ''
     for e in events:
         embeddings = np.load(TWEET_DIR + e + '/' + e + '_embeddings_partisan.npy')
-        print(e, len(embeddings))
+
 
         indices = []
         clusters = []
         for i, embed in enumerate(embeddings):
             distances = np.array([cosine_distance(embed, m) for m in means])
             mindist = distances.argsort()
-
             # note: the cutoff values for r were determined by the 75% percentile of all r-s
             if method == "relative":
                 r = distances[mindist[0]] / distances[mindist[1]]
@@ -42,15 +45,13 @@ def assign_tweets(method = None):
             indices.append(i)
             clusters.append(mindist[0])
 
-        print(len(indices))
-        if method:
-            method = '_' + method
-        else:
-            method = ''
-        np.save(TWEET_DIR + e + '/' + e + '_cluster_assigned_tweet_indices' + method + '.npy', np.array(indices))
-        np.save(TWEET_DIR + e + '/' + e + '_cluster_labels_' + str(NUM_CLUSTERS) + method + '.npy',
+
+        print(e, len(embeddings), len(indices) / len(embeddings))
+        np.save(TWEET_DIR + e + '/' + e + '_cluster_assigned_embed_indices' + method_name + '.npy', np.array(indices))
+        np.save(TWEET_DIR + e + '/' + e + '_cluster_labels_' + str(NUM_CLUSTERS) + method_name + '.npy',
                 np.array(clusters))
 
 if __name__ == "__main__":
-    assign_tweets("relative")
+    method = None if len(sys.argv) < 2 else sys.argv[1]
+    assign_tweets(method)
     

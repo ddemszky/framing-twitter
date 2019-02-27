@@ -1,12 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import numpy as np
-import pandas as pd
+import sys
 from nltk.cluster import KMeansClusterer
 import nltk
 
 # this can be set to any number
 NUM_CLUSTERS = 6
+SAMPLE_SIZE = int(sys.argv[1])
 
 DATA_DIR = '../data/'
 TWEET_DIR = '../data/tweets/'
@@ -17,23 +18,21 @@ print('loading...')
 # use a joint sample of embeddings from each event to determine the cluster centroids
 
 def get_samples(sample_size):
-    tweet_embeds = None
+    tweet_embeds = ''
     for event in events:
         embeds = np.load(TWEET_DIR + event + '/' + event + '_embeddings_partisan.npy')
         N = embeds.shape[0]
         embeds = embeds[np.random.choice(N, min(N, sample_size), replace=False), :]
-        if not tweet_embeds:
+        if len(tweet_embeds) == 0:
             tweet_embeds = embeds
         else:
             tweet_embeds = np.vstack([tweet_embeds, embeds])
 
     return tweet_embeds
 
-tweet_embeds = get_samples(11000)
+tweet_embeds = get_samples(SAMPLE_SIZE)
 
 print(tweet_embeds.shape)
-glove = pd.read_csv(DATA_DIR +'/glove.50d.csv', sep='\t', index_col=0)
-
 kclusterer = KMeansClusterer(NUM_CLUSTERS, distance=nltk.cluster.util.cosine_distance, repeats=1)
 
 print('clustering...')
