@@ -8,6 +8,7 @@ import multiprocessing
 import json
 import sys
 from calculate_leaveout_polarization import get_leaveout_value
+from helper_functions import *
 
 num_cores = multiprocessing.cpu_count()
 
@@ -25,19 +26,9 @@ def get_polarization(event, cluster_method = None):
     '''
     data = pd.read_csv(TWEET_DIR + event + '/' + event + '.csv', sep='\t', lineterminator='\n',
                        usecols=['user_id', 'text', 'dem_follows', 'rep_follows'])
-    indices = np.load(TWEET_DIR + event + '/' + event + '_cleaned_and_partisan_indices.npy')  # tweets that have embeddings
-    data = data.iloc[indices]
-    data.reset_index(drop=True, inplace=True)
-    if cluster_method:
-        cluster_method = '_' + cluster_method
-    else:
-        cluster_method = ''
-    assigned_indices = np.load(TWEET_DIR + event + '/' + event + '_cluster_assigned_embed_indices' + cluster_method + '.npy')
-    data = data.iloc[assigned_indices]
-    data.reset_index(drop=True, inplace=True)
+    data = filter_clustered_tweets(event, data, TWEET_DIR, cluster_method)
+    data['topic'] = get_clusters(event, TWEET_DIR, cluster_method, NUM_CLUSTERS)
 
-    labels = np.load(TWEET_DIR + event + '/' + event + '_cluster_labels_' + str(NUM_CLUSTERS) + cluster_method + '.npy')
-    data['topic'] = labels
     print(event, len(data))
 
     topic_polarization = {}
