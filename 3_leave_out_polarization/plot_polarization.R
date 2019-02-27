@@ -3,6 +3,8 @@ library(ggrepel)
 library(RColorBrewer)
 
 setwd('/Users/ddemszky/Google_Drive/Research/Framing/framing-twitter')
+
+# plot overall polarization
 data <- read.csv("data/polarization_noRT.csv",header=TRUE)
 ggplot(data, aes(x=year, y=polarization, color=is_actual))+
   stat_smooth(aes(group=is_actual), method=lm, se=TRUE, fullrange=TRUE) +
@@ -18,7 +20,7 @@ ggplot(data, aes(x=year, y=polarization, color=is_actual))+
   scale_color_manual(values=c("indianred2", "lightsteelblue3")) +
   scale_x_continuous(limits = c(2015.5,2019.05), expand = c(0, 0)) 
 
-data <- read.csv("strict_topic_polarization_naive_bayes.csv",header=TRUE)
+data <- read.csv("data/topic_polarization.csv",header=TRUE)
 #data <- data[data$kind != 'overall',]
 
 ggplot(data, aes(x=year, y=polarization, color=kind))+
