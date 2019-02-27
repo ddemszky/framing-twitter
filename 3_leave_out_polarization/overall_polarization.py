@@ -6,6 +6,7 @@ import pandas as pd
 import json
 import sys
 from calculate_leaveout_polarization import get_leaveout_value
+from helper_functions import *
 
 DATA_DIR = '../data/'
 TWEET_DIR = '../data/tweets/'
@@ -28,16 +29,7 @@ def get_polarization(event, method = "nofilter", cluster_method = None):
     if method == "noRT":
         data = data[~data['remove'] & ~data['isRT']]
     elif method == 'clustered':
-        indices = np.load(TWEET_DIR + event + '/' + event + '_cleaned_and_partisan_indices.npy')  # tweets with embeddings
-        data = data.iloc[indices]
-        data.reset_index(drop=True, inplace=True)
-        if cluster_method:
-            cluster_method = '_' + cluster_method
-        else:
-            cluster_method = ''
-        assigned_indices = np.load(
-            TWEET_DIR + event + '/' + event + '_cluster_assigned_embed_indices' + cluster_method + '.npy')
-        data = data.iloc[assigned_indices]
+        data = filter_clustered_tweets(event, data, TWEET_DIR, cluster_method)
     elif method != "nofilter":
         print("invalid method.")
         return None

@@ -6,6 +6,7 @@ import pandas as pd
 import gc
 import json
 import sys
+from helper_functions import *
 
 
 DATA_DIR = '../data/'
@@ -95,19 +96,8 @@ def get_polarization(event, cluster_method = None):
     '''
     data = pd.read_csv(TWEET_DIR + event + '/' + event + '.csv', sep='\t', lineterminator='\n',
                        usecols=['user_id', 'dem_follows', 'rep_follows', 'remove', 'isRT'])
-    indices = np.load(TWEET_DIR + e + '/' + e + '_cleaned_and_partisan_indices.npy')  # tweets that have embeddings
-    data = data.iloc[indices]
-    data.reset_index(drop=True, inplace=True)
-    if cluster_method:
-        cluster_method = '_' + cluster_method
-    else:
-        cluster_method = ''
-    assigned_indices = np.load(TWEET_DIR + event + '/' + event + '_cluster_assigned_embed_indices' + cluster_method + '.npy')
-    data = data.iloc[assigned_indices]
-    data.reset_index(drop=True, inplace=True)
-
-    labels = np.load(TWEET_DIR + event + '/' + event + '_cluster_labels_' + str(NUM_CLUSTERS) + cluster_method + '.npy')
-    data['topic'] = labels
+    data = filter_clustered_tweets(event, data, TWEET_DIR, cluster_method)
+    data['topic'] = get_clusters(event, TWEET_DIR, cluster_method, NUM_CLUSTERS)
 
     print(event, len(data))
 
