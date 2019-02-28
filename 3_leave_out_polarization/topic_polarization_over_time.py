@@ -1,16 +1,18 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from __future__ import division
-import pandas as pd
-from joblib import Parallel, delayed
-import multiprocessing
+
+import copy
+import gc
 import json
 import sys
-import gc
-import copy
-from calculate_leaveout_polarization import get_leaveout_value
-from helper_functions import *
 
+import pandas as pd
+from helper_functions import *
+from joblib import Parallel, delayed
+from calculate_leaveout_polarization import get_leaveout_value
+sys.path.append('..')
+from helpers.funcs import *
 
 # NOTE: only use this for events where there is enough (temporal) data, otherwise it'll be very noisy
 
