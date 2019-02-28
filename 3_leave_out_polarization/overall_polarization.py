@@ -1,11 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from __future__ import division
-import pandas as pd
+
 import json
 import sys
+
+import pandas as pd
+sys.path.append('..')
+from helpers.funcs import *
+
 from calculate_leaveout_polarization import get_leaveout_value
-from helper_functions import *
 
 config = json.load(open('../config.json', 'r'))
 DATA_DIR = config['DATA_DIR']

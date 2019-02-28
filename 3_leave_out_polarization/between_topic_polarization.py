@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from __future__ import division
-import pandas as pd
 import gc
 import json
 import sys
-from helper_functions import *
-import json
+import pandas as pd
+sys.path.append('..')
+from helpers.funcs import *
 
 config = json.load(open('../config.json', 'r'))
 DATA_DIR = config['DATA_DIR']

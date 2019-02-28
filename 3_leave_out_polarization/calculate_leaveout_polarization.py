@@ -6,7 +6,6 @@ import string
 from collections import Counter
 import numpy as np
 import sys
-import multiprocessing
 import gc
 import json
 import scipy.sparse as sp
