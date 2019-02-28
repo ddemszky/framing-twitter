@@ -10,40 +10,17 @@ import math
 import json
 from joblib import Parallel, delayed
 import nltk
+import sys
+sys.path.append('..')
+from helpers.funcs import *
 sno = nltk.stem.SnowballStemmer('english')
 
 config = json.load(open('../config.json', 'r'))
 DATA_DIR = config['DATA_DIR']
 TWEET_DIR = config['TWEET_DIR']
 
-# compile some regexes
-punct_chars = list((set(string.punctuation) | {'’', '‘', '–', '—', '~', '|', '“', '”', '…', "'", "`", '_'}) - set(['#']))
-punct_chars.sort()
-punctuation = ''.join(punct_chars)
-replace = re.compile('[%s]' % re.escape(punctuation))
-stopwords = set(open(DATA_DIR + 'stopwords.txt', 'r').read().splitlines())
-event_stopwords = json.load(open(DATA_DIR + "event_stopwords.json","r"))
 events = open(DATA_DIR + 'event_names.txt', 'r').read().splitlines()
 
-def clean_text(text, event):
-    stop = stopwords | set(event_stopwords[event])
-    # lower case
-    text = text.lower()
-    # eliminate urls
-    text = re.sub(r'http\S*|\S*\.com\S*|\S*www\S*', ' ', text)
-    # eliminate @mentions
-    text = re.sub(r'\s@\S+', ' ', text)
-    # substitute all other punctuation with whitespace
-    text = replace.sub(' ', text)
-    # replace all whitespace with a single space
-    text = re.sub(r'\s+', ' ', text)
-    # strip off spaces on either end
-    text = text.strip()
-    return [sno.stem(w) for w in text.split() if w not in stop]
-
-def split_party(data):
-    part_tweets = data[~data['dem_follows'].isnull() & ~data['rep_follows'].isnull() & (data['dem_follows'] != data['rep_follows'])]
-    return part_tweets[part_tweets['dem_follows'] > part_tweets['rep_follows']], part_tweets[part_tweets['dem_follows'] < part_tweets['rep_follows']]
 
 def get_counts(tweets, vocab):
     counts = {w: 0 for w in vocab}
@@ -92,8 +69,8 @@ def log_odds(counts1, counts2, prior, zscore = True):
 def get_log_odds(event):
     tweets = pd.read_csv(TWEET_DIR + event + '/' + event + '.csv', sep='\t', lineterminator='\n',
                        usecols=['user_id', 'text', 'dem_follows', 'rep_follows', 'remove', 'isRT'])
-    tweets = tweets[~tweets['remove'] & ~tweets['isRT']]
-    tweets['text'] = tweets['text'].astype(str).apply(clean_text, args=(event,))
+    tweets = filter_RTs(tweets)
+    tweets['text'] = tweets['text'].astype(str).apply(clean_text, args=(False, event))
     vocab = open(TWEET_DIR +event+ '/' + event + '_vocab.txt', 'r').read().splitlines()
     words2idx = {w: i for i, w in enumerate(vocab)}
     print(event, len(tweets))

@@ -5,6 +5,7 @@ import gc
 import json
 import sys
 import pandas as pd
+import numpy as np
 sys.path.append('..')
 from helpers.funcs import *
 
@@ -13,11 +14,6 @@ DATA_DIR = config['DATA_DIR']
 TWEET_DIR = config['TWEET_DIR']
 NUM_CLUSTERS = config['NUM_CLUSTERS']
 events = open(DATA_DIR + 'event_names.txt', 'r').read().splitlines()
-
-def split_party(data):
-    part_tweets = data[~data['dem_follows'].isnull() & ~data['rep_follows'].isnull() & (data['dem_follows'] != data['rep_follows'])]
-    return part_tweets[part_tweets['dem_follows'] > part_tweets['rep_follows']], part_tweets[part_tweets['dem_follows'] < part_tweets['rep_follows']], part_tweets
-
 
 def polarization(dem_tweets, rep_tweets):
     cluster_dem_counts = {}
