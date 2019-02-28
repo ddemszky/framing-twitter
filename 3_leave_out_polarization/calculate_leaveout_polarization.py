@@ -10,39 +10,14 @@ import gc
 import json
 import scipy.sparse as sp
 import nltk
+sys.path.append('..')
+from helpers.funcs import *
+
 sno = nltk.stem.SnowballStemmer('english')
 
 config = json.load(open('../config.json', 'r'))
 DATA_DIR = config['DATA_DIR']
 TWEET_DIR = config['TWEET_DIR']
-
-# compile some regexes
-punct_chars = list((set(string.punctuation) | {'’', '‘', '–', '—', '~', '|', '“', '”', '…', "'", "`", '_'}) - set(['#']))
-punct_chars.sort()
-punctuation = ''.join(punct_chars)
-replace = re.compile('[%s]' % re.escape(punctuation))
-stopwords = set(open(DATA_DIR + 'stopwords.txt', 'r').read().splitlines())
-event_stopwords = json.load(open(DATA_DIR + "event_stopwords.json","r"))
-
-def clean_text(text, event):
-    stop = stopwords | set(event_stopwords[event])
-    # lower case
-    text = text.lower()
-    # eliminate urls
-    text = re.sub(r'http\S*|\S*\.com\S*|\S*www\S*', ' ', text)
-    # eliminate @mentions
-    text = re.sub(r'\s@\S+', ' ', text)
-    # substitute all other punctuation with whitespace
-    text = replace.sub(' ', text)
-    # replace all whitespace with a single space
-    text = re.sub(r'\s+', ' ', text)
-    # strip off spaces on either end
-    text = text.strip()
-    return [sno.stem(w) for w in text.split() if w not in stop]
-
-def split_party(data):
-    part_tweets = data[~data['dem_follows'].isnull() & ~data['rep_follows'].isnull() & (data['dem_follows'] != data['rep_follows'])]
-    return part_tweets[part_tweets['dem_follows'] > part_tweets['rep_follows']], part_tweets[part_tweets['dem_follows'] < part_tweets['rep_follows']]
 
 
 def get_user_counts(tweets, vocab):
@@ -135,7 +110,8 @@ def leaveout(dem_counts, rep_counts):
 def get_leaveout_value(event, b):
 
     # clean data
-    b['text'] = b['text'].astype(str).apply(clean_text, args=(event,))
+    b['text'] = b['text'].astype(str).apply(clean_text, args=(False, event))
+
     # get vocab
     vocab = {w: i for i, w in enumerate(open(TWEET_DIR + event + '/' + event + '_vocab.txt', 'r').read().splitlines())}
 
