@@ -1,18 +1,17 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from __future__ import division
-import numpy as np
 import pandas as pd
 import gc
 import json
 import sys
 from helper_functions import *
+import json
 
-
-DATA_DIR = '../data/'
-TWEET_DIR = '../data/tweets/'
-
-NUM_CLUSTERS = 6
+config = json.load(open('../config.json', 'r'))
+DATA_DIR = config['DATA_DIR']
+TWEET_DIR = config['TWEET_DIR']
+NUM_CLUSTERS = config['NUM_CLUSTERS']
 events = open(DATA_DIR + 'event_names.txt', 'r').read().splitlines()
 
 def split_party(data):
@@ -109,10 +108,7 @@ if __name__ == "__main__":
     for e in events:
         between_topic_polarization[e] = tuple(get_polarization(e, cluster_method))
 
-    if cluster_method:
-        cluster_method = '_' + cluster_method
-    else:
-        cluster_method = ''
+    cluster_method = method_name(cluster_method)
     with open(DATA_DIR + 'between_topic_polarization' + cluster_method + '.json', 'w') as f:
         f.write(json.dumps(between_topic_polarization))
 

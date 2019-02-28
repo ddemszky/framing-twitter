@@ -8,9 +8,12 @@ import numpy as np
 import pandas as pd
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.decomposition import TruncatedSVD
+import json
 
-DATA_DIR = '../data/'
-TWEET_DIR = '../data/tweets/'
+config = json.load(open('../config.json', 'r'))
+DATA_DIR = config['DATA_DIR']
+TWEET_DIR = config['TWEET_DIR']
+
 events = open(DATA_DIR + 'event_names.txt', 'r').read().splitlines()
 print(events)
 

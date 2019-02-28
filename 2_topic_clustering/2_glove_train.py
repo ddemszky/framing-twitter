@@ -3,10 +3,12 @@
 from mittens import GloVe
 import pandas as pd
 from scipy import sparse
+import json
 
 # embedding dimension
 d = 50
-DATA_DIR = '../data/'
+config = json.load(open('../config.json', 'r'))
+DATA_DIR = config['DATA_DIR']
 
 print('Loading file...')
 coocc = sparse.load_npz(DATA_DIR + 'glove_cooccurrence.npz')

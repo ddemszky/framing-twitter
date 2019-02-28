@@ -1,16 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from __future__ import division
-import numpy as np
 import pandas as pd
 import json
 import sys
 from calculate_leaveout_polarization import get_leaveout_value
 from helper_functions import *
 
-DATA_DIR = '../data/'
-TWEET_DIR = '../data/tweets/'
-
+config = json.load(open('../config.json', 'r'))
+DATA_DIR = config['DATA_DIR']
+TWEET_DIR = config['TWEET_DIR']
 
 events = open(DATA_DIR + 'event_names.txt', 'r').read().splitlines()
 print(events)
@@ -44,9 +43,6 @@ if __name__ == "__main__":
     for e in events:
         event_polarization[e] = tuple(get_polarization(e, method, cluster_method))
 
-    if cluster_method:
-        cluster_method = '_' + cluster_method
-    else:
-        cluster_method = ''
+    cluster_method = method_name(cluster_method)
     with open(DATA_DIR + 'polarization_' + method + cluster_method + '.json', 'w') as f:
         f.write(json.dumps(event_polarization))
