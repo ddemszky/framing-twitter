@@ -5,7 +5,6 @@ import re
 import string
 from collections import Counter
 import numpy as np
-import pandas as pd
 import sys
 import multiprocessing
 import gc
@@ -14,11 +13,9 @@ import scipy.sparse as sp
 import nltk
 sno = nltk.stem.SnowballStemmer('english')
 
-num_cores = multiprocessing.cpu_count()
-
-
-DATA_DIR = '../data/'
-TWEET_DIR = '../data/tweets/'
+config = json.load(open('../config.json', 'r'))
+DATA_DIR = config['DATA_DIR']
+TWEET_DIR = config['TWEET_DIR']
 
 # compile some regexes
 punct_chars = list((set(string.punctuation) | {'’', '‘', '–', '—', '~', '|', '“', '”', '…', "'", "`", '_'}) - set(['#']))

@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from __future__ import division
-import numpy as np
 import pandas as pd
 from joblib import Parallel, delayed
 import multiprocessing
@@ -10,11 +9,10 @@ import sys
 from calculate_leaveout_polarization import get_leaveout_value
 from helper_functions import *
 
-num_cores = multiprocessing.cpu_count()
-
-TWEET_DIR = '../data/tweets/'
-DATA_DIR = '../data/'
-NUM_CLUSTERS = 6
+config = json.load(open('../config.json', 'r'))
+DATA_DIR = config['DATA_DIR']
+TWEET_DIR = config['TWEET_DIR']
+NUM_CLUSTERS = config['NUM_CLUSTERS']
 events = open(DATA_DIR + 'event_names.txt', 'r').read().splitlines()
 
 def get_polarization(event, cluster_method = None):
@@ -36,6 +34,7 @@ def get_polarization(event, cluster_method = None):
         print(i)
         topic_polarization[i] = tuple(get_leaveout_value(event, data[data['topic'] == i]))
 
+    cluster_method = method_name(cluster_method)
     with open(TWEET_DIR + event + '/' + event + '_topic_polarization' + cluster_method + '.json', 'w') as f:
         f.write(json.dumps(topic_polarization))
 

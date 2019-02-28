@@ -4,13 +4,15 @@ import numpy as np
 import sys
 from nltk.cluster import KMeansClusterer
 import nltk
+import json
 
 # this can be set to any number
 NUM_CLUSTERS = 6
 SAMPLE_SIZE = int(sys.argv[1])
 
-DATA_DIR = '../data/'
-TWEET_DIR = '../data/tweets/'
+config = json.load(open('../config.json', 'r'))
+DATA_DIR = config['DATA_DIR']
+TWEET_DIR = config['TWEET_DIR']
 events = open(DATA_DIR + 'event_names.txt', 'r').read().splitlines()
 
 

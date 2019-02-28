@@ -3,11 +3,12 @@
 import numpy as np
 import sys
 from nltk.cluster.util import cosine_distance
+import json
 
-
-NUM_CLUSTERS = 6
-DATA_DIR = '../data/'
-TWEET_DIR = '../data/tweets/'
+config = json.load(open('../config.json', 'r'))
+DATA_DIR = config['DATA_DIR']
+TWEET_DIR = config['TWEET_DIR']
+NUM_CLUSTERS = config['NUM_CLUSTERS']
 print('loading...')
 means = np.load(DATA_DIR + 'cluster_'+str(NUM_CLUSTERS)+'_means.npy')
 events = open(DATA_DIR + 'event_names.txt', 'r').read().splitlines()

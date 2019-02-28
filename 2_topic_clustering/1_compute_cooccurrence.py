@@ -7,6 +7,7 @@ from scipy import sparse
 import operator
 import random
 import nltk
+import json
 sno = nltk.stem.SnowballStemmer('english')
 
 # Since there is a huge data size disparity among different events, if we use all tweets
@@ -15,8 +16,9 @@ sno = nltk.stem.SnowballStemmer('english')
 # of tweets instead when computing the co-occurrence matrix of words.
 SAMPLE_SIZE = 50000
 
-DATA_DIR = '../data/'
-TWEET_DIR = '../data/tweets/'
+config = json.load(open('../config.json', 'r'))
+DATA_DIR = config['DATA_DIR']
+TWEET_DIR = config['TWEET_DIR']
 events = open(DATA_DIR + 'event_names.txt', 'r').read().splitlines()
 vocab = open(DATA_DIR + 'joint_vocab.txt', 'r').read().splitlines()
 word2idx = {v: i for i, v in enumerate(vocab)}

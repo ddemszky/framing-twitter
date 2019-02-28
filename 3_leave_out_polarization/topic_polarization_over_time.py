@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from __future__ import division
-import numpy as np
 import pandas as pd
 from joblib import Parallel, delayed
 import multiprocessing
@@ -15,12 +14,10 @@ from helper_functions import *
 
 # NOTE: only use this for events where there is enough (temporal) data, otherwise it'll be very noisy
 
-
-num_cores = multiprocessing.cpu_count()
-
-TWEET_DIR = '../data/tweets/'
-DATA_DIR = '../data/'
-NUM_CLUSTERS = 6
+config = json.load(open('../config.json', 'r'))
+DATA_DIR = config['DATA_DIR']
+TWEET_DIR = config['TWEET_DIR']
+NUM_CLUSTERS = config['NUM_CLUSTERS']
 events = open(DATA_DIR + 'event_names.txt', 'r').read().splitlines()
 event_times = json.load(open(DATA_DIR + "event_times.json","r"))
 hour = 60 * 60
@@ -52,6 +49,7 @@ def get_polarization(event, cluster_method = None):
                        usecols=['user_id', 'text', 'dem_follows', 'rep_follows'])
     data = filter_clustered_tweets(event, data, TWEET_DIR, cluster_method)
     data['topic'] = get_clusters(event, TWEET_DIR, cluster_method, NUM_CLUSTERS)
+    cluster_method = method_name(cluster_method)
     print(event, len(data))
 
     buckets = get_buckets(data, event_times[event])
