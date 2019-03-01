@@ -36,7 +36,7 @@ def clean_text(text, keep_stopwords=True, event=None):
         return [sno.stem(w) for w in text.split() if w not in stop]
     return [sno.stem(w) for w in text.split()]
 
-def filter_RTs(data):
+def filter_retweets(data):
     return data[~data['remove'] & ~data['isRT']]
 
 def split_party(data):
