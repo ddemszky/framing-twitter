@@ -47,7 +47,8 @@ def polarization(dem_tweets, rep_tweets):
 def get_value(data):
     print(len(data))
 
-    dem_tweets, rep_tweets, partisan_tweets = split_party(data)  # get partisan tweets
+    partisan_tweets = data[~data['dem_follows'].isnull() & ~data['rep_follows'].isnull() & (data['dem_follows'] != data['rep_follows'])]
+    dem_tweets, rep_tweets = split_party(data)  # get partisan tweets
     dem_unique = set(dem_tweets['user_id'])
     rep_unique = set(rep_tweets['user_id'])
 
