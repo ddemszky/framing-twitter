@@ -2,7 +2,7 @@ import scipy.spatial.distance
 import pandas as pd
 import numpy as np
 
-# based on a script from Chris Potts' class, CS224U
+# based on a script by Chris Potts (CS224U class)
 
 def cosine(u, v):
     return scipy.spatial.distance.cosine(u, v)

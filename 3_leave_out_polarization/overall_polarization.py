@@ -30,7 +30,7 @@ def get_polarization(event, method = "nofilter", cluster_method = None):
     '''
     data = pd.read_csv(TWEET_DIR + event + '/' + event + '.csv', sep='\t', lineterminator='\n', usecols=['text', 'timestamp', 'user_id', 'dem_follows', 'rep_follows', 'remove', 'isRT'])
     if method == "noRT":
-        data = data[~data['remove'] & ~data['isRT']]
+        data = filter_retweets(data)
     elif method == 'clustered':
         data = filter_clustered_tweets(event, data, TWEET_DIR, cluster_method)
     elif method != "nofilter":
