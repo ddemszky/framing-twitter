@@ -43,4 +43,4 @@ def get_polarization(event, cluster_method = None):
 
 cluster_method = None if len(sys.argv) < 2 else sys.argv[1]
 
-Parallel(n_jobs=2)(delayed(get_polarization)(e, cluster_method) for e in events)
+Parallel(n_jobs=3)(delayed(get_polarization)(e, cluster_method) for e in events)

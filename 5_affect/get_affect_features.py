@@ -29,7 +29,7 @@ def get_counts(tweet_words, features, party):
 def get_features(event):
     tweets = pd.read_csv(TWEET_DIR + event + '/' + event + '.csv', sep='\t', lineterminator='\n',
                        usecols=['text', 'dem_follows', 'rep_follows', 'remove', 'isRT'])
-    tweets = filter_RTs(tweets)
+    tweets = filter_retweets(tweets)
     features = {cat: {'dem': 0, 'rep': 0} for cat in nrc_dict}
     dem_tweets, rep_tweets = split_party(tweets)
 
