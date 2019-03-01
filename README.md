@@ -52,7 +52,7 @@ Code for measuring and plotting the partisanship (log odds ratio) of words, phra
 
 Measure the partisanship of affect categories.
 - `affect_parisanship.ipynb`: 
-  - construct affect lexicon based on NRC[LINK], by filtering it for our own domain via GloVe embeddings
+  - construct affect lexicon based on the [NRC Emotion Lexicon](https://saifmohammad.com/WebPages/NRC-Emotion-Lexicon.htm), by filtering it for our own domain via GloVe embeddings
   - plot the partisanship of affect categories
 - `get_affect_features.py`: collect affect features for each event based on our affect lexicon
 
