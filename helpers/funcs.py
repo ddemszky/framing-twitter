@@ -63,3 +63,15 @@ def filter_clustered_tweets(event, data, tweet_dir, cluster_method):
 def get_clusters(event, tweet_dir, cluster_method, num_clusters):
     cluster_method = method_name(cluster_method)
     return np.load(tweet_dir + event + '/' + event + '_cluster_labels_' + str(num_clusters) + cluster_method + '.npy')
+
+def get_buckets(data, timestamp, no_splits, split_by):
+    '''Divide tweets into time buckets.'''
+    timestamps = data['timestamp'].astype(float)
+    buckets = []
+    start = timestamp
+    for i in range(no_splits):
+        new_start = start + split_by
+        b = data[(timestamps > start) & (timestamps < new_start)]
+        start = new_start
+        buckets.append(b)
+    return buckets

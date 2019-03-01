@@ -27,18 +27,6 @@ split_by = 12 * hour
 no_splits = int((day / split_by) * 14)  # 14 days
 
 
-def get_buckets(data, timestamp):
-    '''Divide tweets into time buckets.'''
-    timestamps = data['timestamp'].astype(float)
-    buckets = []
-    start = timestamp
-    for i in range(no_splits):
-        new_start = start + split_by
-        b = copy.deepcopy(data[(timestamps > start) & (timestamps < new_start)])
-        start = new_start
-        buckets.append(b)
-    return buckets
-
 def get_polarization(event, cluster_method = None):
     '''
 
@@ -53,7 +41,7 @@ def get_polarization(event, cluster_method = None):
     cluster_method = method_name(cluster_method)
     print(event, len(data))
 
-    buckets = get_buckets(data, event_times[event])
+    buckets = get_buckets(data, event_times[event], no_splits, split_by)
     del data
     gc.collect()
 
@@ -73,5 +61,5 @@ def get_polarization(event, cluster_method = None):
 
 cluster_method = None if len(sys.argv) < 2 else sys.argv[1]
 
-Parallel(n_jobs=3)(delayed(get_polarization)(e, cluster_method) for e in ['orlando', 'vegas', 'parkland'])
+Parallel(n_jobs=1)(delayed(get_polarization)(e, cluster_method) for e in ['orlando', 'vegas', 'parkland'])
 
