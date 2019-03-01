@@ -38,7 +38,7 @@ def get_features(event):
     features = get_counts(dem_tweets, features, 'dem')
     features = get_counts(rep_tweets, features, 'rep')
 
-    with open(TWEET_DIR + event + '/' + event + '_nrc_features.json', 'w') as f:
+    with open(TWEET_DIR + event + '/' + event + '_affect_features.json', 'w') as f:
         f.write(json.dumps(features))
     print(event, 'done')
 
