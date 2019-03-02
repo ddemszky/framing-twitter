@@ -192,7 +192,7 @@ def get_all_tweets():
 
 if __name__ == "__main__":
     # if tweets were weights haven't been sampled, uncomment
-    tweets_for_weights = get_samples_for_computing_word_weights(50000)
+    tweets_for_weights = get_samples_for_computing_word_weights(10000)
 
     # use this if sampled tweets were saved already
     #with open(TWEET_DIR + 'tweets_for_weights.txt', 'r') as f:

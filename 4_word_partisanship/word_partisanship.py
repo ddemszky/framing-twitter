@@ -69,7 +69,7 @@ def log_odds(counts1, counts2, prior, zscore = True):
 def get_log_odds(event):
     tweets = pd.read_csv(TWEET_DIR + event + '/' + event + '.csv', sep='\t', lineterminator='\n',
                        usecols=['user_id', 'text', 'dem_follows', 'rep_follows', 'remove', 'isRT'])
-    tweets = filter_RTs(tweets)
+    tweets = filter_retweets(tweets)
     tweets['text'] = tweets['text'].astype(str).apply(clean_text, args=(False, event))
     vocab = open(TWEET_DIR +event+ '/' + event + '_vocab.txt', 'r').read().splitlines()
     words2idx = {w: i for i, w in enumerate(vocab)}
