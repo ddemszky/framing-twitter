@@ -10,7 +10,7 @@ Make sure to use Python3 when running the scripts. The package requirements can 
 
 `paper`
 
-`.tex` files and plots used to generate the paper.
+Files and plots used to generate the paper.
 
 `data`
 
