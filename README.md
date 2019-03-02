@@ -2,7 +2,7 @@
 This repo contains code for the paper:
 > Demszky, D., Garg, N., Voigt, R., Zou, J., Shapiro, J., Gentzkow, M. & Jurafsky, D. (2019). Analyzing Polarization in Social Media: Method and Application to Tweets on 21 Mass Shootings. To appear at _NAACL 2019_.
 
-All the results as well as the plots in the paper were generated using the scripts in this repository. Due to Twitter's privacy policy, we are not able to share the original tweets, only results based on aggregate data.
+All the results as well as the plots in the paper were generated using the scripts in this repository. Due to Twitter's privacy policy, we are not able to share the original tweets, but we are sharing the **tweet IDs** under `data/tweet_ids.json`.
 
 ## Folders
 
