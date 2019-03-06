@@ -35,9 +35,9 @@ def get_coocc(tweets, word2idx):
         bow_sorted = sorted(word_counts.items(), key=operator.itemgetter(1), reverse=True)
         for i, (word, count1) in enumerate(bow_sorted):
             for (context, count2) in bow_sorted[i:]:
-                coocc[word2idx[word], word2idx[context]] += count1
+                coocc[word2idx[word], word2idx[context]] += count1 * count2   # number of joint co-occurrences
                 if context != word:
-                    coocc[word2idx[context], word2idx[word]] += count1
+                    coocc[word2idx[context], word2idx[word]] += count1 * count2
         if j % 100000 == 0:
             print(tweet)
             print(j)
