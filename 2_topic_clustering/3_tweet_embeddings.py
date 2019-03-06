@@ -168,8 +168,6 @@ def generate_embeddings(docs, all_data, model, words2idx, dim, rmpc=1):
 
 
 # DATA LOADER FUNCTIONS
-
-# TODO: download tweets_for_weights.txt, set random seed
 def get_samples_for_computing_word_weights(sample_size):
     tweets = []
     for event in events:
