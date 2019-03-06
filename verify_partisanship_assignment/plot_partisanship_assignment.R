@@ -1,6 +1,6 @@
 library(ggplot2)
 library(ggrepel)
-data <- read.csv("verify_party_assignment.csv", header=TRUE)
+data <- read.csv("output/verify_party_assignment.csv", header=TRUE)
 
 # We exclude DC because it has a disproportionately large number of news media Twitter handles that make it an outlier. Moreover, DC is not an official state.
 data = data[data$abbr != 'DC',]
