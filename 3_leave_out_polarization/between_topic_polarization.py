@@ -10,10 +10,11 @@ sys.path.append('..')
 from helpers.funcs import *
 
 config = json.load(open('../config.json', 'r'))
-DATA_DIR = config['DATA_DIR']
+INPUT_DIR = config['INPUT_DIR']
+OUTPUT_DIR = config['OUTPUT_DIR']
 TWEET_DIR = config['TWEET_DIR']
 NUM_CLUSTERS = config['NUM_CLUSTERS']
-events = open(DATA_DIR + 'event_names.txt', 'r').read().splitlines()
+events = open(INPUT_DIR + 'event_names.txt', 'r').read().splitlines()
 
 def polarization(dem_tweets, rep_tweets):
     cluster_dem_counts = {}
@@ -106,6 +107,6 @@ if __name__ == "__main__":
         between_topic_polarization[e] = tuple(get_polarization(e, cluster_method))
 
     cluster_method = method_name(cluster_method)
-    with open(DATA_DIR + 'between_topic_polarization' + cluster_method + '.json', 'w') as f:
+    with open(OUTPUT_DIR + 'between_topic_polarization' + cluster_method + '.json', 'w') as f:
         f.write(json.dumps(between_topic_polarization))
 

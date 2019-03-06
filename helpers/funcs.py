@@ -11,10 +11,10 @@ punctuation = ''.join(punct_chars)
 replace = re.compile('[%s]' % re.escape(punctuation))
 
 config = json.load(open('../config.json', 'r'))
-DATA_DIR = config['DATA_DIR']
+INPUT_DIR = config['INPUT_DIR']
 
-stopwords = set(open(DATA_DIR + 'stopwords.txt', 'r').read().splitlines())
-event_stopwords = json.load(open(DATA_DIR + "event_stopwords.json","r"))
+stopwords = set(open(INPUT_DIR + 'stopwords.txt', 'r').read().splitlines())
+event_stopwords = json.load(open(INPUT_DIR + "event_stopwords.json","r"))
 
 def clean_text(text, keep_stopwords=True, event=None):
     if not keep_stopwords:

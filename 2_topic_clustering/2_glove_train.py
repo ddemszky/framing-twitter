@@ -8,7 +8,7 @@ import json
 # embedding dimension
 d = 50
 config = json.load(open('../config.json', 'r'))
-DATA_DIR = config['DATA_DIR']
+DATA_DIR = config['OUTPUT_DIR']
 
 print('Loading file...')
 coocc = sparse.load_npz(DATA_DIR + 'glove_cooccurrence.npz')

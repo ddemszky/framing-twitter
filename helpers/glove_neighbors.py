@@ -1,6 +1,5 @@
 import scipy.spatial.distance
-import pandas as pd
-import numpy as np
+
 
 # based on a script by Chris Potts (CS224U class)
 

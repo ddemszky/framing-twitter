@@ -11,14 +11,15 @@ from sklearn.decomposition import TruncatedSVD
 import json
 
 config = json.load(open('../config.json', 'r'))
-DATA_DIR = config['DATA_DIR']
+INPUT_DIR = config['INPUT_DIR']
+OUTPUT_DIR = config['OUTPUT_DIR']
 TWEET_DIR = config['TWEET_DIR']
 
-events = open(DATA_DIR + 'event_names.txt', 'r').read().splitlines()
+events = open(INPUT_DIR + 'event_names.txt', 'r').read().splitlines()
 print(events)
 
 d = 50  # dimension of word embeddings (and hence, tweet embeddings)
-vectors = pd.read_csv(DATA_DIR + 'glove.50d.csv', sep="\t", index_col=0)
+vectors = pd.read_csv(OUTPUT_DIR + 'glove.50d.csv', sep="\t", index_col=0)
 words2index = {w: i for i, w in enumerate(vectors.index.values)}
 
 def get_word_weights(files, a=1e-3):

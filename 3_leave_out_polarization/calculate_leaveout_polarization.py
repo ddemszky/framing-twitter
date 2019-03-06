@@ -16,7 +16,6 @@ from helpers.funcs import *
 sno = nltk.stem.SnowballStemmer('english')
 
 config = json.load(open('../config.json', 'r'))
-DATA_DIR = config['DATA_DIR']
 TWEET_DIR = config['TWEET_DIR']
 
 

@@ -12,10 +12,10 @@ sys.path.append('..')
 from helpers.funcs import *
 
 config = json.load(open('../config.json', 'r'))
-DATA_DIR = config['DATA_DIR']
+INPUT_DIR = config['INPUT_DIR']
 TWEET_DIR = config['TWEET_DIR']
 NUM_CLUSTERS = config['NUM_CLUSTERS']
-events = open(DATA_DIR + 'event_names.txt', 'r').read().splitlines()
+events = open(INPUT_DIR + 'event_names.txt', 'r').read().splitlines()
 
 def get_polarization(event, cluster_method = None):
     '''

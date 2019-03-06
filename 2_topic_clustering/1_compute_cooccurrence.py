@@ -17,10 +17,11 @@ sno = nltk.stem.SnowballStemmer('english')
 SAMPLE_SIZE = 50000
 
 config = json.load(open('../config.json', 'r'))
-DATA_DIR = config['DATA_DIR']
+INPUT_DIR = config['INPUT_DIR']
+OUTPUT_DIR = config['OUTPUT_DIR']
 TWEET_DIR = config['TWEET_DIR']
-events = open(DATA_DIR + 'event_names.txt', 'r').read().splitlines()
-vocab = open(DATA_DIR + 'joint_vocab.txt', 'r').read().splitlines()
+events = open(INPUT_DIR + 'event_names.txt', 'r').read().splitlines()
+vocab = open(OUTPUT_DIR + 'joint_vocab.txt', 'r').read().splitlines()
 word2idx = {v: i for i, v in enumerate(vocab)}
 vocab_set = set(vocab)
 print(events)
@@ -50,5 +51,5 @@ for event in events:
 coocc = sparse.csr_matrix(get_coocc(tweets, word2idx))
 
 print('Saving...')
-sparse.save_npz(DATA_DIR + 'glove_cooccurrence.npz', coocc)
+sparse.save_npz(OUTPUT_DIR + 'glove_cooccurrence.npz', coocc)
 

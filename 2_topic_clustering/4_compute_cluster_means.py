@@ -11,7 +11,7 @@ NUM_CLUSTERS = 6
 SAMPLE_SIZE = int(sys.argv[1])
 
 config = json.load(open('../config.json', 'r'))
-DATA_DIR = config['DATA_DIR']
+DATA_DIR = config['OUTPUT_DIR']
 TWEET_DIR = config['TWEET_DIR']
 events = open(DATA_DIR + 'event_names.txt', 'r').read().splitlines()
 

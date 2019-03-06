@@ -16,11 +16,11 @@ from helpers.funcs import *
 # NOTE: only use this for events where there is enough (temporal) data, otherwise it'll be very noisy
 
 config = json.load(open('../config.json', 'r'))
-DATA_DIR = config['DATA_DIR']
+INPUT_DIR = config['INPUT_DIR']
 TWEET_DIR = config['TWEET_DIR']
 NUM_CLUSTERS = config['NUM_CLUSTERS']
-events = open(DATA_DIR + 'event_names.txt', 'r').read().splitlines()
-event_times = json.load(open(DATA_DIR + "event_times.json","r"))
+events = open(INPUT_DIR + 'event_names.txt', 'r').read().splitlines()
+event_times = json.load(open(INPUT_DIR + "event_times.json","r"))
 hour = 60 * 60
 day = 24 * hour
 split_by = 12 * hour

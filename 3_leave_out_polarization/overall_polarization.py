@@ -12,10 +12,11 @@ from helpers.funcs import *
 from calculate_leaveout_polarization import get_leaveout_value
 
 config = json.load(open('../config.json', 'r'))
-DATA_DIR = config['DATA_DIR']
+INPUT_DIR = config['INPUT_DIR']
+OUTPUT_DIR = config['OUTPUT_DIR']
 TWEET_DIR = config['TWEET_DIR']
 
-events = open(DATA_DIR + 'event_names.txt', 'r').read().splitlines()
+events = open(INPUT_DIR + 'event_names.txt', 'r').read().splitlines()
 print(events)
 
 def get_polarization(event, method = "nofilter", cluster_method = None):
@@ -48,5 +49,5 @@ if __name__ == "__main__":
         event_polarization[e] = tuple(get_polarization(e, method, cluster_method))
 
     cluster_method = method_name(cluster_method)
-    with open(DATA_DIR + 'polarization_' + method + cluster_method + '.json', 'w') as f:
+    with open(OUTPUT_DIR + 'polarization_' + method + cluster_method + '.json', 'w') as f:
         f.write(json.dumps(event_polarization))
