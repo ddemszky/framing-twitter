@@ -1,6 +1,5 @@
 library(ggplot2)
 library(ggrepel)
-setwd('./verify_partisanship_assignment')
 data <- read.csv("verify_party_assignment.csv", header=TRUE)
 
 # We exclude DC because it has a disproportionately large number of news media Twitter handles that make it an outlier. Moreover, DC is not an official state.

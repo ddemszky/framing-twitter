@@ -56,10 +56,10 @@ def get_polarization(event, cluster_method = None):
             topic_polarization[j].append(len(t))
         topic_polarization_overtime[i] = topic_polarization
 
-    with open(TWEET_DIR + event + '/' + event + '_topic_polarization_overtime' + cluster_method + '.json', 'w') as f:
+    with open(TWEET_DIR + event + '/' + event + '_topic_polarization_over_time' + cluster_method + '.json', 'w') as f:
         f.write(json.dumps(topic_polarization_overtime))
 
 cluster_method = None if len(sys.argv) < 2 else sys.argv[1]
 
-Parallel(n_jobs=1)(delayed(get_polarization)(e, cluster_method) for e in ['orlando', 'vegas', 'parkland'])
+Parallel(n_jobs=2)(delayed(get_polarization)(e, cluster_method) for e in ['orlando', 'vegas'])
 
