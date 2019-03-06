@@ -11,9 +11,10 @@ NUM_CLUSTERS = 6
 SAMPLE_SIZE = int(sys.argv[1])
 
 config = json.load(open('../config.json', 'r'))
-DATA_DIR = config['OUTPUT_DIR']
+INPUT_DIR = config['INPUT_DIR']
+OUTPUT_DIR = config['OUTPUT_DIR']
 TWEET_DIR = config['TWEET_DIR']
-events = open(DATA_DIR + 'event_names.txt', 'r').read().splitlines()
+events = open(INPUT_DIR + 'event_names.txt', 'r').read().splitlines()
 
 
 print('loading...')
@@ -43,4 +44,4 @@ assigned_clusters = kclusterer.cluster(tweet_embeds, assign_clusters=True)
 means = np.array(kclusterer.means())
 
 print('saving...')
-np.save(DATA_DIR +'/cluster_'+str(NUM_CLUSTERS)+'_means.npy', means)
+np.save(OUTPUT_DIR +'/cluster_'+str(NUM_CLUSTERS)+'_means.npy', means)
