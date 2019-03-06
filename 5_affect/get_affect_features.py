@@ -12,11 +12,12 @@ from helpers.funcs import *
 sno = nltk.stem.SnowballStemmer('english')
 
 config = json.load(open('../config.json', 'r'))
-DATA_DIR = config['DATA_DIR']
+INPUT_DIR = config['INPUT_DIR']
+OUTPUT_DIR = config['OUTPUT_DIR']
 TWEET_DIR = config['TWEET_DIR']
-nrc_dict = json.load(open(DATA_DIR + 'affect_lexicon.json', 'r'))
+nrc_dict = json.load(open(OUTPUT_DIR + 'affect_lexicon.json', 'r'))
 
-events = open(DATA_DIR + 'event_names.txt', 'r').read().splitlines()
+events = open(INPUT_DIR + 'event_names.txt', 'r').read().splitlines()
 print(events)
 
 def get_counts(tweet_words, features, party):

@@ -1,5 +1,6 @@
 {
-  "DATA_DIR": "../data/",
+  "INPUT_DIR": "../data/input/",
+  "OUTPUT_DIR": "../data/input/",
   "TWEET_DIR": "../data/tweets/",
   "NRC_DIR": "/Users/ddemszky/Google_Drive/Research/nrc_emotion_lexicon/",
   "NUM_CLUSTERS": 6

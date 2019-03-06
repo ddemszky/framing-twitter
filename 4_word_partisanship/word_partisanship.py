@@ -16,10 +16,10 @@ from helpers.funcs import *
 sno = nltk.stem.SnowballStemmer('english')
 
 config = json.load(open('../config.json', 'r'))
-DATA_DIR = config['DATA_DIR']
+INPUT_DIR = config['INPUT_DIR']
 TWEET_DIR = config['TWEET_DIR']
 
-events = open(DATA_DIR + 'event_names.txt', 'r').read().splitlines()
+events = open(INPUT_DIR + 'event_names.txt', 'r').read().splitlines()
 
 
 def get_counts(tweets, vocab):
