@@ -8,7 +8,10 @@ INPUT_DIR = config['INPUT_DIR']
 OUTPUT_DIR = config['OUTPUT_DIR']
 TWEET_DIR = config['TWEET_DIR']
 SAMPLE_SIZE = config['SAMPLE_SIZE_FOR_TOPICS']
+SEED = config['SEED']
 events = open(INPUT_DIR + 'event_names.txt', 'r').read().splitlines()
+
+np.random.seed(SEED)
 
 def get_samples(SAMPLE_SIZE):
     for event in events:
