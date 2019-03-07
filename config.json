@@ -1,6 +1,6 @@
 {
   "INPUT_DIR": "../data/input/",
-  "OUTPUT_DIR": "../data/input/",
+  "OUTPUT_DIR": "../data/output/",
   "TWEET_DIR": "../data/tweets/",
   "NRC_DIR": "/Users/ddemszky/Google_Drive/Research/nrc_emotion_lexicon/",
   "MALLET": "/Users/ddemszky/mallet-2.0.8/bin/mallet",
