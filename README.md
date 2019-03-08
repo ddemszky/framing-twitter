@@ -14,7 +14,9 @@ Files and plots used to generate the paper.
 
 `data`
 
-All data and outputs other than the original tweets.
+- `tweet_ids`: ids of the tweets we used (unfiltered)
+- `input`: inputs for the scripts; this folder also includes all the handles of Democrat and Republican politicians we used to determine partisanship (`all_dems.txt` and `all_reps.txt`)
+- `output`: outputs of the scripts
 
 `verify_partisanship_assignment`
 
