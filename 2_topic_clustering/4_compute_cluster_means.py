@@ -4,12 +4,15 @@ import numpy as np
 from nltk.cluster import KMeansClusterer
 import nltk
 import json
+import random
 
 config = json.load(open('../config.json', 'r'))
 INPUT_DIR = config['INPUT_DIR']
 OUTPUT_DIR = config['OUTPUT_DIR']
 TWEET_DIR = config['TWEET_DIR']
 NUM_CLUSTERS = config['NUM_CLUSTERS']
+RNG = random.Random()
+RNG.seed(config['SEED'])
 events = open(INPUT_DIR + 'event_names.txt', 'r').read().splitlines()
 
 
@@ -32,7 +35,7 @@ def get_samples():
 tweet_embeds = get_samples()
 
 print(tweet_embeds.shape)
-kclusterer = KMeansClusterer(NUM_CLUSTERS, distance=nltk.cluster.util.cosine_distance, repeats=1)
+kclusterer = KMeansClusterer(NUM_CLUSTERS, distance=nltk.cluster.util.cosine_distance, repeats=1, rng=RNG)
 
 print('clustering...')
 assigned_clusters = kclusterer.cluster(tweet_embeds, assign_clusters=True)

@@ -1,8 +1,11 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 import numpy as np
 import re
 import nltk
 import string
 import json
+import pandas as pd
 
 sno = nltk.stem.SnowballStemmer('english')
 punct_chars = list((set(string.punctuation) | {'’', '‘', '–', '—', '~', '|', '“', '”', '…', "'", "`", '_'}) - set(['#']))
@@ -12,6 +15,8 @@ replace = re.compile('[%s]' % re.escape(punctuation))
 
 config = json.load(open('../config.json', 'r'))
 INPUT_DIR = config['INPUT_DIR']
+TWEET_DIR = config['TWEET_DIR']
+NUM_CLUSTERS = config['NUM_CLUSTERS']
 
 stopwords = set(open(INPUT_DIR + 'stopwords.txt', 'r').read().splitlines())
 event_stopwords = json.load(open(INPUT_DIR + "event_stopwords.json","r"))
@@ -49,20 +54,42 @@ def method_name(cluster_method):
     else:
         return ''
 
-def filter_clustered_tweets(event, data, tweet_dir, cluster_method):
-    indices = np.load(tweet_dir + event + '/' + event + '_cleaned_and_partisan_indices.npy')  # tweets that have embeddings
-    data = data.iloc[indices]
-    data.reset_index(drop=True, inplace=True)
-    cluster_method = method_name(cluster_method)
-    assigned_indices = np.load(
-        tweet_dir + event + '/' + event + '_cluster_assigned_embed_indices' + cluster_method + '.npy')
-    data = data.iloc[assigned_indices]
-    data.reset_index(drop=True, inplace=True)
-    return data
+def get_assigned_indices_relative(topics):
+    threshold = .87  # approx. 75% of all distance ratios
+    topics['ratio'] = topics['cosine_0'] / topics['cosine_1']
+    topics = topics[topics['ratio'] < threshold]
+    return topics.index.astype(int), topics
 
-def get_clusters(event, tweet_dir, cluster_method, num_clusters):
-    cluster_method = method_name(cluster_method)
-    return np.load(tweet_dir + event + '/' + event + '_cluster_labels_' + str(num_clusters) + cluster_method + '.npy')
+def get_assigned_indices_absolute(topics):
+    threshold = .62  # approx. 75% of distances to closest centroid
+    topics = topics[topics['cosine_0'] < threshold]
+    return topics.index.astype(int), topics
+
+def get_cluster_assignments(event, data, cluster_method):
+    '''
+        :param
+            event: name of the event
+            data: dataframe of tweets
+            method: "relative": based on the ratio of the cosine distances of the 1st and 2nd closest cluster
+                        "absolute": based on absolute cosine distance of the closest cluster
+                        None (default): assign all tweets to the closest cluster
+        :return:
+    '''
+    # load topics
+    topics = pd.read_csv(TWEET_DIR + event + '/' + event + '_kmeans_topics_' + str(NUM_CLUSTERS) + '.csv')
+    data = data.iloc[topics['indices_in_original'].astype(int)]
+    data.reset_index(drop=True, inplace=True)
+
+    # filter clustered tweets
+    if cluster_method:
+        assigned_indices, topics = get_assigned_indices_relative(topics) if cluster_method == 'relative' else get_assigned_indices_absolute(topics)
+        data = data.iloc[assigned_indices]
+        data.reset_index(drop=True, inplace=True)
+
+    # assign clusters
+    data['topic'] = topics['topic_0']
+
+    return data
 
 def get_buckets(data, timestamp, no_splits, split_by):
     '''Divide tweets into time buckets.'''
