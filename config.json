@@ -5,6 +5,6 @@
   "NRC_DIR": "/Users/ddemszky/Google_Drive/Research/nrc_emotion_lexicon/",
   "MALLET": "/Users/ddemszky/mallet-2.0.8/bin/mallet",
   "SAMPLE_SIZE_FOR_TOPICS": 10000,
-  "NUM_CLUSTERS": 6,
+  "NUM_CLUSTERS": 15,
   "SEED": 42
 }

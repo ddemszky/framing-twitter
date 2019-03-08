@@ -5,6 +5,7 @@ from nltk.cluster import KMeansClusterer
 import nltk
 import json
 import random
+from nltk.cluster.util import cosine_distance
 
 config = json.load(open('../config.json', 'r'))
 INPUT_DIR = config['INPUT_DIR']
@@ -35,12 +36,20 @@ def get_samples():
 tweet_embeds = get_samples()
 
 print(tweet_embeds.shape)
+print(NUM_CLUSTERS)
 kclusterer = KMeansClusterer(NUM_CLUSTERS, distance=nltk.cluster.util.cosine_distance, repeats=1, rng=RNG)
 
 print('clustering...')
 assigned_clusters = kclusterer.cluster(tweet_embeds, assign_clusters=True)
 
 means = np.array(kclusterer.means())
+
+print('calculating sum of distances...')
+sum_dists = []
+for i, c in enumerate(assigned_clusters):
+    sum_dists.append(cosine_distance(means[c], tweet_embeds[i]))
+print(np.mean(sum_dists))  # the smaller, the better
+
 
 print('saving...')
 np.save(OUTPUT_DIR +'/cluster_'+str(NUM_CLUSTERS)+'_means.npy', means)
