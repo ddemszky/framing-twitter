@@ -104,3 +104,4 @@ venv.bak/
 .mypy_cache/
 update.sh
 .DS_Store
+.RHistory
