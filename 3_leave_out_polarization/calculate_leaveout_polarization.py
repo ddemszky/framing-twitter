@@ -23,13 +23,6 @@ RNG.seed(config['SEED'])
 
 
 def get_user_counts(tweets, vocab):
-    '''
-    # tweet-based
-    counts = {}
-    for i, row in tweets.iterrows():
-        c =get_counts(row['text_tokenized'], vocab_words)
-        counts[i] = np.array([c[w] for w in vocab_words])
-    '''
     # user-based
     users = tweets.groupby('user_id')
     row_idx = []
@@ -55,7 +48,6 @@ def get_user_counts(tweets, vocab):
             col_idx.append(group_idx)
             row_idx.append(k)
             data.append(v)
-    #user_counts = sp.csr_matrix((list(tweets.groupby('user_id')['text'].apply(get_counts, vocab))), dtype=np.float64)
     return sp.csr_matrix((data, (col_idx, row_idx)), shape=(len(users), len(vocab)))
 
 
