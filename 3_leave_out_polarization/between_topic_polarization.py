@@ -6,6 +6,7 @@ import json
 import sys
 import pandas as pd
 import numpy as np
+import random
 sys.path.append('..')
 from helpers.funcs import *
 
@@ -14,6 +15,8 @@ INPUT_DIR = config['INPUT_DIR']
 OUTPUT_DIR = config['OUTPUT_DIR']
 TWEET_DIR = config['TWEET_DIR']
 NUM_CLUSTERS = config['NUM_CLUSTERS']
+RNG = random.Random()  # make everything reproducible
+RNG.seed(config['SEED'])
 events = open(INPUT_DIR + 'event_names.txt', 'r').read().splitlines()
 
 def polarization(dem_tweets, rep_tweets):
@@ -37,11 +40,14 @@ def polarization(dem_tweets, rep_tweets):
     rep_val = 0
 
     # for each user, calculate the posterior probability of their true party
-    # (as a mean of the probabilities of all topics they discuss)
+    # (by sampling one topic per user)
     for u, g in dem_tweets.groupby('user_id'):
-        dem_val += np.mean([(1 - cluster_rep_probs[t]) for t in g['topic']])
+        dem_val += (1 - cluster_rep_probs[RNG.choice(g['topic'])])
+        # this alternative method uses the mean probabilities of all the users' topics
+        #dem_val += np.mean([(1 - cluster_rep_probs[t]) for t in g['topic']])
     for u, g in rep_tweets.groupby('user_id'):
-        rep_val += np.mean([cluster_rep_probs[t] for t in g['topic']])
+        rep_val += cluster_rep_probs[RNG.choice(g['topic'])]
+        #rep_val += np.mean([cluster_rep_probs[t] for t in g['topic']])
 
     return (dem_val + rep_val) / (len(set(dem_tweets['user_id'])) + len(set(rep_tweets['user_id'])))
 
@@ -59,11 +65,11 @@ def get_value(data):
     # make the prior neutral (i.e. make sure there are the same number of Rep and Dem users)
     if dem_unique_len > rep_unique_len:
         print('More Dem', dem_unique_len, rep_unique_len)
-        dem_unique = np.random.choice(list(dem_unique), rep_unique_len, replace=False)
+        dem_unique = RNG.sample(list(dem_unique), rep_unique_len)
         dem_tweets = dem_tweets[dem_tweets['user_id'].isin(dem_unique)]
     else:
         print('More Rep', dem_unique_len, rep_unique_len)
-        rep_unique = np.random.choice(list(rep_unique), dem_unique_len, replace=False)
+        rep_unique = RNG.sample(list(rep_unique), dem_unique_len)
         rep_tweets = rep_tweets[rep_tweets['user_id'].isin(rep_unique)]
     dem_unique = list(dem_unique)
     rep_unique = list(rep_unique)
@@ -73,7 +79,7 @@ def get_value(data):
     # get random value
     all_users = dem_unique + rep_unique
     half = int(len(all_users) / 2)
-    np.random.shuffle(all_users)
+    RNG.shuffle(all_users)
     rand_dem = partisan_tweets[partisan_tweets['user_id'].isin(set(all_users[:half]))]
     rand_rep = partisan_tweets[partisan_tweets['user_id'].isin(set(all_users[half:]))]
     random_val = polarization(rand_dem, rand_rep)
@@ -92,7 +98,7 @@ def get_polarization(event, cluster_method = None):
     :return: tuple: (true value, random value)
     '''
     data = pd.read_csv(TWEET_DIR + event + '/' + event + '.csv', sep='\t', lineterminator='\n',
-                       usecols=['user_id', 'dem_follows', 'rep_follows', 'remove', 'isRT'])
+                       usecols=['user_id', 'dem_follows', 'rep_follows'])
     data = get_cluster_assignments(event, data, cluster_method)
 
     print(event, len(data))

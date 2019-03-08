@@ -18,6 +18,7 @@ INPUT_DIR = config['INPUT_DIR']
 TWEET_DIR = config['TWEET_DIR']
 NUM_CLUSTERS = config['NUM_CLUSTERS']
 
+
 stopwords = set(open(INPUT_DIR + 'stopwords.txt', 'r').read().splitlines())
 event_stopwords = json.load(open(INPUT_DIR + "event_stopwords.json","r"))
 
@@ -42,6 +43,7 @@ def clean_text(text, keep_stopwords=True, event=None):
     return [sno.stem(w) for w in text.split()]
 
 def filter_retweets(data):
+    # make sure to not reset the indices!!! (that would cause an issue with the other filtering methods)
     return data[~data['remove'] & ~data['isRT']]
 
 def split_party(data):
