@@ -10,6 +10,7 @@ import gc
 import json
 import scipy.sparse as sp
 import nltk
+import random
 sys.path.append('..')
 from helpers.funcs import *
 
@@ -17,6 +18,8 @@ sno = nltk.stem.SnowballStemmer('english')
 
 config = json.load(open('../config.json', 'r'))
 TWEET_DIR = config['TWEET_DIR']
+RNG = random.Random()  # make everything reproducible
+RNG.seed(config['SEED'])
 
 
 def get_user_counts(tweets, vocab):
@@ -169,7 +172,7 @@ def get_leaveout_value(event, b):
     gc.collect()
 
     index = np.arange(all_counts.shape[0])
-    np.random.shuffle(index)
+    RNG.shuffle(index)
     all_counts = all_counts[index, :]
 
     pi_lo_random = leaveout(all_counts[:dem_user_len, :], all_counts[dem_user_len:, :])
