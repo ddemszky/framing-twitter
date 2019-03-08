@@ -157,8 +157,6 @@ def get_leaveout_value(event, b):
     pi_lo = leaveout(dem_counts, rep_counts)
 
     all_counts = sp.vstack([dem_counts, rep_counts])
-    if all_counts.shape[0] < 20:
-        return 0.5, 0.5
     del dem_counts
     del rep_counts
     gc.collect()
