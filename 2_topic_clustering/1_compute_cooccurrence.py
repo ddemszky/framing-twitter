@@ -20,6 +20,8 @@ config = json.load(open('../config.json', 'r'))
 INPUT_DIR = config['INPUT_DIR']
 OUTPUT_DIR = config['OUTPUT_DIR']
 TWEET_DIR = config['TWEET_DIR']
+RNG = random.Random()
+RNG.seed(config['SEED'])
 events = open(INPUT_DIR + 'event_names.txt', 'r').read().splitlines()
 vocab = open(OUTPUT_DIR + 'joint_vocab.txt', 'r').read().splitlines()
 word2idx = {v: i for i, v in enumerate(vocab)}
@@ -47,7 +49,7 @@ tweets = []
 for event in events:
     with open(TWEET_DIR + event + '/' + event + '_cleaned_text.txt', 'r') as f:
         lines = f.read().splitlines()
-        tweets.extend([lines[i] for i in sorted(random.sample(range(len(lines)), min(SAMPLE_SIZE, len(lines))))])
+        tweets.extend([lines[i] for i in sorted(RNG.sample(range(len(lines)), min(SAMPLE_SIZE, len(lines))))])
 coocc = sparse.csr_matrix(get_coocc(tweets, word2idx))
 
 print('Saving...')

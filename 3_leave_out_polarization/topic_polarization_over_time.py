@@ -36,8 +36,7 @@ def get_polarization(event, cluster_method = None):
     '''
     data = pd.read_csv(TWEET_DIR + event + '/' + event + '.csv', sep='\t', lineterminator='\n',
                        usecols=['user_id', 'text', 'dem_follows', 'rep_follows', 'timestamp'])
-    data = filter_clustered_tweets(event, data, TWEET_DIR, cluster_method)
-    data['topic'] = get_clusters(event, TWEET_DIR, cluster_method, NUM_CLUSTERS)
+    data = get_cluster_assignments(event, data, cluster_method)
     cluster_method = method_name(cluster_method)
     print(event, len(data))
 

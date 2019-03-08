@@ -14,6 +14,9 @@ config = json.load(open('../config.json', 'r'))
 INPUT_DIR = config['INPUT_DIR']
 OUTPUT_DIR = config['OUTPUT_DIR']
 TWEET_DIR = config['TWEET_DIR']
+SAMPLE_SIZE = config['SAMPLE_SIZE_FOR_TOPICS']   # here we use it as a sample size for getting word weights
+RNG = random.Random()
+RNG.seed(config['SEED'])
 
 events = open(INPUT_DIR + 'event_names.txt', 'r').read().splitlines()
 print(events)
@@ -173,7 +176,7 @@ def get_samples_for_computing_word_weights(sample_size):
     for event in events:
         with open(TWEET_DIR + event + '/' + event + '_cleaned_text.txt', 'r') as f:
             lines = f.read().splitlines()
-            tweets.extend([lines[i] for i in sorted(random.sample(range(len(lines)), min(sample_size, len(lines))))])
+            tweets.extend([lines[i] for i in sorted(RNG.sample(range(len(lines)), min(sample_size, len(lines))))])
     with open(TWEET_DIR + 'tweets_for_weights.txt', 'w') as f:
         f.write('\n'.join(tweets))
     return tweets
@@ -191,7 +194,7 @@ def get_all_tweets():
 
 if __name__ == "__main__":
     # if tweets were weights haven't been sampled, uncomment
-    tweets_for_weights = get_samples_for_computing_word_weights(10000)
+    tweets_for_weights = get_samples_for_computing_word_weights(SAMPLE_SIZE)
 
     # use this if sampled tweets were saved already
     #with open(TWEET_DIR + 'tweets_for_weights.txt', 'r') as f:

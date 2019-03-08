@@ -33,7 +33,7 @@ def get_polarization(event, method = "nofilter", cluster_method = None):
     if method == "noRT":
         data = filter_retweets(data)
     elif method == 'clustered':
-        data = filter_clustered_tweets(event, data, TWEET_DIR, cluster_method)
+        data = get_cluster_assignments(event, data, cluster_method)
     elif method != "nofilter":
         print("invalid method.")
         return None
