@@ -102,15 +102,14 @@ def leaveout(dem_counts, rep_counts):
     return pi_lo
 
 def get_leaveout_value(event, b):
+    if len(b) < 100:   # fewer than a 100 tweets
+        return 0.5, 0.5  # return these values when there is not enough data to make predictions on
 
     # clean data
     b['text'] = b['text'].astype(str).apply(clean_text, args=(False, event))
 
     # get vocab
     vocab = {w: i for i, w in enumerate(open(TWEET_DIR + event + '/' + event + '_vocab.txt', 'r').read().splitlines())}
-
-    if len(b) < 100:   # fewer than a 100 tweets
-        return 0.5, 0.5  # return these values when there is not enough data to make predictions on
 
     dem_tweets, rep_tweets = split_party(b)  # get partisan tweets
     dem_length = float(len(dem_tweets))
@@ -151,9 +150,6 @@ def get_leaveout_value(event, b):
     gc.collect()
     dem_user_len = dem_counts.shape[0]
 
-    if dem_counts.shape[0] < 10 or rep_counts.shape[0] < 10:   # fewer than 10 Reps or Dems
-        return 0.5, 0.5
-
     pi_lo = leaveout(dem_counts, rep_counts)
 
     all_counts = sp.vstack([dem_counts, rep_counts])
@@ -172,5 +168,3 @@ def get_leaveout_value(event, b):
     gc.collect()
 
     return pi_lo, pi_lo_random
-
-

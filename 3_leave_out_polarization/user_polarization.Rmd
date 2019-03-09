@@ -1,0 +1,167 @@
+---
+title: "user_polarization"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      root.dir = '/Users/ddemszky/Google_Drive/Research/Framing/NAACL/framing-twitter')
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+```{r}
+library(ggplot2)
+library(ggrepel)
+library(RColorBrewer)
+library("knitr")      # for knitting RMarkdown 
+library("tidyverse")  # for wrangling, plotting, etc. 
+library("lme4")
+
+```
+
+```{r}
+data <- read.csv("../data/tweets/user_leaveouts.csv",header=TRUE)
+data = data %>% 
+  filter(first_timestamp > 0) %>% 
+  mutate(log_ts = log(first_timestamp))
+ggplot(data, aes(x=log_ts, y=leaveout_score)) + 
+  geom_point(alpha=0.05) + 
+  geom_smooth(method ="lm",
+              se=TRUE) +
+  facet_wrap(~event) +
+  ylim(.5, .6)
+
+```
+
+
+```{r}
+model <- lmer(leaveout_score ~ log_ts + (log_ts|event), data = data)
+
+summary(data)
+
+summary(model)
+```
+
+
+
+```{r}
+data <- read.csv("../data/tweets/chattanooga/chattanooga_user_leaveout.csv",header=TRUE)
+data = data %>% 
+  mutate(log_ts = log(first_timestamp))
+ggplot(data, aes(x=log_ts, y=leaveout_score)) + 
+  geom_point(alpha=0.05) + 
+  geom_smooth(method ="lm",
+              se=TRUE) +
+  ylim(.5, .6)
+```
+
+```{r}
+data <- read.csv("../data/tweets/roseburg/roseburg_user_leaveout.csv",header=TRUE)
+data = data %>% 
+  mutate(log_ts = log(first_timestamp))
+ggplot(data, aes(x=log_ts, y=leaveout_score)) + 
+  geom_point(alpha=0.05) + 
+  geom_smooth(method ="lm",
+              se=TRUE) +
+  ylim(.5, .6)
+```
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r}
+data <- read.csv("../data/tweets/colorado_springs/colorado_springs_user_leaveout.csv",header=TRUE)
+data = data %>% 
+  mutate(log_ts = log(first_timestamp))
+ggplot(data, aes(x=log_ts, y=leaveout_score)) + 
+  geom_point(alpha=0.05) + 
+  geom_smooth(method ="lm",
+              se=TRUE) +
+  ylim(.5, .6)
+```
+
+```{r}
+data <- read.csv("../data/tweets/san_bernardino/san_bernardino_user_leaveout.csv",header=TRUE)
+data = data %>% 
+  mutate(log_ts = log(first_timestamp))
+ggplot(data, aes(x=log_ts, y=leaveout_score)) + 
+  geom_point(alpha=0.05) + 
+  geom_smooth(method ="lm",
+              se=TRUE) +
+  ylim(.5, .6)
+```
+
+```{r}
+data <- read.csv("../data/tweets/kalamazoo/kalamazoo_user_leaveout.csv",header=TRUE)
+data = data %>% 
+  mutate(log_ts = log(first_timestamp))
+ggplot(data, aes(x=log_ts, y=leaveout_score)) + 
+  geom_point(alpha=0.05) + 
+  geom_smooth(method ="lm",
+              se=TRUE) +
+  ylim(.5, .6)
+```
+
+```{r}
+data <- read.csv("../data/tweets/orlando/orlando_user_leaveout.csv",header=TRUE)
+data = data %>% 
+  mutate(log_ts = log(first_timestamp))
+ggplot(data, aes(x=log_ts, y=leaveout_score)) + 
+  geom_point(alpha=0.05) + 
+  geom_smooth(method ="lm",
+              se=TRUE) +
+  ylim(.5, .6)
+```
+
+```{r}
+data <- read.csv("../data/tweets/dallas/dallas_user_leaveout.csv",header=TRUE)
+data = data %>% 
+  mutate(log_ts = log(first_timestamp))
+ggplot(data, aes(x=log_ts, y=leaveout_score)) + 
+  geom_point(alpha=0.05) + 
+  geom_smooth(method ="lm",
+              se=TRUE) +
+  ylim(.5, .6)
+```
+
+```{r}
+data <- read.csv("../data/tweets/baton_rouge/baton_rouge_user_leaveout.csv",header=TRUE)
+data = data %>% 
+  mutate(log_ts = log(first_timestamp))
+ggplot(data, aes(x=log_ts, y=leaveout_score)) + 
+  geom_point(alpha=0.05) + 
+  geom_smooth(method ="lm",
+              se=TRUE) +
+  ylim(.5, .6)
+```
+
+
+```{r}
+data <- read.csv("../data/tweets/burlington/burlington_user_leaveout.csv",header=TRUE)
+data = data %>% 
+  mutate(log_ts = log(first_timestamp))
+ggplot(data, aes(x=log_ts, y=leaveout_score)) + 
+  geom_point(alpha=0.05) + 
+  geom_smooth(method ="lm",
+              se=TRUE) +
+  ylim(.5, .6)
+```
+
+```{r}
+
+```
+
+```{r}
+data <- read.csv("../data/tweets/vegas/vegas_user_leaveout.csv",header=TRUE)
+data = data %>% 
+  mutate(log_ts = log(first_timestamp))
+ggplot(data, aes(x=log_ts, y=leaveout_score, color=party)) + 
+  geom_point(alpha=0.05) + 
+  geom_smooth(method ="lm",
+              se=TRUE)
+```
+

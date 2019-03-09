@@ -32,7 +32,7 @@ def get_polarization(event, cluster_method = None):
 
     :param event: name of the event (str)
     :param cluster_method: None, "relative" or "absolute" (see 5_assign_tweets_to_clusters.py); must have relevant files
-    :return: tuple: (true value, random value)
+    :return:
     '''
     data = pd.read_csv(TWEET_DIR + event + '/' + event + '.csv', sep='\t', lineterminator='\n',
                        usecols=['user_id', 'text', 'dem_follows', 'rep_follows', 'timestamp'])
