@@ -107,12 +107,19 @@ def get_buckets(data, timestamp, no_splits, split_by):
 
 def get_buckets_log(data, timestamp, no_splits, split_by):
     '''Divide tweets into time buckets.'''
+    hour = 60 * 60
+    day = 24 * hour
     data['timestamp'] = data['timestamp'].astype(float) - timestamp
-    data = data[(data['timestamp'] > 0) & (data['timestamp'] < (timestamp + no_splits * split_by))]
+    data = data[(data['timestamp'] > 0) & (data['timestamp'] < (no_splits * split_by))]
     data['timestamp'] = np.log(data['timestamp'])
-    bins = np.linspace(data['timestamp'].min(), data['timestamp'].max(), no_splits)
+    bins = np.linspace(data['timestamp'].min(), data['timestamp'].max(), no_splits, endpoint=False)
     groups = data.groupby(np.digitize(data['timestamp'], bins))
     buckets = []
+    times = []
     for i, group in groups:
+        print(i, len(group))
+        t = np.exp((group['timestamp'].min() + group['timestamp'].max()) / 2) / day # turn it back into seconds, then convert to days
+        print(t)
+        times.append(t)
         buckets.append(group)
-    return buckets
+    return buckets, times

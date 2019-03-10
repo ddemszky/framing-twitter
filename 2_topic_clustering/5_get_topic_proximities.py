@@ -41,5 +41,3 @@ def get_topic_proximities(e):
 if __name__ == "__main__":
     for e in events:
         get_topic_proximities(e)
-
-    

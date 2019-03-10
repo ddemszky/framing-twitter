@@ -103,7 +103,7 @@ def leaveout(dem_counts, rep_counts):
 
 def get_leaveout_value(event, b):
     if len(b) < 100:   # fewer than a 100 tweets
-        return 0.5, 0.5  # return these values when there is not enough data to make predictions on
+        return 0.5, 0.5, len(set(b['user_id']))  # return these values when there is not enough data to make predictions on
 
     # clean data
     b['text'] = b['text'].astype(str).apply(clean_text, args=(False, event))
@@ -120,7 +120,7 @@ def get_leaveout_value(event, b):
 
     dem_user_len = dem_counts.shape[0]
     if dem_user_len < 10 or rep_counts.shape[0] < 10:
-        return 0.5, 0.5
+        return 0.5, 0.5, dem_length + rep_length
     del dem_tweets
     del rep_tweets
     del b
@@ -134,7 +134,7 @@ def get_leaveout_value(event, b):
     all_counts = all_counts[:, np.array([(np.count_nonzero(wordcounts == i) > 1) for i in range(all_counts.shape[1])])]
 
     if all_counts.shape[1] < 50:   # fewer than 50 words in vocab
-        return 0.5, 0.5
+        return 0.5, 0.5, dem_length + rep_length
     dem_counts = all_counts[:dem_user_len, :]
     rep_counts = all_counts[dem_user_len:, :]
     del wordcounts
@@ -167,4 +167,4 @@ def get_leaveout_value(event, b):
     del all_counts
     gc.collect()
 
-    return pi_lo, pi_lo_random
+    return pi_lo, pi_lo_random, dem_length + rep_length

@@ -6,5 +6,7 @@
   "MALLET": "/Users/ddemszky/mallet-2.0.8/bin/mallet",
   "SAMPLE_SIZE_FOR_TOPICS": 10000,
   "NUM_CLUSTERS": 15,
-  "SEED": 42
+  "SEED": 42,
+  "TOPIC_PROXIMITY_THRESHOLD_MALLET": 0.8,
+  "TOPIC_PROXIMITY_THRESHOLD_KMEANS": 0.8
 }

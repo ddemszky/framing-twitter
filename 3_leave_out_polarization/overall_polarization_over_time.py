@@ -47,14 +47,18 @@ def get_polarization(event, method = "nofilter", cluster_method = None):
         return None
 
     #buckets = get_buckets(data, event_times[event], no_splits, split_by)  # split by a fixed time unit (defined above)
-    buckets = get_buckets_log(data, event_times[event], no_splits, split_by)  # take log of time and split equally
+    buckets, times = get_buckets_log(data, event_times[event], no_splits, split_by)  # take log of time and split equally
     del data
     gc.collect()
     print(event)
-    pol = np.zeros((no_splits, 2))   # no timebins x actual vs random
+
+    pol = np.zeros((no_splits, 4))   # timebins x actual vs random x size of bin x time in days
+
     for i, b in enumerate(buckets):
         print('bucket', i)
-        pol[i, :] = get_leaveout_value(event, b)
+        pol[i, :3] = get_leaveout_value(event, b)
+        pol[i, 3] = times[i]
+        print(pol[i, :])
 
     cluster_method = method_name(cluster_method)
     np.save(TWEET_DIR + event + '/' + event + '_polarization_over_time_log_' + method + cluster_method + '.npy', pol)
