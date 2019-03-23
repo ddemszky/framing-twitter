@@ -24,18 +24,55 @@ library("lme4")
 ```
 
 ```{r}
-data <- read.csv("../data/tweets/user_leaveouts.csv",header=TRUE)
+data <- read.csv("../data/tweets/user_polarization.csv",header=TRUE)
+```
+
+```{r}
 data = data %>% 
   filter(first_timestamp > 0) %>% 
-  mutate(log_ts = log(first_timestamp))
+  mutate(log_first_ts = log(first_timestamp),
+         log_avg_ts = log(avg_timestamp),
+         total_follows = dem_follows + rep_follows)
+
+data = data %>% 
+  mutate_at(vars(leaveout_score, total_follows, avg_timestamp, first_timestamp, log_first_ts, log_avg_ts), funs(scaled=scale))
+```
+
+```{r}
+mod.lm = lm(leaveout_score_scaled ~ total_follows_scaled, data=data)
+mod.lm %>% summary() %>% print()
+mod.lmer = lmer(leaveout_score_scaled ~ total_follows_scaled + (1|event), data=data)
+mod.lmer_simp = lmer(leaveout_score_scaled ~ (1|event), data=data)
+mod.lm %>% summary() %>% print()
+mod.lmer %>% summary() %>% print()
+anova(mod.lmer, mod.lmer_simp) %>% print()
+```
+
+
+```{r}
+lm(total_follows_scaled ~ avg_timestamp_scaled, data=data) %>% 
+  summary() %>% 
+  print()
+
+lm(total_follows_scaled ~ log_avg_ts_scaled, data=data) %>% 
+  summary() %>% 
+  print()
+
+mod2.lmer = lmer(total_follows_scaled ~ avg_timestamp_scaled + (1|event), data=data)
+mod2.lmer_simp = lmer(total_follows_scaled ~ (1|event), data=data)
+anova(mod2.lmer, mod2.lmer_simp) %>% print()
+```
+
+
+```{r}
 ggplot(data, aes(x=log_ts, y=leaveout_score)) + 
   geom_point(alpha=0.05) + 
   geom_smooth(method ="lm",
               se=TRUE) +
   facet_wrap(~event) +
   ylim(.5, .6)
-
 ```
+
 
 
 ```{r}
