@@ -95,15 +95,19 @@ def get_cluster_assignments(event, data, cluster_method):
 
 def get_buckets(data, timestamp, no_splits, split_by):
     '''Divide tweets into time buckets.'''
+    hour = 60 * 60
+    day = 24 * hour
     timestamps = data['timestamp'].astype(float)
     buckets = []
+    times = []
     start = timestamp
     for i in range(no_splits):
         new_start = start + split_by
         b = data[(timestamps > start) & (timestamps < new_start)]
         start = new_start
         buckets.append(b)
-    return buckets
+        times.append(split_by * (i + 1) / day)
+    return buckets, times
 
 def get_buckets_log(data, timestamp, no_splits, split_by):
     '''Divide tweets into time buckets.'''

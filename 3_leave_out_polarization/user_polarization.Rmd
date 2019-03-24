@@ -25,18 +25,66 @@ library("lme4")
 
 ```{r}
 data <- read.csv("../data/tweets/user_polarization.csv",header=TRUE)
+pol <- read.csv("../data/output/polarization_over_time.csv",header=TRUE)
+```
+
+```{r}
+day = 24 * 60 * 60
 ```
 
 ```{r}
 data = data %>% 
-  filter(first_timestamp > 0) %>% 
+  filter(first_timestamp > 0,
+         event != 'fort_lauderdale') %>% 
   mutate(log_first_ts = log(first_timestamp),
          log_avg_ts = log(avg_timestamp),
-         total_follows = dem_follows + rep_follows)
+         total_follows = dem_follows + rep_follows,
+         follow_ratio = pmax(dem_follows, rep_follows) / total_follows,
+         first_day = first_timestamp / day,
+         avg_day = avg_timestamp / day)
 
 data = data %>% 
-  mutate_at(vars(leaveout_score, total_follows, avg_timestamp, first_timestamp, log_first_ts, log_avg_ts), funs(scaled=scale))
+  mutate_at(vars(leaveout_score, total_follows, avg_timestamp, first_timestamp, log_first_ts, log_avg_ts, follow_ratio, avg_day, first_day), funs(scaled=scale))
 ```
+
+
+```{r}
+ggplot(data, aes(x=total_follows, y=rep_follows)) +
+  geom_smooth(method='lm', se=TRUE)
+```
+
+
+```{r}
+lm(leaveout_score ~ dem_follows, data=data %>% filter(party == 'dem')) %>% summary() %>% print()
+lm(leaveout_score ~ rep_follows, data=data %>% filter(party == 'rep')) %>% summary() %>% print()
+mod.lmer_simp = lmer(follow_ratio_sc ~ (1 + total_follows|event), data=data)
+mod.lmer = lmer(follow_ratio ~ total_follows + (1 + total_follows|event), data=data)
+anova(mod.lmer, mod.lmer_simp) %>% print()
+```
+
+
+
+```{r}
+mod.lmer_simp = lmer(leaveout_score ~ (1 + log_avg_ts|event), data=data)
+mod.lmer = lmer(leaveout_score ~ log_avg_ts + (1 + log_avg_ts|event), data=data)
+anova(mod.lmer, mod.lmer_simp) %>% print()
+
+```
+
+
+
+
+```{r}
+mod.lm = lm(leaveout_score ~ avg_day, data=data)
+mod.lm %>% summary() %>% print()
+mod.lmer_simp = lmer(leaveout_score ~ (1 + avg_day|event), data=data)
+mod.lmer = lmer(leaveout_score ~ avg_day + (1 + avg_day|event), data=data)
+anova(mod.lmer, mod.lmer_simp) %>% print()
+
+```
+
+
+
 
 ```{r}
 mod.lm = lm(leaveout_score_scaled ~ total_follows_scaled, data=data)
@@ -62,6 +110,22 @@ mod2.lmer = lmer(total_follows_scaled ~ avg_timestamp_scaled + (1|event), data=d
 mod2.lmer_simp = lmer(total_follows_scaled ~ (1|event), data=data)
 anova(mod2.lmer, mod2.lmer_simp) %>% print()
 ```
+
+```{r}
+lm(leave ~ avg_timestamp_scaled, data=data) %>% 
+  summary() %>% 
+  print()
+
+lm(total_follows_scaled ~ log_avg_ts_scaled, data=data) %>% 
+  summary() %>% 
+  print()
+
+mod2.lmer = lmer(total_follows_scaled ~ avg_timestamp_scaled + (1|event), data=data)
+mod2.lmer_simp = lmer(total_follows_scaled ~ (1|event), data=data)
+anova(mod2.lmer, mod2.lmer_simp) %>% print()
+```
+
+
 
 
 ```{r}
