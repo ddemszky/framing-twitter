@@ -39,13 +39,64 @@ data = data %>%
   mutate(log_first_ts = log(first_timestamp),
          log_avg_ts = log(avg_timestamp),
          total_follows = dem_follows + rep_follows,
-         follow_ratio = pmax(dem_follows, rep_follows) / total_follows,
+         preferred_follows = pmax(dem_follows, rep_follows),
+         follow_ratio = preferred_follows / total_follows,
          first_day = first_timestamp / day,
          avg_day = avg_timestamp / day)
+
+pol = pol %>% 
+  filter(event != 'fort_lauderdale',
+         leaveout != 0.5,
+         leaveout > .49,
+         squared_diff < 0.01) %>% 
+  mutate(log_time = log(time * day))
+
 
 data = data %>% 
   mutate_at(vars(leaveout_score, total_follows, avg_timestamp, first_timestamp, log_first_ts, log_avg_ts, follow_ratio, avg_day, first_day), funs(scaled=scale))
 ```
+
+
+```{r}
+mean(data$leaveout_score)
+mod.c = lmer(leaveout_score_scaled ~ (1|event), data=data)
+mod.a = lmer(leaveout_score_scaled ~ follow_ratio + (1|event), data=data)
+
+anova(mod.a, mod.c)
+mod.a %>% summary() %>% print()
+mod.c %>% summary()
+```
+
+
+
+```{r}
+mod.c = lmer(leaveout_score_scaled ~ (1|event), data=data)
+mod.a = lmer(leaveout_score_scaled ~ total_follows + (1|event), data=data)
+anova(mod.a, mod.c)
+mod.a %>% summary()
+```
+
+```{r}
+mod.c = lmer(leaveout_score_scaled ~ (total_follows_scaled|event), data=data)
+mod.a = lmer(leaveout_score_scaled ~ total_follows_scak + (total_follows|event), data=data)
+anova(mod.a, mod.c)
+```
+
+
+
+
+```{r}
+ggplot(data, aes(y=leaveout_score, x=avg_day)) +
+  geom_smooth(method='lm', se=TRUE)
+```
+
+
+```{r}
+ggplot(pol, aes(y=leaveout, x=time)) +
+  geom_smooth(method='lm', se=TRUE)
+```
+
+
 
 
 ```{r}

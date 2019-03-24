@@ -26,7 +26,7 @@ def get_multitweet_users(event):
     data = pd.read_csv(TWEET_DIR + event + '/' + event + '.csv', sep='\t', lineterminator='\n',
                        usecols=['user_id', 'text', 'dem_follows', 'rep_follows', 'timestamp', 'remove', 'isRT'])
     data = filter_retweets(data)
-    data = data[data['dem_follows'] != data['rep_follows']]  # keep partisan users
+    data = data[~data['dem_follows'].isnull() & ~data['rep_follows'].isnull() & (data['dem_follows'] != data['rep_follows'])]  # keep partisan users
     data['text'] = data['text'].astype(str).apply(clean_text, args=(False, event))
     data = data[data['text'].str.len() > 0]  # keep users who used words from vocab
     data['user_id'] = data['user_id'].astype(int)
@@ -43,8 +43,8 @@ def get_multitweet_users(event):
     print(multi_u, total_u, multi_u / total_u)
     contains = data['user_id'].isin(set(multitweet_users)).sum()
     print(contains, contains / len(data))
-    with open(TWEET_DIR + event + '/' + event + '_multitweet_users.txt', 'w') as f:
-        f.write('\n'.join(multitweet_users))
+    #with open(TWEET_DIR + event + '/' + event + '_multitweet_users.txt', 'w') as f:
+    #    f.write('\n'.join(multitweet_users))
     return multi_u / total_u, contains / len(data)
 
 
