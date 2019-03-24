@@ -16,13 +16,37 @@ data <- data %>%
          squared_diff < 0.01) %>% 
   mutate(log_time = log(time * day))
 
+model.c <- lmer(leaveout ~ 1 + (1|event), data = data)
+model.a <- lmer(leaveout ~ 1 + time + (1|event), data = data)
+anova(model.a, model.c)
 
-ggplot(data, aes(x=log_time, y=leaveout)) + 
+model.a %>% summary() %>% print()
+
+model.c <- lmer(leaveout ~ 1 + (1|event) + (0 + time|event), data = data)
+model.a <- lmer(leaveout ~ 1 + time + (1|event) + (0 + time|event), data = data)
+anova(model.a, model.c)
+model.a %>% summary() %>% print()
+model.a %>% coef()
+
+model.c <- lmer(leaveout ~ 1 + (1 + time|event), data = data)
+model.a <- lmer(leaveout ~ 1 + time + (1 + time|event), data = data)
+anova(model.a, model.c)
+model.a %>% summary() %>% print()
+model.a %>% coef()
+data %>% 
+  filter(event == 'roseburg') %>% 
+  lm(leaveout ~ time, data=.) %>% 
+  summary()
+  
+
+
+
+
+ggplot(data, aes(x=time, y=leaveout)) + 
   geom_point() + 
   geom_smooth(method ="lm",
-              se=TRUE,
-              level = .90) +
-  facet_wrap(~event) 
+              se=TRUE) +
+  facet_wrap(~event)
 
 ggplot(data, aes(x=log_time, y=leaveout)) + 
   geom_point() + 
@@ -30,19 +54,11 @@ ggplot(data, aes(x=log_time, y=leaveout)) +
               se=TRUE,
               level =.99)
 
-ggplot(data, aes(x=time, y=leaveout)) + 
-  geom_point() +  
-  geom_smooth(method ="lm",
-              formula = y ~ x + I(x^2),
-              se=TRUE) +
-  facet_wrap(~event)
+# degree 2 polynomial
+#ggplot(data, aes(x=time, y=leaveout)) + 
+#  geom_point() +  
+#  geom_smooth(method ="lm",
+#              formula = y ~ x + I(x^2),
+#              se=TRUE) +
+#  facet_wrap(~event)
 
-model.c <- lmer(leaveout ~ 1 + (1 + time|event), data = data)
-model.a <- lmer(leaveout ~ 1 + time + (1 + time|event), data = data)
-#model.q <- lmer(leaveout ~ time + I(time^2) + (time|event), data = data)
-summary(model.a)
-
-anova(model.a, model.c)
-
-model.basic <- lm(leaveout ~ log_time, data = data)
-summary(model.basic)

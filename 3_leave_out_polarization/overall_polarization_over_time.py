@@ -26,7 +26,7 @@ split_by = 24 * hour # split by day
 no_splits = int((day / split_by) * 10)  # 10 days
 
 
-def get_polarization(event, method = "nofilter", cluster_method = None):
+def get_polarization(event, method = "nofilter", cluster_method = None, log=False):
     '''
 
     :param event: name of the event (str)
@@ -38,6 +38,7 @@ def get_polarization(event, method = "nofilter", cluster_method = None):
     '''
     data = pd.read_csv(TWEET_DIR + event + '/' + event + '.csv', sep='\t', lineterminator='\n',
                        usecols=['user_id', 'text', 'dem_follows', 'rep_follows', 'timestamp', 'remove', 'isRT'])
+
     if method == "noRT":
         data = filter_retweets(data)
     elif method == 'clustered':
@@ -46,8 +47,16 @@ def get_polarization(event, method = "nofilter", cluster_method = None):
         print("invalid method.")
         return None
 
-    #buckets = get_buckets(data, event_times[event], no_splits, split_by)  # split by a fixed time unit (defined above)
-    buckets, times = get_buckets_log(data, event_times[event], no_splits, split_by)  # take log of time and split equally
+    if not log:
+        # include when want to exclude multitweet users
+        multi_u = set([int(u) for u in open(TWEET_DIR + event + '/' + event + '_multitweet_users.txt', 'r').read().splitlines()])
+        data['user_id'] = data['user_id'].astype(int)
+        data = data[~data['user_id'].isin(multi_u)]
+        buckets, times = get_buckets(data, event_times[event], no_splits, split_by)  # split by a fixed time unit (defined above)
+    else:
+        buckets, times = get_buckets_log(data, event_times[event], no_splits, split_by)  # take log of time and split equally
+        method = 'log_' + method
+
     del data
     gc.collect()
     print(event)
@@ -61,7 +70,7 @@ def get_polarization(event, method = "nofilter", cluster_method = None):
         print(pol[i, :])
 
     cluster_method = method_name(cluster_method)
-    np.save(TWEET_DIR + event + '/' + event + '_polarization_over_time_log_' + method + cluster_method + '.npy', pol)
+    np.save(TWEET_DIR + event + '/' + event + '_polarization_over_time_' + method + cluster_method + '_nomulti.npy', pol)
 
 
 if __name__ == "__main__":

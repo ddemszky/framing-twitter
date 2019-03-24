@@ -7,6 +7,11 @@ setwd('/Users/ddemszky/Google_Drive/Research/Framing/NAACL/framing-twitter')
 
 # plot overall polarization
 data <- read.csv("data/output/polarization_noRT.csv",header=TRUE)
+
+lm(polarization ~ year, data=data %>% filter(is_actual == 'actual value')) %>% 
+  summary() %>% 
+  print()
+
 ggplot(data, aes(x=year, y=polarization, color=is_actual))+
   stat_smooth(aes(group=is_actual), method=lm, se=TRUE, fullrange=TRUE) +
   geom_line(aes(group=label), color='gray75', linetype='dashed') +
