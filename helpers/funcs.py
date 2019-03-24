@@ -57,13 +57,13 @@ def method_name(cluster_method):
         return ''
 
 def get_assigned_indices_relative(topics):
-    threshold = .87  # approx. 75% of all distance ratios
+    threshold = .906  # approx. 75% of all distance ratios for 8 topics
     topics['ratio'] = topics['cosine_0'] / topics['cosine_1']
     topics = topics[topics['ratio'] < threshold]
     return topics.index.astype(int), topics
 
 def get_assigned_indices_absolute(topics):
-    threshold = .62  # approx. 75% of distances to closest centroid
+    threshold = .62  # approx. 75% of distances to closest centroid for 6 topics
     topics = topics[topics['cosine_0'] < threshold]
     return topics.index.astype(int), topics
 
@@ -72,7 +72,7 @@ def get_cluster_assignments(event, data, cluster_method):
         :param
             event: name of the event
             data: dataframe of tweets
-            method: "relative": based on the ratio of the cosine distances of the 1st and 2nd closest cluster
+            method: "relative": based on the ratio of the cosine distances of the 1st and 2nd closest cluster (we use this in  the paper)
                         "absolute": based on absolute cosine distance of the closest cluster
                         None (default): assign all tweets to the closest cluster
         :return:
@@ -85,11 +85,13 @@ def get_cluster_assignments(event, data, cluster_method):
     # filter clustered tweets
     if cluster_method:
         assigned_indices, topics = get_assigned_indices_relative(topics) if cluster_method == 'relative' else get_assigned_indices_absolute(topics)
+
         data = data.iloc[assigned_indices]
         data.reset_index(drop=True, inplace=True)
+        topics.reset_index(drop=True, inplace=True)
 
     # assign clusters
-    data['topic'] = topics['topic_0']
+    data['topic'] = topics['topic_0'].astype(int)
 
     return data
 

@@ -40,14 +40,14 @@ def polarization(dem_tweets, rep_tweets):
     rep_val = 0
 
     # for each user, calculate the posterior probability of their true party
-    # (by sampling one topic per user)
+    # (by averaging topic probabilities per user)
     for u, g in dem_tweets.groupby('user_id'):
-        dem_val += (1 - cluster_rep_probs[RNG.choice(g['topic'])])
-        # this alternative method uses the mean probabilities of all the users' topics
-        #dem_val += np.mean([(1 - cluster_rep_probs[t]) for t in g['topic']])
+        # this alternative method samples one topic per user
+        #dem_val += (1 - cluster_rep_probs[RNG.choice(g['topic'])])
+        dem_val += np.mean([(1 - cluster_rep_probs[t]) for t in g['topic']])
     for u, g in rep_tweets.groupby('user_id'):
-        rep_val += cluster_rep_probs[RNG.choice(g['topic'])]
-        #rep_val += np.mean([cluster_rep_probs[t] for t in g['topic']])
+        #rep_val += cluster_rep_probs[RNG.choice(g['topic'])]
+        rep_val += np.mean([cluster_rep_probs[t] for t in g['topic']])
 
     return (dem_val + rep_val) / (len(set(dem_tweets['user_id'])) + len(set(rep_tweets['user_id'])))
 
@@ -94,7 +94,7 @@ def get_polarization(event, cluster_method = None):
     '''
 
     :param event: name of the event (str)
-    :param cluster_method: None, "relative" or "absolute" (see 5_assign_tweets_to_clusters.py); must have relevant files
+    :param cluster_method: None, "relative" (we use this in the paper) or "absolute" (see 5_assign_tweets_to_clusters.py); must have relevant files
     :return: tuple: (true value, random value)
     '''
     data = pd.read_csv(TWEET_DIR + event + '/' + event + '.csv', sep='\t', lineterminator='\n',

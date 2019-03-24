@@ -6,6 +6,6 @@
   "MALLET": "/Users/ddemszky/mallet-2.0.8/bin/mallet",
   "BTM": "/Users/ddemszky/BTM/",
   "SAMPLE_SIZE_FOR_TOPICS": 10000,
-  "NUM_CLUSTERS": 15,
+  "NUM_CLUSTERS": 8,
   "SEED": 42
 }
