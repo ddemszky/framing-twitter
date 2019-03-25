@@ -40,14 +40,13 @@ def polarization(dem_tweets, rep_tweets):
     rep_val = 0
 
     # for each user, calculate the posterior probability of their true party
-    # (by averaging topic probabilities per user)
     for u, g in dem_tweets.groupby('user_id'):
-        # this alternative method samples one topic per user
-        #dem_val += (1 - cluster_rep_probs[RNG.choice(g['topic'])])
-        dem_val += np.mean([(1 - cluster_rep_probs[t]) for t in g['topic']])
+        dem_val += (1 - cluster_rep_probs[RNG.choice(g['topic'].tolist())])
+        # this alternative method takes the mean of all topic probabilities per user
+        #dem_val += np.mean([(1 - cluster_rep_probs[t]) for t in g['topic']])
     for u, g in rep_tweets.groupby('user_id'):
-        #rep_val += cluster_rep_probs[RNG.choice(g['topic'])]
-        rep_val += np.mean([cluster_rep_probs[t] for t in g['topic']])
+        rep_val += cluster_rep_probs[RNG.choice(g['topic'].tolist())]
+        #rep_val += np.mean([cluster_rep_probs[t] for t in g['topic']])
 
     return (dem_val + rep_val) / (len(set(dem_tweets['user_id'])) + len(set(rep_tweets['user_id'])))
 
