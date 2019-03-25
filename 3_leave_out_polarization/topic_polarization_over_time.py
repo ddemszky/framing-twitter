@@ -23,7 +23,7 @@ events = open(INPUT_DIR + 'event_names.txt', 'r').read().splitlines()
 event_times = json.load(open(INPUT_DIR + "event_times.json","r"))
 hour = 60 * 60
 day = 24 * hour
-split_by = 12 * hour
+split_by = 24 * hour
 no_splits = int((day / split_by) * 14)  # 14 days
 
 
@@ -40,7 +40,7 @@ def get_polarization(event, cluster_method = None):
     cluster_method = method_name(cluster_method)
     print(event, len(data))
 
-    buckets = get_buckets(data, event_times[event], no_splits, split_by)
+    buckets, _ = get_buckets(data, event_times[event], no_splits, split_by)
     del data
     gc.collect()
 
