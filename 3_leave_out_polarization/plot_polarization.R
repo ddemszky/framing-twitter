@@ -20,9 +20,9 @@ ggplot(data, aes(x=year, y=polarization, color=is_actual))+
   geom_point(shape=1, size=2, colour='gray20') +
   geom_text_repel(data=subset(data, is_actual == 'actual value'), aes(label=label),color='gray10', show.legend = FALSE) +
   xlab('Year') +
-  ylab('Leave-out Estimate of Phrase Partisanship') +
-  theme_bw() +
-  theme(legend.position="top", legend.direction="horizontal", legend.title = element_blank(), legend.box.margin=margin(-1,-10,-10,-10), panel.grid.major.x = element_blank(), panel.grid.minor = element_blank()) +
+  ylab('Leave-out estimate') +
+  theme_bw(base_size=13) +
+  theme(legend.position="top", legend.direction="horizontal", legend.title = element_blank(), legend.box.margin=margin(-1,-10,-10,-10), panel.grid.major.x = element_blank(), panel.grid.minor = element_blank(), legend.text = element_text(margin = margin(r =10, unit = "pt"), size=12)) +
   scale_color_manual(values=c("indianred2", "lightsteelblue3")) +
   scale_x_continuous(limits = c(2015.5,2019.05), expand = c(0, 0)) 
 
@@ -37,7 +37,7 @@ ggplot(data, aes(x=year, y=polarization, color=kind))+
   geom_text_repel(data=subset(data, kind == 'within-topic'), aes(label=label),color='gray10', show.legend = FALSE) +
   xlab('Year') +
   ylab('Polarization') +
-  theme_bw() +
-  theme(legend.position="top", legend.direction="horizontal", legend.title = element_blank(), legend.box.margin=margin(0,0,-10,0), legend.text = element_text(margin = margin(r =100, unit = "pt")), panel.grid.major.x = element_blank(), panel.grid.minor = element_blank()) +
+  theme_bw(base_size=13) +
+  theme(legend.position="top", legend.direction="horizontal", legend.title = element_blank(), legend.box.margin=margin(0,0,-10,0), legend.text = element_text(margin = margin(r =50, unit = "pt"), size=12), panel.grid.major.x = element_blank(), panel.grid.minor = element_blank()) +
   scale_color_manual(values=c("darkolivegreen4", "deeppink4")) +
   scale_x_continuous(limits = c(2015.5,2019.05), expand = c(0, 0)) 

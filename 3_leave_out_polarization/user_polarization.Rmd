@@ -56,6 +56,16 @@ data = data %>%
   mutate_at(vars(leaveout_score, total_follows, avg_timestamp, first_timestamp, log_first_ts, log_avg_ts, follow_ratio, avg_day, first_day), funs(scaled=scale))
 ```
 
+```{r}
+mean(data$leaveout_score)
+mod.c = lmer(leaveout_score_scaled ~ (1|event), data=data)
+mod.a = lmer(leaveout_score_scaled ~ follow_ratio + (1|event), data=data)
+
+anova(mod.a, mod.c) %>% print()
+mod.a %>% summary() %>% print()
+mod.c %>% summary()
+```
+
 
 ```{r}
 mean(data$leaveout_score)
@@ -77,7 +87,7 @@ mod.a %>% summary()
 ```
 
 ```{r}
-mod.c = lmer(leaveout_score_scaled ~ (total_follows_scaled|event), data=data)
+mod.c = lmer(leaveout_score_scaled ~ (total_follows|event), data=data)
 mod.a = lmer(leaveout_score_scaled ~ total_follows_scak + (total_follows|event), data=data)
 anova(mod.a, mod.c)
 ```

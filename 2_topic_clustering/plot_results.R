@@ -16,7 +16,7 @@ p1 = ggplot(data=data, aes(x=reorder(model, accuracy), y=accuracy, fill=reorder(
   geom_errorbar(aes(ymin=accuracy-se, ymax=accuracy+se), width=.2) +
   xlab("") +
   ylab("Accuracy") +
-  theme_bw() +
+  theme_bw(base_size=13) +
   ggtitle("Tweet intrusion") +
   scale_fill_manual(values=cbPalette) +
   guides(fill=FALSE) +
@@ -29,7 +29,7 @@ p2 = ggplot(data=data2, aes(x=reorder(model, accuracy), y=accuracy, fill=reorder
   geom_errorbar(aes(ymin=accuracy-se, ymax=accuracy+se), width=.2) +
   xlab("") +
   ylab("") +
-  theme_bw() +
+  theme_bw(base_size=13) +
   ggtitle("Word intrusion")+
   scale_fill_manual(values=cbPalette) +
   guides(fill=FALSE) +
