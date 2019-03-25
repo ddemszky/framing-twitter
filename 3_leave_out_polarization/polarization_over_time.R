@@ -35,6 +35,9 @@ comb <- comb %>%
          squared_diff.x < 0.01) %>% 
   mutate(log_time = log(time * day))
 
+lm(leaveout ~ time, data=data) %>% summary()
+
+lm(leaveout ~ time, data=data2) %>% summary()
 
 model.c <- lmer(leaveout ~ 1 + (1|event), data = data2)
 model.a <- lmer(leaveout ~ 1 + time + (1|event), data = data2)
@@ -76,12 +79,14 @@ data %>%
 ggplot(data, aes(x=time, y=leaveout)) + 
   geom_smooth(method ="lm",
               se=TRUE) +
-  geom_point(aes(fill=event), size=3, shape=21, alpha=.7) +
-  theme_bw() +
+  geom_point(aes(fill="all other"), size=3, alpha=.1) +
+  geom_point(data = . %>% filter(event %in% c("Orlando", "Burlington", "Vegas", "Chattanooga", "Roseburg")), aes(fill=event), size=3, shape=21, alpha=.7) +
+  theme_bw(base_size=14) +
   xlab("Day after event") +
   ylab("Leave-out estimate") +
-  guides(fill=guide_legend(ncol=3)) +
-  theme(legend.position = c(0.25, 0.77), legend.background = element_rect(color = "black", "white", size = .5, linetype = "solid"),legend.title=element_blank())
+  guides(fill=guide_legend(ncol=2, reverse=TRUE)) +
+  theme(legend.position = c(0.24, 0.82), legend.background = element_rect(color = "black", "white", size = .5, linetype = "solid"),legend.title=element_blank()) +
+  scale_fill_manual(values=c("#999999", "#E69F00", "#56B4E9", "blue4", "brown3", "lightgreen"))
 
 
 ggplot(data, aes(x=time, y=leaveout)) + 
