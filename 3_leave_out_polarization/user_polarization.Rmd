@@ -20,8 +20,12 @@ library(RColorBrewer)
 library("knitr")      # for knitting RMarkdown 
 library("tidyverse")  # for wrangling, plotting, etc. 
 library("lme4")
+require(plm)
+require(lmtest)  # for waldtest()
+install.packages(lmtest)
 
 ```
+
 
 ```{r}
 data <- read.csv("../data/tweets/user_polarization.csv",header=TRUE)
@@ -40,6 +44,7 @@ data = data %>%
          log_avg_ts = log(avg_timestamp),
          total_follows = dem_follows + rep_follows,
          preferred_follows = pmax(dem_follows, rep_follows),
+         not_preferred_follows = pmin(dem_follows, rep_follows),
          follow_ratio = preferred_follows / total_follows,
          first_day = first_timestamp / day,
          avg_day = avg_timestamp / day)
@@ -55,6 +60,21 @@ pol = pol %>%
 data = data %>% 
   mutate_at(vars(leaveout_score, total_follows, avg_timestamp, first_timestamp, log_first_ts, log_avg_ts, follow_ratio, avg_day, first_day), funs(scaled=scale))
 ```
+
+
+```{r}
+# cluster standard errors by user
+
+```
+
+
+```{r}
+lm(leaveout_score_scaled ~ event + not_preferred_follows + preferred_follows, data=data) %>% summary() %>% print()
+```
+
+
+
+
 
 ```{r}
 mean(data$leaveout_score)
