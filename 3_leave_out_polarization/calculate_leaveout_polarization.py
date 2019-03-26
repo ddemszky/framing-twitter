@@ -101,22 +101,27 @@ def leaveout(dem_counts, rep_counts):
 
     return pi_lo
 
-def get_leaveout_value(event, b):
+def get_leaveout_value(event, b, between_topic = False, between_topic_count_func = None):
     if len(b) < 100:   # fewer than a 100 tweets
         return 0.5, 0.5, len(set(b['user_id']))  # return these values when there is not enough data to make predictions on
 
-    # clean data
-    b['text'] = b['text'].astype(str).apply(clean_text, args=(False, event))
-
-    # get vocab
-    vocab = {w: i for i, w in enumerate(open(TWEET_DIR + event + '/' + event + '_vocab.txt', 'r').read().splitlines())}
+    if not between_topic:
+        # clean data
+        b['text'] = b['text'].astype(str).apply(clean_text, args=(False, event))
 
     dem_tweets, rep_tweets = split_party(b)  # get partisan tweets
     dem_length = float(len(dem_tweets))
     rep_length = float(len(rep_tweets))
 
-    dem_counts = get_user_counts(dem_tweets, vocab)
-    rep_counts = get_user_counts(rep_tweets, vocab)
+    if not between_topic:
+        # get vocab
+        vocab = {w: i for i, w in
+                 enumerate(open(TWEET_DIR + event + '/' + event + '_vocab.txt', 'r').read().splitlines())}
+        dem_counts = get_user_counts(dem_tweets, vocab)
+        rep_counts = get_user_counts(rep_tweets, vocab)
+    else:
+        dem_counts = between_topic_count_func(dem_tweets)
+        rep_counts = between_topic_count_func(rep_tweets)
 
     dem_user_len = dem_counts.shape[0]
     if dem_user_len < 10 or rep_counts.shape[0] < 10:
