@@ -7,5 +7,6 @@
   "BTM": "/Users/ddemszky/BTM/",
   "SAMPLE_SIZE_FOR_TOPICS": 10000,
   "NUM_CLUSTERS": 8,
+  "CLUSTER_NAMES": {"shooter's identity\n& ideology": 0, "news": 1, "victims & location": 2, "laws & policy": 3, "investigation": 4, "solidarity": 5, "remembrance": 6, "other": 7},
   "SEED": 42
 }
