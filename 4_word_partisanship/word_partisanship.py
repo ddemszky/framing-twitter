@@ -18,6 +18,7 @@ sno = nltk.stem.SnowballStemmer('english')
 config = json.load(open('../config.json', 'r'))
 INPUT_DIR = config['INPUT_DIR']
 TWEET_DIR = config['TWEET_DIR']
+NUM_CLUSTERS = config['NUM_CLUSTERS']
 
 events = open(INPUT_DIR + 'event_names.txt', 'r').read().splitlines()
 
@@ -66,17 +67,8 @@ def log_odds(counts1, counts2, prior, zscore = True):
             delta[word] /= sigma[word]
     return delta
 
-def get_log_odds(event):
-    tweets = pd.read_csv(TWEET_DIR + event + '/' + event + '.csv', sep='\t', lineterminator='\n',
-                       usecols=['user_id', 'text', 'dem_follows', 'rep_follows', 'remove', 'isRT'])
-    tweets = filter_retweets(tweets)
-    tweets['text'] = tweets['text'].astype(str).apply(clean_text, args=(False, event))
-    vocab = open(TWEET_DIR +event+ '/' + event + '_vocab.txt', 'r').read().splitlines()
-    words2idx = {w: i for i, w in enumerate(vocab)}
-    print(event, len(tweets))
+def get_values(tweets, words2idx):
     dem_tweets, rep_tweets = split_party(tweets)
-    print(event, 'Dem', len(dem_tweets))
-    print(event, 'Rep', len(rep_tweets))
 
     # get counts
     counts1 = get_counts(rep_tweets['text'], words2idx)
@@ -90,6 +82,42 @@ def get_log_odds(event):
     # events. however, z-scoring doesn't make a difference for our results, since we simply look at whether the log odds
     # are negative or positive (rather than their absolute value)
     delta = log_odds(counts1, counts2, prior, False)
+    return prior, counts1, counts2, delta
+
+
+def get_log_odds_topics(event, cluster_method = 'relative'):
+    tweets = pd.read_csv(TWEET_DIR + event + '/' + event + '.csv', sep='\t', lineterminator='\n',
+                       usecols=['user_id', 'text', 'dem_follows', 'rep_follows'])
+    tweets = get_cluster_assignments(event, tweets, cluster_method)
+    tweets['text'] = tweets['text'].astype(str).apply(clean_text, args=(False, event))
+    vocab = open(TWEET_DIR +event+ '/' + event + '_vocab.txt', 'r').read().splitlines()
+    words2idx = {w: i for i, w in enumerate(vocab)}
+    print(event, len(tweets))
+
+    features = np.ndarray((NUM_CLUSTERS, 4, len(vocab)))  # topic x prior, rep_count, dem_count, delta x V
+
+    for i in range(NUM_CLUSTERS):
+        print(event, i)
+        b = tweets[tweets['topic'] == i]
+        prior, counts1, counts2, delta = get_values(b, words2idx)
+
+        for w in vocab:
+            features[i, 0, words2idx[w]] = prior[w]
+            features[i, 1, words2idx[w]] = counts1[w]
+            features[i, 2, words2idx[w]] = counts2[w]
+            features[i, 3, words2idx[w]] = delta[w]
+    np.save(TWEET_DIR +event+ '/' + event + '_vocab_log_odds_topics.npy', features)
+
+
+def get_log_odds(event):
+    tweets = pd.read_csv(TWEET_DIR + event + '/' + event + '.csv', sep='\t', lineterminator='\n',
+                       usecols=['user_id', 'text', 'dem_follows', 'rep_follows', 'remove', 'isRT'])
+    tweets = filter_retweets(tweets)
+    tweets['text'] = tweets['text'].astype(str).apply(clean_text, args=(False, event))
+    vocab = open(TWEET_DIR +event+ '/' + event + '_vocab.txt', 'r').read().splitlines()
+    words2idx = {w: i for i, w in enumerate(vocab)}
+    print(event, len(tweets))
+    prior, counts1, counts2, delta = get_values(tweets, words2idx)
 
     features = np.ndarray((4, len(vocab)))  # prior, rep_count, dem_count, delta
     for w in vocab:
@@ -100,7 +128,8 @@ def get_log_odds(event):
     np.save(TWEET_DIR +event+ '/' + event + '_vocab_log_odds.npy', features)
 
 
-Parallel(n_jobs=2)(delayed(get_log_odds)(e) for e in events)
+
+Parallel(n_jobs=2)(delayed(get_log_odds_topics)(e) for e in events)
 
 
 
