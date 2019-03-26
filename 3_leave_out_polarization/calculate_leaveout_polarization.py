@@ -133,8 +133,6 @@ def get_leaveout_value(event, b):
     # filter words used by less than 1 person
     all_counts = all_counts[:, np.array([(np.count_nonzero(wordcounts == i) > 1) for i in range(all_counts.shape[1])])]
 
-    if all_counts.shape[1] < 50:   # fewer than 50 words in vocab
-        return 0.5, 0.5, dem_length + rep_length
     dem_counts = all_counts[:dem_user_len, :]
     rep_counts = all_counts[dem_user_len:, :]
     del wordcounts
