@@ -1,0 +1,946 @@
+,pronoun,proportion,topic,event
+0,SheHe,1.2957972081723044,"shooter's identity
+& ideology",chattanooga
+1,SheHe,0.4151448487900554,news,chattanooga
+2,SheHe,0.6106840891621829,victims & location,chattanooga
+3,SheHe,0.6337238873543976,laws & policy,chattanooga
+4,SheHe,2.21781276524438,investigation,chattanooga
+5,SheHe,0.3647819625928773,solidarity,chattanooga
+6,SheHe,0.7701237774656101,remembrance,chattanooga
+7,SheHe,1.9719311214250317,other,chattanooga
+8,They,0.6455744759653965,"shooter's identity
+& ideology",chattanooga
+9,They,0.17767534895855983,news,chattanooga
+10,They,0.07156368221941992,victims & location,chattanooga
+11,They,1.5952118125587016,laws & policy,chattanooga
+12,They,0.5494462805472051,investigation,chattanooga
+13,They,1.868670870113493,solidarity,chattanooga
+14,They,0.39483410879679964,remembrance,chattanooga
+15,They,1.159923449632987,other,chattanooga
+16,You,1.0224923005988096,"shooter's identity
+& ideology",chattanooga
+17,You,0.15218468534118404,news,chattanooga
+18,You,0.19188503803888415,victims & location,chattanooga
+19,You,1.2503844021762305,laws & policy,chattanooga
+20,You,0.16369339737914293,investigation,chattanooga
+21,You,0.9333288250211328,solidarity,chattanooga
+22,You,0.8847507172630326,remembrance,chattanooga
+23,You,1.9358937681472725,other,chattanooga
+24,I,0.4655291867973506,"shooter's identity
+& ideology",chattanooga
+25,I,0.2688470824033162,news,chattanooga
+26,I,0.1499339498018494,victims & location,chattanooga
+27,I,0.5338894354961997,laws & policy,chattanooga
+28,I,0.28139262616839983,investigation,chattanooga
+29,I,2.1366587406428885,solidarity,chattanooga
+30,I,0.6026901627502912,remembrance,chattanooga
+31,I,1.7358356209831263,other,chattanooga
+32,We,0.7689945937967047,"shooter's identity
+& ideology",chattanooga
+33,We,0.2147939223000637,news,chattanooga
+34,We,0.3593667546174142,victims & location,chattanooga
+35,We,1.9578556720402747,laws & policy,chattanooga
+36,We,0.16350335755105103,investigation,chattanooga
+37,We,1.3723018469656993,solidarity,chattanooga
+38,We,0.8402927070200293,remembrance,chattanooga
+39,We,1.1259791423387895,other,chattanooga
+40,SheHe,2.041399722752988,"shooter's identity
+& ideology",roseburg
+41,SheHe,0.30970356570905644,news,roseburg
+42,SheHe,2.1476165294250964,victims & location,roseburg
+43,SheHe,0.9752204091434061,laws & policy,roseburg
+44,SheHe,4.678736010533246,investigation,roseburg
+45,SheHe,0.15239381804731347,solidarity,roseburg
+46,SheHe,1.0672473180849766,remembrance,roseburg
+47,SheHe,2.786859622173714,other,roseburg
+48,They,0.9676158244836036,"shooter's identity
+& ideology",roseburg
+49,They,0.20406581100870014,news,roseburg
+50,They,0.0,victims & location,roseburg
+51,They,1.1391180975221724,laws & policy,roseburg
+52,They,0.6072282980177718,investigation,roseburg
+53,They,1.5159174532074868,solidarity,roseburg
+54,They,0.36936629668969684,remembrance,roseburg
+55,They,1.374716696046336,other,roseburg
+56,You,1.0495228516349966,"shooter's identity
+& ideology",roseburg
+57,You,0.22079580140558427,news,roseburg
+58,You,0.22878389145078346,victims & location,roseburg
+59,You,1.7055186250397427,laws & policy,roseburg
+60,You,0.43611929307805597,investigation,roseburg
+61,You,0.9520685952234224,solidarity,roseburg
+62,You,0.4405604264087897,remembrance,roseburg
+63,You,1.8629046843913908,other,roseburg
+64,I,0.34164368251221316,"shooter's identity
+& ideology",roseburg
+65,I,0.24071621165549553,news,roseburg
+66,I,0.0,victims & location,roseburg
+67,I,0.45619604628259236,laws & policy,roseburg
+68,I,0.4689974659486855,investigation,roseburg
+69,I,1.9300964272422498,solidarity,roseburg
+70,I,0.2353584024638617,remembrance,roseburg
+71,I,1.5866495507060334,other,roseburg
+72,We,0.6288082106939571,"shooter's identity
+& ideology",roseburg
+73,We,0.18128216342731768,news,roseburg
+74,We,0.5635221123158959,victims & location,roseburg
+75,We,1.6917316018614925,laws & policy,roseburg
+76,We,0.25576524442908966,investigation,roseburg
+77,We,1.0990045112867928,solidarity,roseburg
+78,We,1.120158007373349,remembrance,roseburg
+79,We,1.2673158106875413,other,roseburg
+80,SheHe,0.8598764560416258,"shooter's identity
+& ideology",colorado_springs
+81,SheHe,0.25041540294345627,news,colorado_springs
+82,SheHe,0.7880087491980745,victims & location,colorado_springs
+83,SheHe,0.4178635283942011,laws & policy,colorado_springs
+84,SheHe,2.5712789552085136,investigation,colorado_springs
+85,SheHe,0.34928867469807584,solidarity,colorado_springs
+86,SheHe,0.5710908046704644,remembrance,colorado_springs
+87,SheHe,1.5535029627047752,other,colorado_springs
+88,They,0.8256411544864257,"shooter's identity
+& ideology",colorado_springs
+89,They,0.45122199342438285,news,colorado_springs
+90,They,0.1488835759927083,victims & location,colorado_springs
+91,They,1.6170410614763595,laws & policy,colorado_springs
+92,They,0.3967202604195947,investigation,colorado_springs
+93,They,1.1512175437037895,solidarity,colorado_springs
+94,They,0.6294159055096551,remembrance,colorado_springs
+95,They,1.443490266823519,other,colorado_springs
+96,You,0.9563708320582398,"shooter's identity
+& ideology",colorado_springs
+97,You,0.21048875027845848,news,colorado_springs
+98,You,0.4049188838416613,victims & location,colorado_springs
+99,You,1.0218577943615257,laws & policy,colorado_springs
+100,You,0.24607875257857056,investigation,colorado_springs
+101,You,0.6315116068479871,solidarity,colorado_springs
+102,You,0.8355328390868415,remembrance,colorado_springs
+103,You,1.629079212438924,other,colorado_springs
+104,I,0.5678872543779735,"shooter's identity
+& ideology",colorado_springs
+105,I,0.29721619360549,news,colorado_springs
+106,I,0.7346213164741756,victims & location,colorado_springs
+107,I,0.7157456298703252,laws & policy,colorado_springs
+108,I,0.2060523204744639,investigation,colorado_springs
+109,I,2.5869052568346507,solidarity,colorado_springs
+110,I,0.6100411151027344,remembrance,colorado_springs
+111,I,1.8575659494866337,other,colorado_springs
+112,We,0.8925390618905998,"shooter's identity
+& ideology",colorado_springs
+113,We,0.29911706106469993,news,colorado_springs
+114,We,0.211784271798527,victims & location,colorado_springs
+115,We,1.9619459623557987,laws & policy,colorado_springs
+116,We,0.34651694877604516,investigation,colorado_springs
+117,We,1.5541428253823382,solidarity,colorado_springs
+118,We,0.5116188972988485,remembrance,colorado_springs
+119,We,1.3107747547619921,other,colorado_springs
+120,SheHe,1.267599525299385,"shooter's identity
+& ideology",san_bernardino
+121,SheHe,0.19310578069875478,news,san_bernardino
+122,SheHe,1.0350022462936155,victims & location,san_bernardino
+123,SheHe,0.6388287191246006,laws & policy,san_bernardino
+124,SheHe,1.8576693420251293,investigation,san_bernardino
+125,SheHe,0.34714232329631683,solidarity,san_bernardino
+126,SheHe,1.6694956961647456,remembrance,san_bernardino
+127,SheHe,2.047219560525286,other,san_bernardino
+128,They,0.9079978171234537,"shooter's identity
+& ideology",san_bernardino
+129,They,0.39001473326515984,news,san_bernardino
+130,They,0.18644307381542258,victims & location,san_bernardino
+131,They,1.3935957951517897,laws & policy,san_bernardino
+132,They,0.765851752787556,investigation,san_bernardino
+133,They,1.5548321953956086,solidarity,san_bernardino
+134,They,0.35795318505396695,remembrance,san_bernardino
+135,They,1.6213679028499053,other,san_bernardino
+136,You,0.9783813161403807,"shooter's identity
+& ideology",san_bernardino
+137,You,0.22548526441153055,news,san_bernardino
+138,You,0.28351809553814045,victims & location,san_bernardino
+139,You,1.6182959854854506,laws & policy,san_bernardino
+140,You,0.16490004661479093,investigation,san_bernardino
+141,You,0.925061525017356,solidarity,san_bernardino
+142,You,0.5443281063837369,remembrance,san_bernardino
+143,You,2.477165625577602,other,san_bernardino
+144,I,0.4824426356410019,"shooter's identity
+& ideology",san_bernardino
+145,I,0.29322422811166926,news,san_bernardino
+146,I,0.4618339178035325,victims & location,san_bernardino
+147,I,0.6590266960948987,laws & policy,san_bernardino
+148,I,0.29379465235653673,investigation,san_bernardino
+149,I,2.4883174996241912,solidarity,san_bernardino
+150,I,0.5959637215296788,remembrance,san_bernardino
+151,I,2.2113020540786508,other,san_bernardino
+152,We,1.0005405445398046,"shooter's identity
+& ideology",san_bernardino
+153,We,0.3083399299915349,news,san_bernardino
+154,We,0.18927564014788442,victims & location,san_bernardino
+155,We,1.9581678359417158,laws & policy,san_bernardino
+156,We,0.17631067598719516,investigation,san_bernardino
+157,We,1.4880537011386141,solidarity,san_bernardino
+158,We,0.513811676103153,remembrance,san_bernardino
+159,We,1.5346536824206594,other,san_bernardino
+160,SheHe,1.283070620366758,"shooter's identity
+& ideology",kalamazoo
+161,SheHe,0.15809384164222876,news,kalamazoo
+162,SheHe,1.4002597402597403,victims & location,kalamazoo
+163,SheHe,0.5998331015299027,laws & policy,kalamazoo
+164,SheHe,1.460615763546798,investigation,kalamazoo
+165,SheHe,0.27318333840072967,solidarity,kalamazoo
+166,SheHe,0.18151515151515152,remembrance,kalamazoo
+167,SheHe,1.6949605594405592,other,kalamazoo
+168,They,0.8588095282718294,"shooter's identity
+& ideology",kalamazoo
+169,They,0.276146448283369,news,kalamazoo
+170,They,0.0,victims & location,kalamazoo
+171,They,1.1950823256463672,laws & policy,kalamazoo
+172,They,0.30441575063996384,investigation,kalamazoo
+173,They,1.3122343765973916,solidarity,kalamazoo
+174,They,0.4359534206695778,remembrance,kalamazoo
+175,They,1.506655021834061,other,kalamazoo
+176,You,0.8187871127050385,"shooter's identity
+& ideology",kalamazoo
+177,You,0.2707086329490218,news,kalamazoo
+178,You,0.4395792563600783,victims & location,kalamazoo
+179,You,1.1469411473317201,laws & policy,kalamazoo
+180,You,0.18189486470072203,investigation,kalamazoo
+181,You,0.850735327805012,solidarity,kalamazoo
+182,You,0.45585996955859964,remembrance,kalamazoo
+183,You,1.848126448893572,other,kalamazoo
+184,I,0.2837003426459754,"shooter's identity
+& ideology",kalamazoo
+185,I,0.2800027168050373,news,kalamazoo
+186,I,1.5738614246788634,victims & location,kalamazoo
+187,I,0.3268845239944973,laws & policy,kalamazoo
+188,I,0.1447228896256426,investigation,kalamazoo
+189,I,2.4891691651554226,solidarity,kalamazoo
+190,I,0.18135028761731758,remembrance,kalamazoo
+191,I,1.482496751205198,other,kalamazoo
+192,We,0.7463657759933545,"shooter's identity
+& ideology",kalamazoo
+193,We,0.32784437206913797,news,kalamazoo
+194,We,0.4436306780776827,victims & location,kalamazoo
+195,We,2.004050684834928,laws & policy,kalamazoo
+196,We,0.1682737054777417,investigation,kalamazoo
+197,We,1.3155603162615783,solidarity,kalamazoo
+198,We,0.38338453661034305,remembrance,kalamazoo
+199,We,1.2230556540233959,other,kalamazoo
+200,SheHe,1.2613215341262942,"shooter's identity
+& ideology",orlando
+201,SheHe,0.31721485944474004,news,orlando
+202,SheHe,0.8268315258288396,victims & location,orlando
+203,SheHe,0.8537855212033133,laws & policy,orlando
+204,SheHe,2.9774824373682334,investigation,orlando
+205,SheHe,0.2951093097713194,solidarity,orlando
+206,SheHe,0.34353800506333787,remembrance,orlando
+207,SheHe,2.082136744989572,other,orlando
+208,They,0.7871365752248384,"shooter's identity
+& ideology",orlando
+209,They,0.3867313608452064,news,orlando
+210,They,0.19245383067742158,victims & location,orlando
+211,They,1.2517625310171492,laws & policy,orlando
+212,They,0.5236669126113653,investigation,orlando
+213,They,2.290987276952888,solidarity,orlando
+214,They,0.3645957778804225,remembrance,orlando
+215,They,1.7545445584602892,other,orlando
+216,You,0.836074831034418,"shooter's identity
+& ideology",orlando
+217,You,0.24267249616658465,news,orlando
+218,You,0.177128139634833,victims & location,orlando
+219,You,1.6830868490714554,laws & policy,orlando
+220,You,0.1823962758228065,investigation,orlando
+221,You,1.1420355438010195,solidarity,orlando
+222,You,0.46067715162608175,remembrance,orlando
+223,You,2.7441724179119102,other,orlando
+224,I,0.6609083981456322,"shooter's identity
+& ideology",orlando
+225,I,0.7029715072959417,news,orlando
+226,I,0.9737438065698316,victims & location,orlando
+227,I,0.5701588855260195,laws & policy,orlando
+228,I,0.7651729820868307,investigation,orlando
+229,I,1.6950667429247332,solidarity,orlando
+230,I,1.0021055193137283,remembrance,orlando
+231,I,1.4073657455665172,other,orlando
+232,We,0.9237486428227637,"shooter's identity
+& ideology",orlando
+233,We,0.5609520227245632,news,orlando
+234,We,0.6811888931793586,victims & location,orlando
+235,We,1.5425872373662048,laws & policy,orlando
+236,We,0.5846462972966114,investigation,orlando
+237,We,1.4726494431034929,solidarity,orlando
+238,We,0.541676264930334,remembrance,orlando
+239,We,1.3299790340221291,other,orlando
+240,SheHe,1.2068481185477833,"shooter's identity
+& ideology",dallas
+241,SheHe,0.22712654983836605,news,dallas
+242,SheHe,1.1184961748450513,victims & location,dallas
+243,SheHe,0.5440189359956435,laws & policy,dallas
+244,SheHe,3.6761629383063688,investigation,dallas
+245,SheHe,0.1842976651733323,solidarity,dallas
+246,SheHe,0.8761727775947826,remembrance,dallas
+247,SheHe,1.3021509381828604,other,dallas
+248,They,0.7425225411260408,"shooter's identity
+& ideology",dallas
+249,They,0.2959180774275569,news,dallas
+250,They,0.33384582676787405,victims & location,dallas
+251,They,1.088946679152029,laws & policy,dallas
+252,They,0.6668343865013042,investigation,dallas
+253,They,1.1926608810050852,solidarity,dallas
+254,They,0.32518570869028657,remembrance,dallas
+255,They,1.3392388615142277,other,dallas
+256,You,0.7550892428175713,"shooter's identity
+& ideology",dallas
+257,You,0.17014188677350345,news,dallas
+258,You,0.1478598214021152,victims & location,dallas
+259,You,1.1031318625676043,laws & policy,dallas
+260,You,0.3339938612680468,investigation,dallas
+261,You,0.7077841130258303,solidarity,dallas
+262,You,0.4320728038595295,remembrance,dallas
+263,You,1.543782932984263,other,dallas
+264,I,0.3613659970372462,"shooter's identity
+& ideology",dallas
+265,I,0.21894574428728608,news,dallas
+266,I,0.5801235274803785,victims & location,dallas
+267,I,0.4398238499029165,laws & policy,dallas
+268,I,0.22166970572230907,investigation,dallas
+269,I,1.9090969103637503,solidarity,dallas
+270,I,0.4767176914534916,remembrance,dallas
+271,I,1.3879649388451023,other,dallas
+272,We,0.7174343270509811,"shooter's identity
+& ideology",dallas
+273,We,0.2462177008279603,news,dallas
+274,We,0.18137291328101524,victims & location,dallas
+275,We,1.8341949432250177,laws & policy,dallas
+276,We,0.22299858150917998,investigation,dallas
+277,We,1.885073373174188,solidarity,dallas
+278,We,0.6736940283790005,remembrance,dallas
+279,We,1.0328786491611186,other,dallas
+280,SheHe,1.412825923824843,"shooter's identity
+& ideology",baton_rouge
+281,SheHe,0.2974288148782377,news,baton_rouge
+282,SheHe,2.4370858619992894,victims & location,baton_rouge
+283,SheHe,0.5275572018182856,laws & policy,baton_rouge
+284,SheHe,2.85639387355032,investigation,baton_rouge
+285,SheHe,0.3048333498437514,solidarity,baton_rouge
+286,SheHe,0.8116291174468657,remembrance,baton_rouge
+287,SheHe,1.539055725310885,other,baton_rouge
+288,They,0.8863291402155853,"shooter's identity
+& ideology",baton_rouge
+289,They,0.2833040204183492,news,baton_rouge
+290,They,0.2332210256516257,victims & location,baton_rouge
+291,They,1.3196816989223044,laws & policy,baton_rouge
+292,They,0.5158901252415039,investigation,baton_rouge
+293,They,1.5215504574200516,solidarity,baton_rouge
+294,They,0.3180082259126314,remembrance,baton_rouge
+295,They,1.5082672423208063,other,baton_rouge
+296,You,0.9616119097695704,"shooter's identity
+& ideology",baton_rouge
+297,You,0.19005148458519328,news,baton_rouge
+298,You,0.12651514302053082,victims & location,baton_rouge
+299,You,1.3886034250558599,laws & policy,baton_rouge
+300,You,0.22626519986616833,investigation,baton_rouge
+301,You,0.7981401694820507,solidarity,baton_rouge
+302,You,0.41895178508438075,remembrance,baton_rouge
+303,You,1.9242390878883153,other,baton_rouge
+304,I,0.5045019391520446,"shooter's identity
+& ideology",baton_rouge
+305,I,0.20896341537781885,news,baton_rouge
+306,I,0.5496328230609039,victims & location,baton_rouge
+307,I,0.39071590040224724,laws & policy,baton_rouge
+308,I,0.232812784791408,investigation,baton_rouge
+309,I,2.1734946965557405,solidarity,baton_rouge
+310,I,0.7226850089137343,remembrance,baton_rouge
+311,I,1.6492724255939264,other,baton_rouge
+312,We,0.7587610022401355,"shooter's identity
+& ideology",baton_rouge
+313,We,0.34559774588947634,news,baton_rouge
+314,We,0.09655390776761341,victims & location,baton_rouge
+315,We,2.0151822630755216,laws & policy,baton_rouge
+316,We,0.18176970521023214,investigation,baton_rouge
+317,We,1.9373150317833263,solidarity,baton_rouge
+318,We,0.564239808169467,remembrance,baton_rouge
+319,We,1.1441652668875824,other,baton_rouge
+320,SheHe,1.4644766830294529,"shooter's identity
+& ideology",burlington
+321,SheHe,0.031417838874680304,news,burlington
+322,SheHe,0.0,victims & location,burlington
+323,SheHe,0.8323687182382835,laws & policy,burlington
+324,SheHe,1.9776985777822875,investigation,burlington
+325,SheHe,0.2712905452035887,solidarity,burlington
+326,SheHe,0.0,remembrance,burlington
+327,SheHe,2.3247469756857106,other,burlington
+328,They,1.4931919121084618,"shooter's identity
+& ideology",burlington
+329,They,0.2792696788860472,news,burlington
+330,They,0.7596135265700482,victims & location,burlington
+331,They,1.294795783926219,laws & policy,burlington
+332,They,0.4431817541248823,investigation,burlington
+333,They,2.8334790276819266,solidarity,burlington
+334,They,0.220817885630828,remembrance,burlington
+335,They,2.275701680840021,other,burlington
+336,You,1.2038587178440179,"shooter's identity
+& ideology",burlington
+337,You,0.36587862993298587,news,burlington
+338,You,0.0,victims & location,burlington
+339,You,1.8309770398377994,laws & policy,burlington
+340,You,0.34837451811588854,investigation,burlington
+341,You,1.3163887214520127,solidarity,burlington
+342,You,0.3857325090766362,remembrance,burlington
+343,You,3.1528053841057293,other,burlington
+344,I,0.8397778252510146,"shooter's identity
+& ideology",burlington
+345,I,0.28712991819244255,news,burlington
+346,I,0.0,victims & location,burlington
+347,I,0.507138556807431,laws & policy,burlington
+348,I,0.42527838524963874,investigation,burlington
+349,I,3.471081677704194,solidarity,burlington
+350,I,0.30271061142769135,remembrance,burlington
+351,I,3.065883093426742,other,burlington
+352,We,0.9724421135958835,"shooter's identity
+& ideology",burlington
+353,We,0.24825875135330208,news,burlington
+354,We,0.0,victims & location,burlington
+355,We,2.740518683770218,laws & policy,burlington
+356,We,0.25326613740326864,investigation,burlington
+357,We,2.679618268575324,solidarity,burlington
+358,We,1.1217006705664145,remembrance,burlington
+359,We,2.292070171880545,other,burlington
+360,SheHe,3.228631833282996,"shooter's identity
+& ideology",fort_lauderdale
+361,SheHe,0.37971959297101904,news,fort_lauderdale
+362,SheHe,8.286821705426357,victims & location,fort_lauderdale
+363,SheHe,1.471033438833081,laws & policy,fort_lauderdale
+364,SheHe,9.381307591048706,investigation,fort_lauderdale
+365,SheHe,0.5381053055471661,solidarity,fort_lauderdale
+366,SheHe,1.7757475083056478,remembrance,fort_lauderdale
+367,SheHe,4.592060435491038,other,fort_lauderdale
+368,They,1.749972716359271,"shooter's identity
+& ideology",fort_lauderdale
+369,They,0.27845477813767017,news,fort_lauderdale
+370,They,0.0,victims & location,fort_lauderdale
+371,They,1.435184724777485,laws & policy,fort_lauderdale
+372,They,2.0339305533534167,investigation,fort_lauderdale
+373,They,3.470779220779221,solidarity,fort_lauderdale
+374,They,0.962484993997599,remembrance,fort_lauderdale
+375,They,2.102753840389659,other,fort_lauderdale
+376,You,2.9227614490772384,"shooter's identity
+& ideology",fort_lauderdale
+377,You,0.26539225422045676,news,fort_lauderdale
+378,You,0.0,victims & location,fort_lauderdale
+379,You,2.49688570538773,laws & policy,fort_lauderdale
+380,You,0.0,investigation,fort_lauderdale
+381,You,1.400489861016177,solidarity,fort_lauderdale
+382,You,2.0093984962406015,remembrance,fort_lauderdale
+383,You,4.793119342943346,other,fort_lauderdale
+384,I,0.16397382145413641,"shooter's identity
+& ideology",fort_lauderdale
+385,I,0.2892745718105991,news,fort_lauderdale
+386,I,0.0,victims & location,fort_lauderdale
+387,I,0.5976797279038345,laws & policy,fort_lauderdale
+388,I,0.0,investigation,fort_lauderdale
+389,I,3.607424071991001,solidarity,fort_lauderdale
+390,I,1.8037120359955006,remembrance,fort_lauderdale
+391,I,2.573449019509504,other,fort_lauderdale
+392,We,1.7288409703504042,"shooter's identity
+& ideology",fort_lauderdale
+393,We,0.4131821187000966,news,fort_lauderdale
+394,We,0.0,victims & location,fort_lauderdale
+395,We,2.4346991180082616,laws & policy,fort_lauderdale
+396,We,1.8266998932004272,investigation,fort_lauderdale
+397,We,2.1741484930164177,solidarity,fort_lauderdale
+398,We,0.0,remembrance,fort_lauderdale
+399,We,2.8520370147818768,other,fort_lauderdale
+400,SheHe,0.9534632969945389,"shooter's identity
+& ideology",fresno
+401,SheHe,0.10373905309250138,news,fresno
+402,SheHe,0.0,victims & location,fresno
+403,SheHe,0.7560078146536743,laws & policy,fresno
+404,SheHe,1.2335588900550183,investigation,fresno
+405,SheHe,0.2032438591200027,solidarity,fresno
+406,SheHe,0.37346059113300495,remembrance,fresno
+407,SheHe,1.3799929464499028,other,fresno
+408,They,1.0752766159772422,"shooter's identity
+& ideology",fresno
+409,They,0.24377009646302253,news,fresno
+410,They,0.0,victims & location,fresno
+411,They,1.9359260215457554,laws & policy,fresno
+412,They,0.28946724186523975,investigation,fresno
+413,They,1.910361572281646,solidarity,fresno
+414,They,0.7313102893890676,remembrance,fresno
+415,They,2.197871724230115,other,fresno
+416,You,1.3520240189161852,"shooter's identity
+& ideology",fresno
+417,You,0.2598543273350471,news,fresno
+418,You,0.0,victims & location,fresno
+419,You,0.9104385191300921,laws & policy,fresno
+420,You,0.11172239793291854,investigation,fresno
+421,You,1.081842505639788,solidarity,fresno
+422,You,0.584672236503856,remembrance,fresno
+423,You,2.362093839239597,other,fresno
+424,I,0.7279113276148117,"shooter's identity
+& ideology",fresno
+425,I,0.0,news,fresno
+426,I,0.0,victims & location,fresno
+427,I,1.49645317158425,laws & policy,fresno
+428,I,0.13116704063150494,investigation,fresno
+429,I,5.229951135383731,solidarity,fresno
+430,I,0.5338908450704225,remembrance,fresno
+431,I,2.56464886315584,other,fresno
+432,We,1.0082744549816753,"shooter's identity
+& ideology",fresno
+433,We,0.5714510050251257,news,fresno
+434,We,0.5300415119073629,victims & location,fresno
+435,We,3.915343139052929,laws & policy,fresno
+436,We,0.20279259380716766,investigation,fresno
+437,We,1.9903599630807098,solidarity,fresno
+438,We,1.1429020100502512,remembrance,fresno
+439,We,1.9426694674295264,other,fresno
+440,SheHe,1.5441429318980338,"shooter's identity
+& ideology",san_francisco
+441,SheHe,0.4134204188376887,news,san_francisco
+442,SheHe,0.32032752310650703,victims & location,san_francisco
+443,SheHe,0.4785332924647331,laws & policy,san_francisco
+444,SheHe,4.064956268221574,investigation,san_francisco
+445,SheHe,0.33456430191124065,solidarity,san_francisco
+446,SheHe,0.7238169993272033,remembrance,san_francisco
+447,SheHe,1.6449814989051235,other,san_francisco
+448,They,1.4626714370900418,"shooter's identity
+& ideology",san_francisco
+449,They,0.2129796179021872,news,san_francisco
+450,They,0.15969816922315683,victims & location,san_francisco
+451,They,1.6516461022346054,laws & policy,san_francisco
+452,They,0.30023255813953487,investigation,san_francisco
+453,They,1.6376321353065537,solidarity,san_francisco
+454,They,0.8660554561717352,remembrance,san_francisco
+455,They,1.976929290209673,other,san_francisco
+456,You,1.8915750915750915,"shooter's identity
+& ideology",san_francisco
+457,You,0.1869004810162051,news,san_francisco
+458,You,0.1401432913590968,victims & location,san_francisco
+459,You,1.384985779152737,laws & policy,san_francisco
+460,You,0.04391156462585034,investigation,san_francisco
+461,You,1.064522778808493,solidarity,san_francisco
+462,You,1.0133437990580847,remembrance,san_francisco
+463,You,2.287722614371364,other,san_francisco
+464,I,0.46664407545464814,"shooter's identity
+& ideology",san_francisco
+465,I,0.18740511497091705,news,san_francisco
+466,I,0.24200956040866062,victims & location,san_francisco
+467,I,0.7230701291427464,laws & policy,san_francisco
+468,I,0.45497797356828196,investigation,san_francisco
+469,I,2.297868553375161,solidarity,san_francisco
+470,I,0.4374788207387327,remembrance,san_francisco
+471,I,2.1892934328719793,other,san_francisco
+472,We,1.0152863111329564,"shooter's identity
+& ideology",san_francisco
+473,We,0.26427647114730846,news,san_francisco
+474,We,0.3510298416151179,victims & location,san_francisco
+475,We,2.4203035534343096,laws & policy,san_francisco
+476,We,0.2749733759318424,investigation,san_francisco
+477,We,2.3331074321489655,solidarity,san_francisco
+478,We,0.9518309166871467,remembrance,san_francisco
+479,We,1.4683817036013003,other,san_francisco
+480,SheHe,1.2154922230355163,"shooter's identity
+& ideology",vegas
+481,SheHe,0.3558335013887877,news,vegas
+482,SheHe,0.6900259643423065,victims & location,vegas
+483,SheHe,0.8185203581306425,laws & policy,vegas
+484,SheHe,3.081699869445269,investigation,vegas
+485,SheHe,0.3046692252062688,solidarity,vegas
+486,SheHe,0.6334465113547069,remembrance,vegas
+487,SheHe,2.1628596640744884,other,vegas
+488,They,0.8746622688232364,"shooter's identity
+& ideology",vegas
+489,They,0.34347434371408914,news,vegas
+490,They,0.16648970955738965,victims & location,vegas
+491,They,1.3060014893664385,laws & policy,vegas
+492,They,0.6565569846220574,investigation,vegas
+493,They,1.9819605975170855,solidarity,vegas
+494,They,0.3940694363709931,remembrance,vegas
+495,They,1.4453423560576502,other,vegas
+496,You,0.823327113739308,"shooter's identity
+& ideology",vegas
+497,You,0.25705427470995595,news,vegas
+498,You,0.1525831333386868,victims & location,vegas
+499,You,1.5742538298745712,laws & policy,vegas
+500,You,0.2786329460034939,investigation,vegas
+501,You,1.166153922143187,solidarity,vegas
+502,You,0.5900676962223615,remembrance,vegas
+503,You,2.128750637974336,other,vegas
+504,I,0.4690713500406987,"shooter's identity
+& ideology",vegas
+505,I,0.7085322331328348,news,vegas
+506,I,0.5713785008917035,victims & location,vegas
+507,I,0.5278779399812485,laws & policy,vegas
+508,I,0.49421153062760376,investigation,vegas
+509,I,2.058637845479805,solidarity,vegas
+510,I,0.8091543769597186,remembrance,vegas
+511,I,1.520704580371944,other,vegas
+512,We,0.7305629386889018,"shooter's identity
+& ideology",vegas
+513,We,0.40038146060521695,news,vegas
+514,We,0.4893832446438881,victims & location,vegas
+515,We,1.540842383045142,laws & policy,vegas
+516,We,0.40543581628971426,investigation,vegas
+517,We,1.5272542534073454,solidarity,vegas
+518,We,0.5300864060823629,remembrance,vegas
+519,We,1.3420428779757418,other,vegas
+520,SheHe,2.269430847686731,"shooter's identity
+& ideology",thornton
+521,SheHe,0.08214205536768904,news,thornton
+522,SheHe,0.5224349605378544,victims & location,thornton
+523,SheHe,0.5521562920475933,laws & policy,thornton
+524,SheHe,1.2092861377068027,investigation,thornton
+525,SheHe,0.26998316752627377,solidarity,thornton
+526,SheHe,0.8209692237023427,remembrance,thornton
+527,SheHe,1.5248039148614225,other,thornton
+528,They,0.4876074250516795,"shooter's identity
+& ideology",thornton
+529,They,0.27194006519142166,news,thornton
+530,They,0.5353452149168788,victims & location,thornton
+531,They,2.1589775418266037,laws & policy,thornton
+532,They,0.6141017735359355,investigation,thornton
+533,They,0.9880532490076622,solidarity,thornton
+534,They,0.7210772282553878,remembrance,thornton
+535,They,1.4986092582779544,other,thornton
+536,You,0.9258268216341629,"shooter's identity
+& ideology",thornton
+537,You,0.1305558546763922,news,thornton
+538,You,0.3722274289284599,victims & location,thornton
+539,You,1.6046719755322985,laws & policy,thornton
+540,You,0.16012017892453304,investigation,thornton
+541,You,0.7969164417998571,solidarity,thornton
+542,You,0.5013675573322113,remembrance,thornton
+543,You,1.9131589171458598,other,thornton
+544,I,0.1594363860193759,"shooter's identity
+& ideology",thornton
+545,I,0.2532049653286273,news,thornton
+546,I,0.45511841100076394,victims & location,thornton
+547,I,0.8860712426563545,laws & policy,thornton
+548,I,0.14916357604494312,investigation,thornton
+549,I,3.0911398116293496,solidarity,thornton
+550,I,1.4303721488595438,remembrance,thornton
+551,I,1.9381930494350432,other,thornton
+552,We,0.9250909404609566,"shooter's identity
+& ideology",thornton
+553,We,0.31051094727462936,news,thornton
+554,We,0.0,victims & location,thornton
+555,We,2.121770596410521,laws & policy,thornton
+556,We,0.19533525858481407,investigation,thornton
+557,We,2.0578272001454394,solidarity,thornton
+558,We,0.8233519141290828,remembrance,thornton
+559,We,1.4272807148890967,other,thornton
+560,SheHe,0.9669045931142236,"shooter's identity
+& ideology",sutherland_springs
+561,SheHe,0.17528311039330874,news,sutherland_springs
+562,SheHe,0.8016525795038726,victims & location,sutherland_springs
+563,SheHe,0.6979645236032865,laws & policy,sutherland_springs
+564,SheHe,2.7482396599328305,investigation,sutherland_springs
+565,SheHe,0.2868089446051933,solidarity,sutherland_springs
+566,SheHe,0.37747236129944745,remembrance,sutherland_springs
+567,SheHe,1.6994340228560716,other,sutherland_springs
+568,They,0.8522761203720406,"shooter's identity
+& ideology",sutherland_springs
+569,They,0.12515593188585034,news,sutherland_springs
+570,They,0.1591038492381716,victims & location,sutherland_springs
+571,They,1.2628483311078222,laws & policy,sutherland_springs
+572,They,0.29857721593515224,investigation,sutherland_springs
+573,They,1.1827604381954557,solidarity,sutherland_springs
+574,They,0.3375064997698226,remembrance,sutherland_springs
+575,They,1.3155963079185555,other,sutherland_springs
+576,You,0.7521480239917036,"shooter's identity
+& ideology",sutherland_springs
+577,You,0.09735232787504354,news,sutherland_springs
+578,You,0.09823548602186505,victims & location,sutherland_springs
+579,You,1.1815856185403937,laws & policy,sutherland_springs
+580,You,0.1590788068472886,investigation,sutherland_springs
+581,You,0.7615408389980065,solidarity,sutherland_springs
+582,You,0.2947966651234665,remembrance,sutherland_springs
+583,You,1.6660474644795769,other,sutherland_springs
+584,I,0.4845012611542686,"shooter's identity
+& ideology",sutherland_springs
+585,I,0.18727835092153342,news,sutherland_springs
+586,I,0.150352308000097,victims & location,sutherland_springs
+587,I,0.6914975453341432,laws & policy,sutherland_springs
+588,I,0.2524727865031332,investigation,sutherland_springs
+589,I,1.585657590620287,solidarity,sutherland_springs
+590,I,0.32486039176483766,remembrance,sutherland_springs
+591,I,1.8004765695607885,other,sutherland_springs
+592,We,0.6804139826772917,"shooter's identity
+& ideology",sutherland_springs
+593,We,0.24057926380677375,news,sutherland_springs
+594,We,0.14485783083972675,victims & location,sutherland_springs
+595,We,1.459355362115039,laws & policy,sutherland_springs
+596,We,0.1766978689054885,investigation,sutherland_springs
+597,We,1.4174741445630836,solidarity,sutherland_springs
+598,We,0.37476277162039723,remembrance,sutherland_springs
+599,We,1.0493086834918919,other,sutherland_springs
+600,SheHe,0.943742288961039,"shooter's identity
+& ideology",parkland
+601,SheHe,0.329812084717608,news,parkland
+602,SheHe,0.862564128803384,victims & location,parkland
+603,SheHe,0.7664053075995175,laws & policy,parkland
+604,SheHe,2.1185236872843833,investigation,parkland
+605,SheHe,0.5092293155681049,solidarity,parkland
+606,SheHe,0.8524211501096183,remembrance,parkland
+607,SheHe,1.8848268014491418,other,parkland
+608,They,0.6849480965712831,"shooter's identity
+& ideology",parkland
+609,They,0.24081570593990168,news,parkland
+610,They,0.22425954678348714,victims & location,parkland
+611,They,1.2097665377323825,laws & policy,parkland
+612,They,0.31021122437734794,investigation,parkland
+613,They,1.112147623891404,solidarity,parkland
+614,They,0.4208405400465348,remembrance,parkland
+615,They,1.1301160727304569,other,parkland
+616,You,0.6500819873661914,"shooter's identity
+& ideology",parkland
+617,You,0.11117408931515702,news,parkland
+618,You,0.2030032147572978,victims & location,parkland
+619,You,1.1310675562965518,laws & policy,parkland
+620,You,0.18398035942512678,investigation,parkland
+621,You,0.9335245506949337,solidarity,parkland
+622,You,0.4055076168176579,remembrance,parkland
+623,You,1.4824841476769506,other,parkland
+624,I,0.34814461686831494,"shooter's identity
+& ideology",parkland
+625,I,0.21255713197324402,news,parkland
+626,I,0.2528188300833975,victims & location,parkland
+627,I,0.7568990737506738,laws & policy,parkland
+628,I,0.2376836722578433,investigation,parkland
+629,I,1.9312518536648482,solidarity,parkland
+630,I,0.2927969913282202,remembrance,parkland
+631,I,2.044643184078942,other,parkland
+632,We,0.47635668239360957,"shooter's identity
+& ideology",parkland
+633,We,0.22207891409134806,news,parkland
+634,We,0.10102950819584361,victims & location,parkland
+635,We,1.2834710759347094,laws & policy,parkland
+636,We,0.15768139597601208,investigation,parkland
+637,We,1.336666310381852,solidarity,parkland
+638,We,0.40390861093570685,remembrance,parkland
+639,We,0.9369287120718598,other,parkland
+640,SheHe,0.7180906713164776,"shooter's identity
+& ideology",nashville
+641,SheHe,0.07575627161614423,news,nashville
+642,SheHe,0.5504814070732724,victims & location,nashville
+643,SheHe,0.7023951885997185,laws & policy,nashville
+644,SheHe,1.1416955568540843,investigation,nashville
+645,SheHe,0.40375260843701505,solidarity,nashville
+646,SheHe,0.5143417136818099,remembrance,nashville
+647,SheHe,1.2903151657373477,other,nashville
+648,They,0.7035322195704057,"shooter's identity
+& ideology",nashville
+649,They,0.25688427377617595,news,nashville
+650,They,0.10046176195911591,victims & location,nashville
+651,They,1.8135366768789813,laws & policy,nashville
+652,They,0.7014874589522088,investigation,nashville
+653,They,1.7851003334395974,solidarity,nashville
+654,They,0.37211298988991354,remembrance,nashville
+655,They,1.1366126286432443,other,nashville
+656,You,1.1621525724423416,"shooter's identity
+& ideology",nashville
+657,You,0.10277048319777342,news,nashville
+658,You,0.06223163551281722,victims & location,nashville
+659,You,0.9176738762996424,laws & policy,nashville
+660,You,0.1280464391898271,investigation,nashville
+661,You,1.0334495428121269,solidarity,nashville
+662,You,0.48593494715993074,remembrance,nashville
+663,You,1.6407556034424107,other,nashville
+664,I,0.4152298850574712,"shooter's identity
+& ideology",nashville
+665,I,0.21478789653619434,news,nashville
+666,I,0.8063884724304514,victims & location,nashville
+667,I,0.7629235618597321,laws & policy,nashville
+668,I,0.2559415232505882,investigation,nashville
+669,I,2.6447795205886826,solidarity,nashville
+670,I,0.30272472577639364,remembrance,nashville
+671,I,1.56412552100404,other,nashville
+672,We,0.7561046511627907,"shooter's identity
+& ideology",nashville
+673,We,0.31777994169213986,news,nashville
+674,We,0.15295595298281092,victims & location,nashville
+675,We,1.9760607372587828,laws & policy,nashville
+676,We,0.2310169853758943,investigation,nashville
+677,We,2.2606558538325916,solidarity,nashville
+678,We,0.5971773224181998,remembrance,nashville
+679,We,1.2487052543852688,other,nashville
+680,SheHe,1.4075217033393117,"shooter's identity
+& ideology",santa_fe
+681,SheHe,0.1728857210952998,news,santa_fe
+682,SheHe,0.8523245618902812,victims & location,santa_fe
+683,SheHe,0.8378478321161136,laws & policy,santa_fe
+684,SheHe,3.083123817691997,investigation,santa_fe
+685,SheHe,0.523776487462241,solidarity,santa_fe
+686,SheHe,0.7709239235002117,remembrance,santa_fe
+687,SheHe,1.8754787861865903,other,santa_fe
+688,They,0.8123321706286816,"shooter's identity
+& ideology",santa_fe
+689,They,0.27349636076279354,news,santa_fe
+690,They,0.2550434111027184,victims & location,santa_fe
+691,They,1.4247304080178802,laws & policy,santa_fe
+692,They,0.2693233297455115,investigation,santa_fe
+693,They,1.2106735990997375,solidarity,santa_fe
+694,They,0.3388103788202418,remembrance,santa_fe
+695,They,1.3064180828246166,other,santa_fe
+696,You,0.6923079034003438,"shooter's identity
+& ideology",santa_fe
+697,You,0.13559190746999203,news,santa_fe
+698,You,0.028413079717451963,victims & location,santa_fe
+699,You,1.3894850224177102,laws & policy,santa_fe
+700,You,0.1460847195120884,investigation,santa_fe
+701,You,0.8789603013687103,solidarity,santa_fe
+702,You,0.3125296632452895,remembrance,santa_fe
+703,You,1.7378317389235471,other,santa_fe
+704,I,0.30469727542243913,"shooter's identity
+& ideology",santa_fe
+705,I,0.14963649624732372,news,santa_fe
+706,I,0.10004089722213484,victims & location,santa_fe
+707,I,0.6810760144328649,laws & policy,santa_fe
+708,I,0.2649714246502828,investigation,santa_fe
+709,I,1.872870079684818,solidarity,santa_fe
+710,I,0.23921735303742098,remembrance,santa_fe
+711,I,2.1556385838142864,other,santa_fe
+712,We,0.4332491504051279,"shooter's identity
+& ideology",santa_fe
+713,We,0.22313026712253367,news,santa_fe
+714,We,0.08243928774825608,victims & location,santa_fe
+715,We,1.4997967128118914,laws & policy,santa_fe
+716,We,0.137004709408662,investigation,santa_fe
+717,We,1.5272272068920774,solidarity,santa_fe
+718,We,0.40411334699607865,remembrance,santa_fe
+719,We,1.1016435839616925,other,santa_fe
+720,SheHe,1.6173774142524144,"shooter's identity
+& ideology",annapolis
+721,SheHe,0.11126642711621555,news,annapolis
+722,SheHe,0.597635582010582,victims & location,annapolis
+723,SheHe,0.751230110395762,laws & policy,annapolis
+724,SheHe,2.0163276690696876,investigation,annapolis
+725,SheHe,0.38468497232865045,solidarity,annapolis
+726,SheHe,0.7538189946217564,remembrance,annapolis
+727,SheHe,1.8126758619761165,other,annapolis
+728,They,1.1127897259972732,"shooter's identity
+& ideology",annapolis
+729,They,0.3396472346895983,news,annapolis
+730,They,0.0,victims & location,annapolis
+731,They,1.569682306595651,laws & policy,annapolis
+732,They,0.4843788004371403,investigation,annapolis
+733,They,2.1864722955517832,solidarity,annapolis
+734,They,0.6591624780557193,remembrance,annapolis
+735,They,1.7353209467569255,other,annapolis
+736,You,1.5239303316226394,"shooter's identity
+& ideology",annapolis
+737,You,0.1808862784885352,news,annapolis
+738,You,0.11927861927861928,victims & location,annapolis
+739,You,1.757361971734688,laws & policy,annapolis
+740,You,0.1857356048911147,investigation,annapolis
+741,You,1.2540250241399666,solidarity,annapolis
+742,You,0.5905914158181265,remembrance,annapolis
+743,You,2.540968449365396,other,annapolis
+744,I,0.5165943545505589,"shooter's identity
+& ideology",annapolis
+745,I,0.250063727054657,news,annapolis
+746,I,0.753806047966632,victims & location,annapolis
+747,I,0.8483761124496564,laws & policy,annapolis
+748,I,0.282580228074,investigation,annapolis
+749,I,3.2482012845969557,solidarity,annapolis
+750,I,0.34800608974551844,remembrance,annapolis
+751,I,2.309370182574618,other,annapolis
+752,We,0.9791184635744221,"shooter's identity
+& ideology",annapolis
+753,We,0.2686746170365367,news,annapolis
+754,We,0.5096048782207183,victims & location,annapolis
+755,We,2.4636075050645934,laws & policy,annapolis
+756,We,0.23695839600067387,investigation,annapolis
+757,We,2.2141453329589833,solidarity,annapolis
+758,We,0.6043418114760951,remembrance,annapolis
+759,We,1.8516940613210835,other,annapolis
+760,SheHe,1.5015272928599137,"shooter's identity
+& ideology",pittsburgh
+761,SheHe,0.15158854613480596,news,pittsburgh
+762,SheHe,0.8205392018263118,victims & location,pittsburgh
+763,SheHe,0.5263828048672174,laws & policy,pittsburgh
+764,SheHe,2.0683408939634136,investigation,pittsburgh
+765,SheHe,0.3895925364971181,solidarity,pittsburgh
+766,SheHe,0.6991171228271242,remembrance,pittsburgh
+767,SheHe,4.668409371881377,other,pittsburgh
+768,They,0.6408907195625128,"shooter's identity
+& ideology",pittsburgh
+769,They,0.251730890992888,news,pittsburgh
+770,They,0.35785543146423465,victims & location,pittsburgh
+771,They,2.7120180924287123,laws & policy,pittsburgh
+772,They,0.28848102106871776,investigation,pittsburgh
+773,They,2.930695932308648,solidarity,pittsburgh
+774,They,0.44998740515370056,remembrance,pittsburgh
+775,They,2.2100142301373547,other,pittsburgh
+776,You,1.3427809266482806,"shooter's identity
+& ideology",pittsburgh
+777,You,0.2578504305761514,news,pittsburgh
+778,You,0.09612452162084842,victims & location,pittsburgh
+779,You,2.0036280730668863,laws & policy,pittsburgh
+780,You,0.4281304399513341,investigation,pittsburgh
+781,You,1.7146590983019974,solidarity,pittsburgh
+782,You,0.5719679217794194,remembrance,pittsburgh
+783,You,4.472384091667157,other,pittsburgh
+784,I,0.6127649873975964,"shooter's identity
+& ideology",pittsburgh
+785,I,0.5134583155631108,news,pittsburgh
+786,I,0.24330724281262647,victims & location,pittsburgh
+787,I,0.8838582698221688,laws & policy,pittsburgh
+788,I,0.5026070136173922,investigation,pittsburgh
+789,I,3.0903960035467732,solidarity,pittsburgh
+790,I,0.3824351442717221,remembrance,pittsburgh
+791,I,2.886879120751354,other,pittsburgh
+792,We,0.8010445752779302,"shooter's identity
+& ideology",pittsburgh
+793,We,0.3519042146251094,news,pittsburgh
+794,We,0.5986014195891295,victims & location,pittsburgh
+795,We,2.071426956853761,laws & policy,pittsburgh
+796,We,0.40607916926210824,investigation,pittsburgh
+797,We,2.460735666485802,solidarity,pittsburgh
+798,We,0.5399384957303011,remembrance,pittsburgh
+799,We,2.4731923189117273,other,pittsburgh
+800,SheHe,1.847555641782307,"shooter's identity
+& ideology",thousand_oaks
+801,SheHe,0.5075556083441857,news,thousand_oaks
+802,SheHe,0.8086359598104975,victims & location,thousand_oaks
+803,SheHe,0.6108479672959188,laws & policy,thousand_oaks
+804,SheHe,4.799627213420317,investigation,thousand_oaks
+805,SheHe,0.9671548938190733,solidarity,thousand_oaks
+806,SheHe,0.5196058932906521,remembrance,thousand_oaks
+807,SheHe,2.3298082398837625,other,thousand_oaks
+808,They,1.2175580540086162,"shooter's identity
+& ideology",thousand_oaks
+809,They,0.5563861364529225,news,thousand_oaks
+810,They,0.24667694520870495,victims & location,thousand_oaks
+811,They,2.195090504601072,laws & policy,thousand_oaks
+812,They,0.8319657418329145,investigation,thousand_oaks
+813,They,2.484232437552974,solidarity,thousand_oaks
+814,They,0.6022804794854302,remembrance,thousand_oaks
+815,They,2.256421490771674,other,thousand_oaks
+816,You,1.06827724134565,"shooter's identity
+& ideology",thousand_oaks
+817,You,0.4057512321275726,news,thousand_oaks
+818,You,0.22299125777754011,victims & location,thousand_oaks
+819,You,2.0297458947366067,laws & policy,thousand_oaks
+820,You,0.5065036495646555,investigation,thousand_oaks
+821,You,1.717650166166632,solidarity,thousand_oaks
+822,You,0.5208877411232893,remembrance,thousand_oaks
+823,You,3.6484314949965686,other,thousand_oaks
+824,I,0.8657692780236673,"shooter's identity
+& ideology",thousand_oaks
+825,I,0.6702815784526942,news,thousand_oaks
+826,I,0.29395174557981185,victims & location,thousand_oaks
+827,I,0.6438372559141522,laws & policy,thousand_oaks
+828,I,0.4609761555483727,investigation,thousand_oaks
+829,I,3.559069600121714,solidarity,thousand_oaks
+830,I,0.30659788714191616,remembrance,thousand_oaks
+831,I,2.689317441450616,other,thousand_oaks
+832,We,0.8359449983837681,"shooter's identity
+& ideology",thousand_oaks
+833,We,0.6294332138540838,news,thousand_oaks
+834,We,0.4362360710493836,victims & location,thousand_oaks
+835,We,2.2173997942042165,laws & policy,thousand_oaks
+836,We,0.8160099030328039,investigation,thousand_oaks
+837,We,1.8270873202213387,solidarity,thousand_oaks
+838,We,0.6977994049952723,remembrance,thousand_oaks
+839,We,1.9546581301814003,other,thousand_oaks
