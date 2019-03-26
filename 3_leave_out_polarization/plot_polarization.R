@@ -4,7 +4,6 @@ library(RColorBrewer)
 
 setwd('/Users/ddemszky/Google_Drive/Research/Framing/NAACL/framing-twitter')
 
-
 # plot overall polarization
 data <- read.csv("data/output/polarization_noRT.csv",header=TRUE)
 

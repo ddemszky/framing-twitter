@@ -24,6 +24,7 @@ def user_wordcounts_and_timestamps(tweets, vocab):
     first_timestamps = []
     dem_follows = []
     rep_follows = []
+    user_ids = []
     row_idx = []
     col_idx = []
     data = []
@@ -32,6 +33,7 @@ def user_wordcounts_and_timestamps(tweets, vocab):
         first_timestamps.append(group['timestamp'].iloc[0])
         dem_follows.append(group['dem_follows'].iloc[0])
         rep_follows.append(group['rep_follows'].iloc[0])
+        user_ids.append(u)
         word_indices = []
         for split in group['text']:
             count = 0
@@ -52,7 +54,7 @@ def user_wordcounts_and_timestamps(tweets, vocab):
             row_idx.append(k)
             data.append(v)
     return sp.csr_matrix((data, (col_idx, row_idx)), shape=(len(users), len(vocab))), np.array(first_timestamps),\
-           np.array(avg_timestamps), np.array(dem_follows), np.array(rep_follows)
+           np.array(avg_timestamps), np.array(dem_follows), np.array(rep_follows), np.array(user_ids)
 
 def user_leaveout_polarization(event):
     print(event)
@@ -62,6 +64,7 @@ def user_leaveout_polarization(event):
 
     # clean data
     tweets['text'] = tweets['text'].astype(str).apply(clean_text, args=(False, event))
+    tweets['user_id'] = tweets['user_id'].astype(int)
 
     # get vocab
     vocab = {w: i for i, w in enumerate(open(TWEET_DIR + event + '/' + event + '_vocab.txt', 'r').read().splitlines())}
@@ -69,8 +72,8 @@ def user_leaveout_polarization(event):
     dem_tweets, rep_tweets = split_party(tweets)  # get partisan tweets
 
     # get word counts, timestamps and followee count for each user
-    dem_counts, dem_first_timestamps, dem_avg_timestamps, dem_dem_follows, dem_rep_follows = user_wordcounts_and_timestamps(dem_tweets, vocab)
-    rep_counts, rep_first_timestamps, rep_avg_timestamps, rep_dem_follows, rep_rep_follows = user_wordcounts_and_timestamps(rep_tweets, vocab)
+    dem_counts, dem_first_timestamps, dem_avg_timestamps, dem_dem_follows, dem_rep_follows, dem_user_ids = user_wordcounts_and_timestamps(dem_tweets, vocab)
+    rep_counts, rep_first_timestamps, rep_avg_timestamps, rep_dem_follows, rep_rep_follows, rep_user_ids = user_wordcounts_and_timestamps(rep_tweets, vocab)
     assert(dem_counts.shape[0] == len(dem_first_timestamps))
 
     dem_user_len = dem_counts.shape[0]
@@ -107,6 +110,8 @@ def user_leaveout_polarization(event):
     dem_rep_follows = list(dem_rep_follows[dem_filter_idx])
     rep_dem_follows = list(rep_dem_follows[rep_filter_idx])
     rep_rep_follows = list(rep_rep_follows[rep_filter_idx])
+    dem_user_ids = list(dem_user_ids[dem_filter_idx])
+    rep_user_ids = list(rep_user_ids[rep_filter_idx])
 
     # get leaveout scores
     dem_sum = dem_counts.sum(axis=0)
@@ -154,6 +159,7 @@ def user_leaveout_polarization(event):
                        'leaveout_score': dem_leaveouts + rep_leaveouts,
                        'dem_follows': dem_dem_follows + rep_dem_follows,
                        'rep_follows': dem_rep_follows + rep_rep_follows,
+                       'user_id': dem_user_ids + rep_user_ids,
                        'party': ['dem'] * len(dem_first_timestamps) + ['rep'] * len(rep_first_timestamps)})
 
     df['avg_timestamp'] = df['avg_timestamp'] - event_times[event]
