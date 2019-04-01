@@ -22,7 +22,7 @@ NUM_CLUSTERS = config['NUM_CLUSTERS']
 stopwords = set(open(INPUT_DIR + 'stopwords.txt', 'r').read().splitlines())
 event_stopwords = json.load(open(INPUT_DIR + "event_stopwords.json","r"))
 
-def clean_text(text, keep_stopwords=True, event=None):
+def clean_text(text, keep_stopwords=True, event=None, stem=True):
     if not keep_stopwords:
         stop = stopwords | set(event_stopwords[event])
     # lower case
@@ -38,9 +38,12 @@ def clean_text(text, keep_stopwords=True, event=None):
     # strip off spaces on either end
     text = text.strip()
     # stem words
+    words = text.split()
     if not keep_stopwords:
-        return [sno.stem(w) for w in text.split() if w not in stop]
-    return [sno.stem(w) for w in text.split()]
+        words = [w for w in words if w not in stop]
+    if stem:
+        words = [sno.stem(w) for w in words]
+    return words
 
 def filter_retweets(data):
     # make sure to not reset the indices!!! (that would cause an issue with the other filtering methods)
