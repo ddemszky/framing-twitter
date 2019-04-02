@@ -1,22 +1,22 @@
 ,modal,proportion,topic,event
-0,MUST,1.2798513986013986,"shooter's identity
+0,MUST,1.3149462477820688,"shooter's identity
 & ideology",chattanooga
-1,MUST,0.5381465517241381,news,chattanooga
+1,MUST,0.05841482243952651,news,chattanooga
 2,MUST,0.0,victims & location,chattanooga
-3,MUST,2.3238872403560826,laws & policy,chattanooga
-4,MUST,0.9682464454976305,investigation,chattanooga
-5,MUST,0.7566666666666667,solidarity,chattanooga
-6,MUST,0.5591133004926109,remembrance,chattanooga
-7,MUST,0.6648353751914242,other,chattanooga
-8,SHOULD,0.7050585777858505,"shooter's identity
+3,MUST,2.533504583905399,laws & policy,chattanooga
+4,MUST,0.43354318455117774,investigation,chattanooga
+5,MUST,0.9034825870646767,solidarity,chattanooga
+6,MUST,0.6675979707374458,remembrance,chattanooga
+7,MUST,0.7471372082923818,other,chattanooga
+8,SHOULD,0.7068946678321678,"shooter's identity
 & ideology",chattanooga
-9,SHOULD,0.14231974921630094,news,chattanooga
-10,SHOULD,0.2948051948051948,victims & location,chattanooga
-11,SHOULD,3.401194651046283,laws & policy,chattanooga
-12,SHOULD,0.40238813319382044,investigation,chattanooga
-13,SHOULD,0.4150857142857143,solidarity,chattanooga
-14,SHOULD,0.9991427291919903,remembrance,chattanooga
-15,SHOULD,1.2026968437381913,other,chattanooga
+9,SHOULD,0.1426903735632184,news,chattanooga
+10,SHOULD,0.29557291666666663,victims & location,chattanooga
+11,SHOULD,3.410051928783383,laws & policy,chattanooga
+12,SHOULD,0.403436018957346,investigation,chattanooga
+13,SHOULD,0.4161666666666667,solidarity,chattanooga
+14,SHOULD,1.0017446633825946,remembrance,chattanooga
+15,SHOULD,1.1895338820826953,other,chattanooga
 16,NEED TO,0.7394779133909568,"shooter's identity
 & ideology",chattanooga
 17,NEED TO,0.19447419147569073,news,chattanooga
@@ -26,24 +26,24 @@
 21,NEED TO,0.4812587991718426,solidarity,chattanooga
 22,NEED TO,0.5000764923660619,remembrance,chattanooga
 23,NEED TO,1.165951699276155,other,chattanooga
-24,HAS TO,0.8403948992184287,"shooter's identity
+24,HAVE TO,0.8403948992184287,"shooter's identity
 & ideology",chattanooga
-25,HAS TO,0.06577803535207187,news,chattanooga
-26,HAS TO,0.9537815126050418,victims & location,chattanooga
-27,HAS TO,2.5132284367753037,laws & policy,chattanooga
-28,HAS TO,0.16273049504161854,investigation,chattanooga
-29,HAS TO,0.9359775910364146,solidarity,chattanooga
-30,HAS TO,0.45104938527134997,remembrance,chattanooga
-31,HAS TO,1.5248819282690105,other,chattanooga
-32,MUST,0.6082156611039795,"shooter's identity
+25,HAVE TO,0.06577803535207187,news,chattanooga
+26,HAVE TO,0.9537815126050418,victims & location,chattanooga
+27,HAVE TO,2.5132284367753037,laws & policy,chattanooga
+28,HAVE TO,0.16273049504161854,investigation,chattanooga
+29,HAVE TO,0.9359775910364146,solidarity,chattanooga
+30,HAVE TO,0.45104938527134997,remembrance,chattanooga
+31,HAVE TO,1.5248819282690105,other,chattanooga
+32,MUST,0.614686040477426,"shooter's identity
 & ideology",roseburg
-33,MUST,0.054417549602320044,news,roseburg
+33,MUST,0.05499645970447238,news,roseburg
 34,MUST,0.0,victims & location,roseburg
-35,MUST,2.103852683818728,laws & policy,roseburg
-36,MUST,1.781203007518797,investigation,roseburg
-37,MUST,1.347482180628877,solidarity,roseburg
+35,MUST,2.126234095348715,laws & policy,roseburg
+36,MUST,1.350113981762918,investigation,roseburg
+37,MUST,1.361817097444078,solidarity,roseburg
 38,MUST,0.0,remembrance,roseburg
-39,MUST,0.9891043397968606,other,roseburg
+39,MUST,0.9996267263904443,other,roseburg
 40,SHOULD,0.7177700348432056,"shooter's identity
 & ideology",roseburg
 41,SHOULD,0.06421946847478763,news,roseburg
@@ -62,33 +62,33 @@
 53,NEED TO,0.8808083061450229,solidarity,roseburg
 54,NEED TO,0.5311758440927521,remembrance,roseburg
 55,NEED TO,1.458876549171093,other,roseburg
-56,HAS TO,0.4377309682187731,"shooter's identity
+56,HAVE TO,0.4377309682187731,"shooter's identity
 & ideology",roseburg
-57,HAS TO,0.293731091603432,news,roseburg
-58,HAS TO,0.0,victims & location,roseburg
-59,HAS TO,1.6700033837130615,laws & policy,roseburg
-60,HAS TO,0.0,investigation,roseburg
-61,HAS TO,1.2728347302815388,solidarity,roseburg
-62,HAS TO,0.0,remembrance,roseburg
-63,HAS TO,1.7248803827751198,other,roseburg
-64,MUST,1.2348150117352517,"shooter's identity
+57,HAVE TO,0.293731091603432,news,roseburg
+58,HAVE TO,0.0,victims & location,roseburg
+59,HAVE TO,1.6700033837130615,laws & policy,roseburg
+60,HAVE TO,0.0,investigation,roseburg
+61,HAVE TO,1.2728347302815388,solidarity,roseburg
+62,HAVE TO,0.0,remembrance,roseburg
+63,HAVE TO,1.7248803827751198,other,roseburg
+64,MUST,1.243158050040223,"shooter's identity
 & ideology",colorado_springs
-65,MUST,0.2423892682337301,news,colorado_springs
+65,MUST,0.24842385582461138,news,colorado_springs
 66,MUST,0.0,victims & location,colorado_springs
-67,MUST,1.6958520767731293,laws & policy,colorado_springs
-68,MUST,0.8557706022404353,investigation,colorado_springs
-69,MUST,1.803165465962716,solidarity,colorado_springs
-70,MUST,0.5527866122130777,remembrance,colorado_springs
-71,MUST,0.8611858332804995,other,colorado_springs
-72,SHOULD,1.0213793180258777,"shooter's identity
+67,MUST,1.7380724604272322,laws & policy,colorado_springs
+68,MUST,0.7893684849711567,investigation,colorado_springs
+69,MUST,1.8480575522522442,solidarity,colorado_springs
+70,MUST,0.5665489345088389,remembrance,colorado_springs
+71,MUST,0.8412530439598862,other,colorado_springs
+72,SHOULD,1.020135654597808,"shooter's identity
 & ideology",colorado_springs
-73,SHOULD,0.09515556159385129,news,colorado_springs
-74,SHOULD,1.7639509244077574,victims & location,colorado_springs
-75,SHOULD,2.873770047680971,laws & policy,colorado_springs
-76,SHOULD,0.4123056022497807,investigation,colorado_springs
-77,SHOULD,0.6081286912840448,solidarity,colorado_springs
-78,SHOULD,0.7102121883829919,remembrance,colorado_springs
-79,SHOULD,1.153981317437737,other,colorado_springs
+73,SHOULD,0.09602969404943786,news,colorado_springs
+74,SHOULD,1.7801551979915555,victims & location,colorado_springs
+75,SHOULD,2.881214153786332,laws & policy,colorado_springs
+76,SHOULD,0.4160931865224164,investigation,colorado_springs
+77,SHOULD,0.5844906431663922,solidarity,colorado_springs
+78,SHOULD,0.7167364473313921,remembrance,colorado_springs
+79,SHOULD,1.155858733541976,other,colorado_springs
 80,NEED TO,0.7565684092416508,"shooter's identity
 & ideology",colorado_springs
 81,NEED TO,0.25197874265038445,news,colorado_springs
@@ -98,33 +98,33 @@
 85,NEED TO,1.012231522938161,solidarity,colorado_springs
 86,NEED TO,0.25859525230422387,remembrance,colorado_springs
 87,NEED TO,1.3344914469075542,other,colorado_springs
-88,HAS TO,1.0209672869249258,"shooter's identity
+88,HAVE TO,1.0209672869249258,"shooter's identity
 & ideology",colorado_springs
-89,HAS TO,0.20245944192083065,news,colorado_springs
-90,HAS TO,0.0,victims & location,colorado_springs
-91,HAS TO,2.072397342995169,laws & policy,colorado_springs
-92,HAS TO,0.3676092847885001,investigation,colorado_springs
-93,HAS TO,0.4841107283617292,solidarity,colorado_springs
-94,HAS TO,0.5936447531157835,remembrance,colorado_springs
-95,HAS TO,1.329455630126771,other,colorado_springs
-96,MUST,1.1914063436862932,"shooter's identity
+89,HAVE TO,0.20245944192083065,news,colorado_springs
+90,HAVE TO,0.0,victims & location,colorado_springs
+91,HAVE TO,2.072397342995169,laws & policy,colorado_springs
+92,HAVE TO,0.3676092847885001,investigation,colorado_springs
+93,HAVE TO,0.4841107283617292,solidarity,colorado_springs
+94,HAVE TO,0.5936447531157835,remembrance,colorado_springs
+95,HAVE TO,1.329455630126771,other,colorado_springs
+96,MUST,1.1656046853918802,"shooter's identity
 & ideology",san_bernardino
-97,MUST,0.09610824240513957,news,san_bernardino
+97,MUST,0.0983008258820629,news,san_bernardino
 98,MUST,0.0,victims & location,san_bernardino
-99,MUST,2.6383467051735447,laws & policy,san_bernardino
-100,MUST,0.13068635199885031,investigation,san_bernardino
-101,MUST,2.0836282349228,solidarity,san_bernardino
-102,MUST,0.45260605055150865,remembrance,san_bernardino
-103,MUST,0.5639793342893696,other,san_bernardino
-104,SHOULD,1.0450705645161291,"shooter's identity
+99,MUST,2.6985371243029794,laws & policy,san_bernardino
+100,MUST,0.08911185979135802,investigation,san_bernardino
+101,MUST,2.104852819581216,solidarity,san_bernardino
+102,MUST,0.4629316638720754,remembrance,san_bernardino
+103,MUST,0.5517655315464521,other,san_bernardino
+104,SHOULD,1.0523279989919354,"shooter's identity
 & ideology",san_bernardino
-105,SHOULD,0.1988701323614042,news,san_bernardino
+105,SHOULD,0.18514602166458854,news,san_bernardino
 106,SHOULD,0.0,victims & location,san_bernardino
-107,SHOULD,2.898172491808394,laws & policy,san_bernardino
-108,SHOULD,0.3380252758431802,investigation,san_bernardino
-109,SHOULD,0.49236352854194265,solidarity,san_bernardino
-110,SHOULD,0.8585008356294322,remembrance,san_bernardino
-111,SHOULD,1.6870809902065866,other,san_bernardino
+107,SHOULD,2.909230199353448,laws & policy,san_bernardino
+108,SHOULD,0.3433069207782299,investigation,san_bernardino
+109,SHOULD,0.5000567086754105,solidarity,san_bernardino
+110,SHOULD,0.8719149111861421,remembrance,san_bernardino
+111,SHOULD,1.6747925713399505,other,san_bernardino
 112,NEED TO,0.7985257417506239,"shooter's identity
 & ideology",san_bernardino
 113,NEED TO,0.061731416444561954,news,san_bernardino
@@ -134,15 +134,15 @@
 117,NEED TO,1.407733406161893,solidarity,san_bernardino
 118,NEED TO,0.23257120840182585,remembrance,san_bernardino
 119,NEED TO,1.663201544948045,other,san_bernardino
-120,HAS TO,0.9218603792169416,"shooter's identity
+120,HAVE TO,0.9218603792169416,"shooter's identity
 & ideology",san_bernardino
-121,HAS TO,0.14801402981096878,news,san_bernardino
-122,HAS TO,0.0,victims & location,san_bernardino
-123,HAS TO,2.1403155629190342,laws & policy,san_bernardino
-124,HAS TO,0.13417797209042268,investigation,san_bernardino
-125,HAS TO,1.5054317088903633,solidarity,san_bernardino
-126,HAS TO,0.07744976310327979,remembrance,san_bernardino
-127,HAS TO,1.913374296417503,other,san_bernardino
+121,HAVE TO,0.14801402981096878,news,san_bernardino
+122,HAVE TO,0.0,victims & location,san_bernardino
+123,HAVE TO,2.1403155629190342,laws & policy,san_bernardino
+124,HAVE TO,0.13417797209042268,investigation,san_bernardino
+125,HAVE TO,1.5054317088903633,solidarity,san_bernardino
+126,HAVE TO,0.07744976310327979,remembrance,san_bernardino
+127,HAVE TO,1.913374296417503,other,san_bernardino
 128,MUST,1.9281115879828326,"shooter's identity
 & ideology",kalamazoo
 129,MUST,0.0,news,kalamazoo
@@ -170,33 +170,33 @@
 149,NEED TO,0.6868609651218346,solidarity,kalamazoo
 150,NEED TO,0.4753968253968254,remembrance,kalamazoo
 151,NEED TO,1.279621978021978,other,kalamazoo
-152,HAS TO,1.1908924514011612,"shooter's identity
+152,HAVE TO,1.1908924514011612,"shooter's identity
 & ideology",kalamazoo
-153,HAS TO,0.11624547179575644,news,kalamazoo
-154,HAS TO,0.0,victims & location,kalamazoo
-155,HAS TO,1.212897815593553,laws & policy,kalamazoo
-156,HAS TO,0.09763474355259344,investigation,kalamazoo
-157,HAS TO,0.8838284477670667,solidarity,kalamazoo
-158,HAS TO,0.0,remembrance,kalamazoo
-159,HAS TO,1.8539185520361992,other,kalamazoo
-160,MUST,1.3235182993396555,"shooter's identity
+153,HAVE TO,0.11624547179575644,news,kalamazoo
+154,HAVE TO,0.0,victims & location,kalamazoo
+155,HAVE TO,1.212897815593553,laws & policy,kalamazoo
+156,HAVE TO,0.09763474355259344,investigation,kalamazoo
+157,HAVE TO,0.8838284477670667,solidarity,kalamazoo
+158,HAVE TO,0.0,remembrance,kalamazoo
+159,HAVE TO,1.8539185520361992,other,kalamazoo
+160,MUST,1.3207467839760278,"shooter's identity
 & ideology",orlando
-161,MUST,0.17232205410653312,news,orlando
-162,MUST,0.31328968025295695,victims & location,orlando
-163,MUST,1.9898577621127838,laws & policy,orlando
-164,MUST,0.22594717125502453,investigation,orlando
-165,MUST,1.7384601359939726,solidarity,orlando
-166,MUST,0.5243993762363891,remembrance,orlando
-167,MUST,0.572064313620524,other,orlando
-168,SHOULD,0.9485095656426866,"shooter's identity
+161,MUST,0.16286409418488235,news,orlando
+162,MUST,0.3039497173941408,victims & location,orlando
+163,MUST,2.009440867371846,laws & policy,orlando
+164,MUST,0.21843578563432323,investigation,orlando
+165,MUST,1.7589444147239628,solidarity,orlando
+166,MUST,0.5183063985116246,remembrance,orlando
+167,MUST,0.5554319974437848,other,orlando
+168,SHOULD,0.9548672444323638,"shooter's identity
 & ideology",orlando
-169,SHOULD,0.18436445933021992,news,orlando
-170,SHOULD,0.19037485338467067,victims & location,orlando
-171,SHOULD,2.9679566736952427,laws & policy,orlando
-172,SHOULD,0.9630523363444182,investigation,orlando
-173,SHOULD,0.6371730139659667,solidarity,orlando
-174,SHOULD,0.3783781873636977,remembrance,orlando
-175,SHOULD,1.5071006238523212,other,orlando
+169,SHOULD,0.18442245041577832,news,orlando
+170,SHOULD,0.17511033217161304,victims & location,orlando
+171,SHOULD,2.9933951948161184,laws & policy,orlando
+172,SHOULD,0.9672524205544586,investigation,orlando
+173,SHOULD,0.6264201247923022,solidarity,orlando
+174,SHOULD,0.36738255569691003,remembrance,orlando
+175,SHOULD,1.5136225145457276,other,orlando
 176,NEED TO,0.695180832554135,"shooter's identity
 & ideology",orlando
 177,NEED TO,0.13322127490930102,news,orlando
@@ -206,33 +206,33 @@
 181,NEED TO,1.5885177829280164,solidarity,orlando
 182,NEED TO,0.16848049169974244,remembrance,orlando
 183,NEED TO,1.5889813053316808,other,orlando
-184,HAS TO,0.6161358572189258,"shooter's identity
+184,HAVE TO,0.6161358572189258,"shooter's identity
 & ideology",orlando
-185,HAS TO,0.2714116420783902,news,orlando
-186,HAS TO,0.18476677621512405,victims & location,orlando
-187,HAS TO,2.119050751733576,laws & policy,orlando
-188,HAS TO,0.14542301154333348,investigation,orlando
-189,HAS TO,1.5884977990166618,solidarity,orlando
-190,HAS TO,0.20507019203365442,remembrance,orlando
-191,HAS TO,2.4431565864124227,other,orlando
-192,MUST,1.1821465308896049,"shooter's identity
+185,HAVE TO,0.2714116420783902,news,orlando
+186,HAVE TO,0.18476677621512405,victims & location,orlando
+187,HAVE TO,2.119050751733576,laws & policy,orlando
+188,HAVE TO,0.14542301154333348,investigation,orlando
+189,HAVE TO,1.5884977990166618,solidarity,orlando
+190,HAVE TO,0.20507019203365442,remembrance,orlando
+191,HAVE TO,2.4431565864124227,other,orlando
+192,MUST,1.1968526599820113,"shooter's identity
 & ideology",dallas
-193,MUST,0.17148043214092537,news,dallas
-194,MUST,0.28148801853253974,victims & location,dallas
-195,MUST,2.817034344501062,laws & policy,dallas
-196,MUST,0.3863334989279362,investigation,dallas
-197,MUST,2.433247390968781,solidarity,dallas
-198,MUST,0.7019163818884994,remembrance,dallas
-199,MUST,0.5773438159925611,other,dallas
-200,SHOULD,1.1138981299549682,"shooter's identity
+193,MUST,0.14789313612324217,news,dallas
+194,MUST,0.2849897833563895,victims & location,dallas
+195,MUST,2.8392315891312094,laws & policy,dallas
+196,MUST,0.39113956159402535,investigation,dallas
+197,MUST,2.449068671483099,solidarity,dallas
+198,MUST,0.6884405948917166,remembrance,dallas
+199,MUST,0.5735799022198589,other,dallas
+200,SHOULD,1.1228543976962102,"shooter's identity
 & ideology",dallas
-201,SHOULD,0.09575135986112457,news,dallas
-202,SHOULD,0.6240870151035772,victims & location,dallas
-203,SHOULD,2.4757516217955615,laws & policy,dallas
-204,SHOULD,0.8351264057399678,investigation,dallas
-205,SHOULD,0.45562716347422,solidarity,dallas
-206,SHOULD,0.5252237888994885,remembrance,dallas
-207,SHOULD,1.2541406057412456,other,dallas
+201,SHOULD,0.08099259134488884,news,dallas
+202,SHOULD,0.5128098555444288,victims & location,dallas
+203,SHOULD,2.519777041000504,laws & policy,dallas
+204,SHOULD,0.7697981847450214,investigation,dallas
+205,SHOULD,0.4582341563201856,solidarity,dallas
+206,SHOULD,0.5394679123177699,remembrance,dallas
+207,SHOULD,1.2536841019354168,other,dallas
 208,NEED TO,0.6367478721185041,"shooter's identity
 & ideology",dallas
 209,NEED TO,0.1289884580986729,news,dallas
@@ -242,33 +242,33 @@
 213,NEED TO,1.422039314568501,solidarity,dallas
 214,NEED TO,0.33411556630385375,remembrance,dallas
 215,NEED TO,1.1253488650640797,other,dallas
-216,HAS TO,0.5669302073599001,"shooter's identity
+216,HAVE TO,0.5669302073599001,"shooter's identity
 & ideology",dallas
-217,HAS TO,0.16075340882961106,news,dallas
-218,HAS TO,0.0,victims & location,dallas
-219,HAS TO,1.6444418253791622,laws & policy,dallas
-220,HAS TO,0.2689084485958924,investigation,dallas
-221,HAS TO,1.300390445035274,solidarity,dallas
-222,HAS TO,0.3553241780086279,remembrance,dallas
-223,HAS TO,1.3420018322930287,other,dallas
-224,MUST,1.2145761568958795,"shooter's identity
+217,HAVE TO,0.16075340882961106,news,dallas
+218,HAVE TO,0.0,victims & location,dallas
+219,HAVE TO,1.6444418253791622,laws & policy,dallas
+220,HAVE TO,0.2689084485958924,investigation,dallas
+221,HAVE TO,1.300390445035274,solidarity,dallas
+222,HAVE TO,0.3553241780086279,remembrance,dallas
+223,HAVE TO,1.3420018322930287,other,dallas
+224,MUST,1.2184565919019366,"shooter's identity
 & ideology",baton_rouge
-225,MUST,0.07917691006781112,news,baton_rouge
+225,MUST,0.07942987144182968,news,baton_rouge
 226,MUST,0.0,victims & location,baton_rouge
-227,MUST,2.144656997762093,laws & policy,baton_rouge
-228,MUST,0.2009307792308012,investigation,baton_rouge
-229,MUST,2.9561068480070793,solidarity,baton_rouge
-230,MUST,0.7623227217168584,remembrance,baton_rouge
-231,MUST,0.5758861245880674,other,baton_rouge
-232,SHOULD,1.127051573641505,"shooter's identity
+227,MUST,2.151508937052068,laws & policy,baton_rouge
+228,MUST,0.2015727306021456,investigation,baton_rouge
+229,MUST,2.9655512788313834,solidarity,baton_rouge
+230,MUST,0.764758257568989,remembrance,baton_rouge
+231,MUST,0.5668255254851989,other,baton_rouge
+232,SHOULD,1.118857718392235,"shooter's identity
 & ideology",baton_rouge
-233,SHOULD,0.09984558137065339,news,baton_rouge
+233,SHOULD,0.1010632104117589,news,baton_rouge
 234,SHOULD,0.0,victims & location,baton_rouge
-235,SHOULD,2.9851636274829043,laws & policy,baton_rouge
-236,SHOULD,0.5701108254078757,investigation,baton_rouge
-237,SHOULD,0.517747406444792,solidarity,baton_rouge
-238,SHOULD,0.7865366964482811,remembrance,baton_rouge
-239,SHOULD,1.5209468050611883,other,baton_rouge
+235,SHOULD,3.021568061964403,laws & policy,baton_rouge
+236,SHOULD,0.5770633964494352,investigation,baton_rouge
+237,SHOULD,0.5240613992063138,solidarity,baton_rouge
+238,SHOULD,0.7961286073805771,remembrance,baton_rouge
+239,SHOULD,1.5082889583809658,other,baton_rouge
 240,NEED TO,0.671607142857143,"shooter's identity
 & ideology",baton_rouge
 241,NEED TO,0.11970375810992777,news,baton_rouge
@@ -278,24 +278,24 @@
 245,NEED TO,1.9710298598415599,solidarity,baton_rouge
 246,NEED TO,0.24178720668595308,remembrance,baton_rouge
 247,NEED TO,1.1448664449148271,other,baton_rouge
-248,HAS TO,1.0570088204773436,"shooter's identity
+248,HAVE TO,1.0570088204773436,"shooter's identity
 & ideology",baton_rouge
-249,HAS TO,0.33944677169373255,news,baton_rouge
-250,HAS TO,0.0,victims & location,baton_rouge
-251,HAS TO,1.6510726828523437,laws & policy,baton_rouge
-252,HAS TO,0.11881782425324214,investigation,baton_rouge
-253,HAS TO,1.650941447443167,solidarity,baton_rouge
-254,HAS TO,0.9220698560057532,remembrance,baton_rouge
-255,HAS TO,1.2047505804328775,other,baton_rouge
-256,MUST,1.6685059422750421,"shooter's identity
+249,HAVE TO,0.33944677169373255,news,baton_rouge
+250,HAVE TO,0.0,victims & location,baton_rouge
+251,HAVE TO,1.6510726828523437,laws & policy,baton_rouge
+252,HAVE TO,0.11881782425324214,investigation,baton_rouge
+253,HAVE TO,1.650941447443167,solidarity,baton_rouge
+254,HAVE TO,0.9220698560057532,remembrance,baton_rouge
+255,HAVE TO,1.2047505804328775,other,baton_rouge
+256,MUST,1.7612007168458779,"shooter's identity
 & ideology",burlington
 257,MUST,0.0,news,burlington
 258,MUST,0.0,victims & location,burlington
-259,MUST,2.0152084757347914,laws & policy,burlington
-260,MUST,0.9656697168826384,investigation,burlington
-261,MUST,3.2840434419381785,solidarity,burlington
+259,MUST,2.127164502164502,laws & policy,burlington
+260,MUST,0.764488525865422,investigation,burlington
+261,MUST,3.4664902998236333,solidarity,burlington
 262,MUST,0.0,remembrance,burlington
-263,MUST,1.2824053936494126,other,burlington
+263,MUST,1.3536501377410468,other,burlington
 264,SHOULD,2.641801075268817,"shooter's identity
 & ideology",burlington
 265,SHOULD,0.1605800653594771,news,burlington
@@ -314,15 +314,15 @@
 277,NEED TO,1.782766439909297,solidarity,burlington
 278,NEED TO,1.6324750830564783,remembrance,burlington
 279,NEED TO,3.1907467532467533,other,burlington
-280,HAS TO,0.8806003584229389,"shooter's identity
+280,HAVE TO,0.8806003584229389,"shooter's identity
 & ideology",burlington
-281,HAS TO,0.6423202614379084,news,burlington
-282,HAS TO,0.0,victims & location,burlington
-283,HAS TO,0.0,laws & policy,burlington
-284,HAS TO,0.0,investigation,burlington
-285,HAS TO,0.0,solidarity,burlington
-286,HAS TO,5.078811369509044,remembrance,burlington
-287,HAS TO,4.512167125803489,other,burlington
+281,HAVE TO,0.6423202614379084,news,burlington
+282,HAVE TO,0.0,victims & location,burlington
+283,HAVE TO,0.0,laws & policy,burlington
+284,HAVE TO,0.0,investigation,burlington
+285,HAVE TO,0.0,solidarity,burlington
+286,HAVE TO,5.078811369509044,remembrance,burlington
+287,HAVE TO,4.512167125803489,other,burlington
 288,MUST,3.9666048237476805,"shooter's identity
 & ideology",fort_lauderdale
 289,MUST,0.2744192016429213,news,fort_lauderdale
@@ -332,15 +332,15 @@
 293,MUST,1.6527520098948671,solidarity,fort_lauderdale
 294,MUST,0.0,remembrance,fort_lauderdale
 295,MUST,3.4044585987261144,other,fort_lauderdale
-296,SHOULD,3.203796203796204,"shooter's identity
+296,SHOULD,3.288106630211893,"shooter's identity
 & ideology",fort_lauderdale
-297,SHOULD,0.4432925565001037,news,fort_lauderdale
+297,SHOULD,0.45495815009221163,news,fort_lauderdale
 298,SHOULD,0.0,victims & location,fort_lauderdale
-299,SHOULD,7.785161583978152,laws & policy,fort_lauderdale
+299,SHOULD,7.990034257240735,laws & policy,fort_lauderdale
 300,SHOULD,0.0,investigation,fort_lauderdale
-301,SHOULD,0.35597735597735597,solidarity,fort_lauderdale
-302,SHOULD,5.873626373626373,remembrance,fort_lauderdale
-303,SHOULD,3.4044585987261144,other,fort_lauderdale
+301,SHOULD,0.3653451811346548,solidarity,fort_lauderdale
+302,SHOULD,6.0281954887218046,remembrance,fort_lauderdale
+303,SHOULD,3.2252765672142134,other,fort_lauderdale
 304,NEED TO,1.156926406926407,"shooter's identity
 & ideology",fort_lauderdale
 305,NEED TO,0.24011680143755612,news,fort_lauderdale
@@ -350,33 +350,33 @@
 309,NEED TO,2.5066738816738816,solidarity,fort_lauderdale
 310,NEED TO,0.0,remembrance,fort_lauderdale
 311,NEED TO,3.6881634819532905,other,fort_lauderdale
-312,HAS TO,3.7863046044864226,"shooter's identity
+312,HAVE TO,3.7863046044864226,"shooter's identity
 & ideology",fort_lauderdale
-313,HAS TO,0.13097280078412155,news,fort_lauderdale
-314,HAS TO,0.0,victims & location,fort_lauderdale
-315,HAS TO,5.175363098440021,laws & policy,fort_lauderdale
-316,HAS TO,0.0,investigation,fort_lauderdale
-317,HAS TO,2.524203069657615,solidarity,fort_lauderdale
-318,HAS TO,0.0,remembrance,fort_lauderdale
-319,HAS TO,3.2497104806022,other,fort_lauderdale
-320,MUST,1.6369770580296896,"shooter's identity
+313,HAVE TO,0.13097280078412155,news,fort_lauderdale
+314,HAVE TO,0.0,victims & location,fort_lauderdale
+315,HAVE TO,5.175363098440021,laws & policy,fort_lauderdale
+316,HAVE TO,0.0,investigation,fort_lauderdale
+317,HAVE TO,2.524203069657615,solidarity,fort_lauderdale
+318,HAVE TO,0.0,remembrance,fort_lauderdale
+319,HAVE TO,3.2497104806022,other,fort_lauderdale
+320,MUST,1.6800554016620501,"shooter's identity
 & ideology",fresno
 321,MUST,0.0,news,fresno
 322,MUST,0.0,victims & location,fresno
-323,MUST,3.6324162455549316,laws & policy,fresno
-324,MUST,0.23879127909838083,investigation,fresno
-325,MUST,1.2694924123495552,solidarity,fresno
-326,MUST,1.9439102564102564,remembrance,fresno
-327,MUST,1.1492864333510984,other,fresno
-328,SHOULD,0.9982418733400666,"shooter's identity
+323,MUST,3.7280061467537453,laws & policy,fresno
+324,MUST,0.16338350675152372,investigation,fresno
+325,MUST,1.3029001074113855,solidarity,fresno
+326,MUST,1.995065789473684,remembrance,fresno
+327,MUST,1.1795308131761273,other,fresno
+328,SHOULD,1.0133667502088555,"shooter's identity
 & ideology",fresno
 329,SHOULD,0.0,news,fresno
 330,SHOULD,0.0,victims & location,fresno
-331,SHOULD,3.700185205360061,laws & policy,fresno
-332,SHOULD,0.3243284537007859,investigation,fresno
-333,SHOULD,1.1084374048126713,solidarity,fresno
-334,SHOULD,3.3945895522388057,remembrance,fresno
-335,SHOULD,2.09058632932336,other,fresno
+331,SHOULD,3.7562486175624863,laws & policy,fresno
+332,SHOULD,0.32924252118110087,investigation,fresno
+333,SHOULD,1.1252319109461968,solidarity,fresno
+334,SHOULD,3.4460227272727275,remembrance,fresno
+335,SHOULD,2.0373714045769473,other,fresno
 336,NEED TO,0.7600250626566416,"shooter's identity
 & ideology",fresno
 337,NEED TO,0.0,news,fresno
@@ -386,33 +386,33 @@
 341,NEED TO,0.0,solidarity,fresno
 342,NEED TO,1.8953125,remembrance,fresno
 343,NEED TO,2.381177829099307,other,fresno
-344,HAS TO,1.07874525022233,"shooter's identity
+344,HAVE TO,1.07874525022233,"shooter's identity
 & ideology",fresno
-345,HAS TO,0.0,news,fresno
-346,HAS TO,0.0,victims & location,fresno
-347,HAS TO,3.4273604897574756,laws & policy,fresno
-348,HAS TO,0.30041483499473715,investigation,fresno
-349,HAS TO,0.0,solidarity,fresno
-350,HAS TO,0.0,remembrance,fresno
-351,HAS TO,2.530283841168144,other,fresno
-352,MUST,5.884900284900285,"shooter's identity
+345,HAVE TO,0.0,news,fresno
+346,HAVE TO,0.0,victims & location,fresno
+347,HAVE TO,3.4273604897574756,laws & policy,fresno
+348,HAVE TO,0.30041483499473715,investigation,fresno
+349,HAVE TO,0.0,solidarity,fresno
+350,HAVE TO,0.0,remembrance,fresno
+351,HAVE TO,2.530283841168144,other,fresno
+352,MUST,6.111242603550296,"shooter's identity
 & ideology",san_francisco
-353,MUST,0.2625985252987541,news,san_francisco
+353,MUST,0.18179897905298364,news,san_francisco
 354,MUST,0.0,victims & location,san_francisco
-355,MUST,3.2733858552929456,laws & policy,san_francisco
-356,MUST,0.6375308641975308,investigation,san_francisco
-357,MUST,1.1591470258136924,solidarity,san_francisco
-358,MUST,1.8390313390313389,remembrance,san_francisco
-359,MUST,0.830358578549606,other,san_francisco
-360,SHOULD,2.2068376068376065,"shooter's identity
+355,MUST,3.3992853112657513,laws & policy,san_francisco
+356,MUST,0.6620512820512822,investigation,san_francisco
+357,MUST,1.2037296037296037,solidarity,san_francisco
+358,MUST,1.9097633136094676,remembrance,san_francisco
+359,MUST,0.8622954469553602,other,san_francisco
+360,SHOULD,2.3027870680044593,"shooter's identity
 & ideology",san_francisco
-361,SHOULD,0.0492372234935164,news,san_francisco
+361,SHOULD,0.05137797234106059,news,san_francisco
 362,SHOULD,0.0,victims & location,san_francisco
-363,SHOULD,4.471678891605542,laws & policy,san_francisco
+363,SHOULD,4.391623259275008,laws & policy,san_francisco
 364,SHOULD,0.0,investigation,san_francisco
-365,SHOULD,1.0867003367003367,solidarity,san_francisco
+365,SHOULD,1.1339481774264382,solidarity,san_francisco
 366,SHOULD,0.0,remembrance,san_francisco
-367,SHOULD,1.634768451519537,other,san_francisco
+367,SHOULD,1.624614610205751,other,san_francisco
 368,NEED TO,0.9808167141500475,"shooter's identity
 & ideology",san_francisco
 369,NEED TO,0.17506568353250274,news,san_francisco
@@ -422,33 +422,33 @@
 373,NEED TO,1.5455293677515898,solidarity,san_francisco
 374,NEED TO,0.0,remembrance,san_francisco
 375,NEED TO,1.660717157099212,other,san_francisco
-376,HAS TO,1.393792172739541,"shooter's identity
+376,HAVE TO,1.393792172739541,"shooter's identity
 & ideology",san_francisco
-377,HAS TO,0.1243887751415151,news,san_francisco
-378,HAS TO,0.0,victims & location,san_francisco
-379,HAS TO,1.993565821644576,laws & policy,san_francisco
-380,HAS TO,0.0,investigation,san_francisco
-381,HAS TO,0.5490696438064858,solidarity,san_francisco
-382,HAS TO,0.0,remembrance,san_francisco
-383,HAS TO,2.5566303602711558,other,san_francisco
-384,MUST,1.1194934123299993,"shooter's identity
+377,HAVE TO,0.1243887751415151,news,san_francisco
+378,HAVE TO,0.0,victims & location,san_francisco
+379,HAVE TO,1.993565821644576,laws & policy,san_francisco
+380,HAVE TO,0.0,investigation,san_francisco
+381,HAVE TO,0.5490696438064858,solidarity,san_francisco
+382,HAVE TO,0.0,remembrance,san_francisco
+383,HAVE TO,2.5566303602711558,other,san_francisco
+384,MUST,1.1070713924376478,"shooter's identity
 & ideology",vegas
-385,MUST,0.29892881088469647,news,vegas
-386,MUST,0.5839847070349494,victims & location,vegas
-387,MUST,1.96360472119603,laws & policy,vegas
-388,MUST,0.38830026896636044,investigation,vegas
-389,MUST,1.597880426130283,solidarity,vegas
-390,MUST,0.3759377313264912,remembrance,vegas
-391,MUST,0.6313722624291437,other,vegas
-392,SHOULD,0.787753803274702,"shooter's identity
+385,MUST,0.2833142717771413,news,vegas
+386,MUST,0.5782655367543755,victims & location,vegas
+387,MUST,1.985383252848512,laws & policy,vegas
+388,MUST,0.3757462742768206,investigation,vegas
+389,MUST,1.6107567695607143,solidarity,vegas
+390,MUST,0.3689841611211956,remembrance,vegas
+391,MUST,0.6247451526499278,other,vegas
+392,SHOULD,0.7949908711678966,"shooter's identity
 & ideology",vegas
-393,SHOULD,0.22005763549772347,news,vegas
-394,SHOULD,0.14005558881883745,victims & location,vegas
-395,SHOULD,3.0019332195223694,laws & policy,vegas
-396,SHOULD,0.5092439881727355,investigation,vegas
-397,SHOULD,0.6658107828374701,solidarity,vegas
-398,SHOULD,0.5968448704558389,remembrance,vegas
-399,SHOULD,1.313940570673659,other,vegas
+393,SHOULD,0.2156752074866495,news,vegas
+394,SHOULD,0.12851598006388712,victims & location,vegas
+395,SHOULD,3.0281126216146004,laws & policy,vegas
+396,SHOULD,0.506580332207323,investigation,vegas
+397,SHOULD,0.6671081972857973,solidarity,vegas
+398,SHOULD,0.5916344337743321,remembrance,vegas
+399,SHOULD,1.303159631665516,other,vegas
 400,NEED TO,0.7299427693058809,"shooter's identity
 & ideology",vegas
 401,NEED TO,0.21287309498009838,news,vegas
@@ -458,33 +458,33 @@
 405,NEED TO,1.2655741500572644,solidarity,vegas
 406,NEED TO,0.2777619730561942,remembrance,vegas
 407,NEED TO,1.3052987337459243,other,vegas
-408,HAS TO,0.7267636131817559,"shooter's identity
+408,HAVE TO,0.7267636131817559,"shooter's identity
 & ideology",vegas
-409,HAS TO,0.21350066763666448,news,vegas
-410,HAS TO,0.16006178299929488,victims & location,vegas
-411,HAS TO,1.8143354390403006,laws & policy,vegas
-412,HAS TO,0.24924634264735737,investigation,vegas
-413,HAS TO,1.3059301798266427,solidarity,vegas
-414,HAS TO,0.2877927099171478,remembrance,vegas
-415,HAS TO,1.9532081451510837,other,vegas
-416,MUST,1.6659157992853812,"shooter's identity
+409,HAVE TO,0.21350066763666448,news,vegas
+410,HAVE TO,0.16006178299929488,victims & location,vegas
+411,HAVE TO,1.8143354390403006,laws & policy,vegas
+412,HAVE TO,0.24924634264735737,investigation,vegas
+413,HAVE TO,1.3059301798266427,solidarity,vegas
+414,HAVE TO,0.2877927099171478,remembrance,vegas
+415,HAVE TO,1.9532081451510837,other,vegas
+416,MUST,1.7513473787359137,"shooter's identity
 & ideology",thornton
-417,MUST,0.28757425012402954,news,thornton
+417,MUST,0.3023216475662875,news,thornton
 418,MUST,0.0,victims & location,thornton
-419,MUST,2.424809595757146,laws & policy,thornton
-420,MUST,0.32470363809783354,investigation,thornton
-421,MUST,4.095842200032739,solidarity,thornton
+419,MUST,2.3174170961781577,laws & policy,thornton
+420,MUST,0.3413551067182352,investigation,thornton
+421,MUST,4.305885389778007,solidarity,thornton
 422,MUST,0.0,remembrance,thornton
-423,MUST,0.8729204188162031,other,thornton
-424,SHOULD,0.9827704715208725,"shooter's identity
+423,MUST,0.8412117711241616,other,thornton
+424,SHOULD,0.9074009969537523,"shooter's identity
 & ideology",thornton
-425,SHOULD,0.14137343231517038,news,thornton
+425,SHOULD,0.14239787747687455,news,thornton
 426,SHOULD,0.0,victims & location,thornton
-427,SHOULD,3.316073816041983,laws & policy,thornton
-428,SHOULD,0.3352156263815763,investigation,thornton
-429,SHOULD,0.34517889044469124,solidarity,thornton
-430,SHOULD,1.0496256056379387,remembrance,thornton
-431,SHOULD,1.287400617678573,other,thornton
+427,SHOULD,3.340103336448084,laws & policy,thornton
+428,SHOULD,0.3376447251234718,investigation,thornton
+429,SHOULD,0.3476801867522615,solidarity,thornton
+430,SHOULD,1.057231588287489,remembrance,thornton
+431,SHOULD,1.2967296076617512,other,thornton
 432,NEED TO,0.6153382682045102,"shooter's identity
 & ideology",thornton
 433,NEED TO,0.0,news,thornton
@@ -494,33 +494,33 @@
 437,NEED TO,1.2967531289678942,solidarity,thornton
 438,NEED TO,0.0,remembrance,thornton
 439,NEED TO,1.4912390488110139,other,thornton
-440,HAS TO,0.5788351505991579,"shooter's identity
+440,HAVE TO,0.5788351505991579,"shooter's identity
 & ideology",thornton
-441,HAS TO,0.13322648875802498,news,thornton
-442,HAS TO,0.0,victims & location,thornton
-443,HAS TO,1.685037176712593,laws & policy,thornton
-444,HAS TO,0.2256415112205284,investigation,thornton
-445,HAS TO,2.439654191787055,solidarity,thornton
-446,HAS TO,0.0,remembrance,thornton
-447,HAS TO,1.7692666680808637,other,thornton
-448,MUST,1.1192589760067928,"shooter's identity
+441,HAVE TO,0.13322648875802498,news,thornton
+442,HAVE TO,0.0,victims & location,thornton
+443,HAVE TO,1.685037176712593,laws & policy,thornton
+444,HAVE TO,0.2256415112205284,investigation,thornton
+445,HAVE TO,2.439654191787055,solidarity,thornton
+446,HAVE TO,0.0,remembrance,thornton
+447,HAVE TO,1.7692666680808637,other,thornton
+448,MUST,1.115072349055212,"shooter's identity
 & ideology",sutherland_springs
-449,MUST,0.1267018966728399,news,sutherland_springs
-450,MUST,0.06337928060311782,victims & location,sutherland_springs
-451,MUST,1.681536762464457,laws & policy,sutherland_springs
-452,MUST,0.2811278981207602,investigation,sutherland_springs
-453,MUST,1.7500026891667457,solidarity,sutherland_springs
-454,MUST,0.576594314776133,remembrance,sutherland_springs
-455,MUST,0.5423982503502717,other,sutherland_springs
-456,SHOULD,0.45764751657382813,"shooter's identity
+449,MUST,0.12754283846491626,news,sutherland_springs
+450,MUST,0.0637999395451739,victims & location,sutherland_springs
+451,MUST,1.6807207721128268,laws & policy,sutherland_springs
+452,MUST,0.2829937912498803,investigation,sutherland_springs
+453,MUST,1.7616177512629851,solidarity,sutherland_springs
+454,MUST,0.5804212681927887,remembrance,sutherland_springs
+455,MUST,0.5381982638984443,other,sutherland_springs
+456,SHOULD,0.46086133340370056,"shooter's identity
 & ideology",sutherland_springs
-457,SHOULD,0.09895824565800605,news,sutherland_springs
-458,SHOULD,0.4021976663098829,victims & location,sutherland_springs
-459,SHOULD,2.1970856855816927,laws & policy,sutherland_springs
-460,SHOULD,0.331315305316656,investigation,sutherland_springs
-461,SHOULD,0.36837148826627963,solidarity,sutherland_springs
-462,SHOULD,0.42307205758613137,remembrance,sutherland_springs
-463,SHOULD,0.885085011031824,other,sutherland_springs
+457,SHOULD,0.0996531771584134,news,sutherland_springs
+458,SHOULD,0.4050220881238568,victims & location,sutherland_springs
+459,SHOULD,2.207445895989495,laws & policy,sutherland_springs
+460,SHOULD,0.3272257662466011,investigation,sutherland_springs
+461,SHOULD,0.36550309659665825,solidarity,sutherland_springs
+462,SHOULD,0.4145283916798217,remembrance,sutherland_springs
+463,SHOULD,0.8764454873988589,other,sutherland_springs
 464,NEED TO,0.6064625636959117,"shooter's identity
 & ideology",sutherland_springs
 465,NEED TO,0.1012594070118734,news,sutherland_springs
@@ -530,33 +530,33 @@
 469,NEED TO,0.8295234617947433,solidarity,sutherland_springs
 470,NEED TO,0.2642885291032308,remembrance,sutherland_springs
 471,NEED TO,0.9565734086096799,other,sutherland_springs
-472,HAS TO,0.4832757775019625,"shooter's identity
+472,HAVE TO,0.4832757775019625,"shooter's identity
 & ideology",sutherland_springs
-473,HAS TO,0.10205069083481876,news,sutherland_springs
-474,HAS TO,0.0,victims & location,sutherland_springs
-475,HAS TO,1.521349710119282,laws & policy,sutherland_springs
-476,HAS TO,0.03822868907499877,investigation,sutherland_springs
-477,HAS TO,0.853213373557927,solidarity,sutherland_springs
-478,HAS TO,0.20581883882568552,remembrance,sutherland_springs
-479,HAS TO,1.419823871863551,other,sutherland_springs
-480,MUST,0.48810499359795134,"shooter's identity
+473,HAVE TO,0.10205069083481876,news,sutherland_springs
+474,HAVE TO,0.0,victims & location,sutherland_springs
+475,HAVE TO,1.521349710119282,laws & policy,sutherland_springs
+476,HAVE TO,0.03822868907499877,investigation,sutherland_springs
+477,HAVE TO,0.853213373557927,solidarity,sutherland_springs
+478,HAVE TO,0.20581883882568552,remembrance,sutherland_springs
+479,HAVE TO,1.419823871863551,other,sutherland_springs
+480,MUST,0.4957217165149545,"shooter's identity
 & ideology",parkland
-481,MUST,0.19076454853149907,news,parkland
-482,MUST,0.8888763334544038,victims & location,parkland
-483,MUST,1.3612989422933528,laws & policy,parkland
-484,MUST,0.20418919678940728,investigation,parkland
-485,MUST,1.9108436909287718,solidarity,parkland
-486,MUST,0.2928842968349042,remembrance,parkland
-487,MUST,0.4978918812202201,other,parkland
-488,SHOULD,0.4991305827044414,"shooter's identity
+481,MUST,0.18787041797293708,news,parkland
+482,MUST,0.8333048911808214,victims & location,parkland
+483,MUST,1.368620455074045,laws & policy,parkland
+484,MUST,0.2073755041515307,investigation,parkland
+485,MUST,1.9299694464355657,solidarity,parkland
+486,MUST,0.2842344557320211,remembrance,parkland
+487,MUST,0.4774484617515541,other,parkland
+488,SHOULD,0.4951911086170345,"shooter's identity
 & ideology",parkland
-489,SHOULD,0.11059293262632744,news,parkland
-490,SHOULD,0.0990986424158808,victims & location,parkland
-491,SHOULD,1.4807922371283397,laws & policy,parkland
-492,SHOULD,0.3649916627256899,investigation,parkland
-493,SHOULD,0.6408664521891735,solidarity,parkland
-494,SHOULD,0.2584662551729494,remembrance,parkland
-495,SHOULD,0.7736441959976513,other,parkland
+489,SHOULD,0.11147557980029987,news,parkland
+490,SHOULD,0.09988955314223277,victims & location,parkland
+491,SHOULD,1.4846005223635568,laws & policy,parkland
+492,SHOULD,0.3579613079518004,investigation,parkland
+493,SHOULD,0.6382909833828325,solidarity,parkland
+494,SHOULD,0.2605290859911398,remembrance,parkland
+495,SHOULD,0.7660828876571807,other,parkland
 496,NEED TO,0.4946368812456426,"shooter's identity
 & ideology",parkland
 497,NEED TO,0.1668247725131376,news,parkland
@@ -566,33 +566,33 @@
 501,NEED TO,0.8971474308307122,solidarity,parkland
 502,NEED TO,0.16302054765033341,remembrance,parkland
 503,NEED TO,0.7970226024799529,other,parkland
-504,HAS TO,0.3032696897374702,"shooter's identity
+504,HAVE TO,0.3032696897374702,"shooter's identity
 & ideology",parkland
-505,HAS TO,0.11544734866805689,news,parkland
-506,HAS TO,0.027310410045944918,victims & location,parkland
-507,HAS TO,1.1716383966290094,laws & policy,parkland
-508,HAS TO,0.11780502983309762,investigation,parkland
-509,HAS TO,1.5853315895945956,solidarity,parkland
-510,HAS TO,0.18717433548835477,remembrance,parkland
-511,HAS TO,1.264903974420046,other,parkland
-512,MUST,0.9829931972789115,"shooter's identity
+505,HAVE TO,0.11544734866805689,news,parkland
+506,HAVE TO,0.027310410045944918,victims & location,parkland
+507,HAVE TO,1.1716383966290094,laws & policy,parkland
+508,HAVE TO,0.11780502983309762,investigation,parkland
+509,HAVE TO,1.5853315895945956,solidarity,parkland
+510,HAVE TO,0.18717433548835477,remembrance,parkland
+511,HAVE TO,1.264903974420046,other,parkland
+512,MUST,0.9965517241379309,"shooter's identity
 & ideology",nashville
 513,MUST,0.0,news,nashville
 514,MUST,0.0,victims & location,nashville
-515,MUST,3.1139737218764574,laws & policy,nashville
-516,MUST,0.47009667535822325,investigation,nashville
-517,MUST,2.8531643704413168,solidarity,nashville
-518,MUST,0.14333089057168025,remembrance,nashville
-519,MUST,0.9281239304044859,other,nashville
-520,SHOULD,0.742082738944365,"shooter's identity
+515,MUST,3.1569250835575122,laws & policy,nashville
+516,MUST,0.4448087162699878,investigation,nashville
+517,MUST,2.892518361757749,solidarity,nashville
+518,MUST,0.14530786837266896,remembrance,nashville
+519,MUST,0.9262236766676664,other,nashville
+520,SHOULD,0.709971098265896,"shooter's identity
 & ideology",nashville
-521,SHOULD,0.0959651486378546,news,nashville
+521,SHOULD,0.09721325028198853,news,nashville
 522,SHOULD,0.0,victims & location,nashville
-523,SHOULD,2.6903666831915234,laws & policy,nashville
-524,SHOULD,0.8609274063122497,investigation,nashville
-525,SHOULD,0.39887319301462065,solidarity,nashville
-526,SHOULD,0.5410178836699943,remembrance,nashville
-527,SHOULD,0.9548935533971618,other,nashville
+523,SHOULD,2.725357001325517,laws & policy,nashville
+524,SHOULD,0.872124439053305,investigation,nashville
+525,SHOULD,0.35355324388055337,solidarity,nashville
+526,SHOULD,0.548054243428708,remembrance,nashville
+527,SHOULD,0.9457483935879707,other,nashville
 528,NEED TO,0.6259927797833934,"shooter's identity
 & ideology",nashville
 529,NEED TO,0.04047627508732616,news,nashville
@@ -602,33 +602,33 @@
 533,NEED TO,0.7570670802434541,solidarity,nashville
 534,NEED TO,0.15212737122048375,remembrance,nashville
 535,NEED TO,1.262139649943104,other,nashville
-536,HAS TO,0.7902343749999999,"shooter's identity
+536,HAVE TO,0.7902343749999999,"shooter's identity
 & ideology",nashville
-537,HAS TO,0.13138978358425016,news,nashville
-538,HAS TO,0.0,victims & location,nashville
-539,HAS TO,1.5735298463356975,laws & policy,nashville
-540,HAS TO,0.2159506602426838,investigation,nashville
-541,HAS TO,1.9113972247292417,solidarity,nashville
-542,HAS TO,0.08230328482045703,remembrance,nashville
-543,HAS TO,1.4572746648959596,other,nashville
-544,MUST,0.6635342122753056,"shooter's identity
+537,HAVE TO,0.13138978358425016,news,nashville
+538,HAVE TO,0.0,victims & location,nashville
+539,HAVE TO,1.5735298463356975,laws & policy,nashville
+540,HAVE TO,0.2159506602426838,investigation,nashville
+541,HAVE TO,1.9113972247292417,solidarity,nashville
+542,HAVE TO,0.08230328482045703,remembrance,nashville
+543,HAVE TO,1.4572746648959596,other,nashville
+544,MUST,0.6645128763052103,"shooter's identity
 & ideology",santa_fe
-545,MUST,0.14655120766490468,news,santa_fe
+545,MUST,0.14676735988859924,news,santa_fe
 546,MUST,0.0,victims & location,santa_fe
-547,MUST,1.6997575681000683,laws & policy,santa_fe
-548,MUST,0.0961706474549389,investigation,santa_fe
-549,MUST,2.205808258005738,solidarity,santa_fe
-550,MUST,0.14759957298236748,remembrance,santa_fe
-551,MUST,0.5310793384586114,other,santa_fe
-552,SHOULD,1.0535117056856187,"shooter's identity
+547,MUST,1.7022645851621627,laws & policy,santa_fe
+548,MUST,0.0963124920677043,investigation,santa_fe
+549,MUST,2.209061662516071,solidarity,santa_fe
+550,MUST,0.14781727146759222,remembrance,santa_fe
+551,MUST,0.5251302028200026,other,santa_fe
+552,SHOULD,1.0635451505016722,"shooter's identity
 & ideology",santa_fe
-553,SHOULD,0.09748633128159279,news,santa_fe
-554,SHOULD,0.10138397167685871,victims & location,santa_fe
-555,SHOULD,1.7934110125799132,laws & policy,santa_fe
-556,SHOULD,0.8371778156654298,investigation,santa_fe
-557,SHOULD,0.789487236708839,solidarity,santa_fe
-558,SHOULD,0.33940046946550195,remembrance,santa_fe
-559,SHOULD,1.0633051159366949,other,santa_fe
+553,SHOULD,0.09841477253189368,news,santa_fe
+554,SHOULD,0.1023495333118764,victims & location,santa_fe
+555,SHOULD,1.796438146304098,laws & policy,santa_fe
+556,SHOULD,0.8132584495035603,investigation,santa_fe
+557,SHOULD,0.7860882701320104,solidarity,santa_fe
+558,SHOULD,0.3303959672143764,remembrance,santa_fe
+559,SHOULD,1.0667437825332562,other,santa_fe
 560,NEED TO,0.249551196485506,"shooter's identity
 & ideology",santa_fe
 561,NEED TO,0.11905276570823962,news,santa_fe
@@ -638,33 +638,33 @@
 565,NEED TO,1.1663803501345995,solidarity,santa_fe
 566,NEED TO,0.16653391501333917,remembrance,santa_fe
 567,NEED TO,0.9511465603190429,other,santa_fe
-568,HAS TO,0.11778816474115883,"shooter's identity
+568,HAVE TO,0.11778816474115883,"shooter's identity
 & ideology",santa_fe
-569,HAS TO,0.15218911883036632,news,santa_fe
-570,HAS TO,0.0,victims & location,santa_fe
-571,HAS TO,1.305149030121432,laws & policy,santa_fe
-572,HAS TO,0.025607792008589612,investigation,santa_fe
-573,HAS TO,1.7532851123042388,solidarity,santa_fe
-574,HAS TO,0.11790601182944414,remembrance,santa_fe
-575,HAS TO,1.4391894173937518,other,santa_fe
-576,MUST,1.2962166039089118,"shooter's identity
+569,HAVE TO,0.15218911883036632,news,santa_fe
+570,HAVE TO,0.0,victims & location,santa_fe
+571,HAVE TO,1.305149030121432,laws & policy,santa_fe
+572,HAVE TO,0.025607792008589612,investigation,santa_fe
+573,HAVE TO,1.7532851123042388,solidarity,santa_fe
+574,HAVE TO,0.11790601182944414,remembrance,santa_fe
+575,HAVE TO,1.4391894173937518,other,santa_fe
+576,MUST,1.2548479888905422,"shooter's identity
 & ideology",annapolis
-577,MUST,0.05704084350064604,news,annapolis
+577,MUST,0.057849933479378605,news,annapolis
 578,MUST,0.0,victims & location,annapolis
-579,MUST,5.172235803173684,laws & policy,annapolis
-580,MUST,0.20824901154458314,investigation,annapolis
-581,MUST,2.776188052050121,solidarity,annapolis
-582,MUST,0.4584310989916926,remembrance,annapolis
-583,MUST,0.8146704864262116,other,annapolis
-584,SHOULD,1.9887384189414647,"shooter's identity
+579,MUST,5.245600850027211,laws & policy,annapolis
+580,MUST,0.21120289823315877,investigation,annapolis
+581,MUST,2.81556660597991,solidarity,annapolis
+582,MUST,0.4649336677717166,remembrance,annapolis
+583,MUST,0.7827405121541876,other,annapolis
+584,SHOULD,1.9773916559630846,"shooter's identity
 & ideology",annapolis
-585,SHOULD,0.11386452642958912,news,annapolis
+585,SHOULD,0.11444546789096458,news,annapolis
 586,SHOULD,0.0,victims & location,annapolis
-587,SHOULD,3.2628093757148955,laws & policy,annapolis
-588,SHOULD,0.4346008876714048,investigation,annapolis
-589,SHOULD,0.8904383115830692,solidarity,annapolis
-590,SHOULD,0.5142805729805282,remembrance,annapolis
-591,SHOULD,1.8985761830338883,other,annapolis
+587,SHOULD,3.2794563623256856,laws & policy,annapolis
+588,SHOULD,0.43681823913911605,investigation,annapolis
+589,SHOULD,0.8714292230302082,solidarity,annapolis
+590,SHOULD,0.5169044534549186,remembrance,annapolis
+591,SHOULD,1.9082627962126326,other,annapolis
 592,NEED TO,1.6850815850815852,"shooter's identity
 & ideology",annapolis
 593,NEED TO,0.06797367183826987,news,annapolis
@@ -674,33 +674,33 @@
 597,NEED TO,1.692613878246062,solidarity,annapolis
 598,NEED TO,0.2979802143446002,remembrance,annapolis
 599,NEED TO,1.6691216661954573,other,annapolis
-600,HAS TO,0.5616938616938617,"shooter's identity
+600,HAVE TO,0.5616938616938617,"shooter's identity
 & ideology",annapolis
-601,HAS TO,0.19032628114715563,news,annapolis
-602,HAS TO,0.0,victims & location,annapolis
-603,HAS TO,2.700235485180674,laws & policy,annapolis
-604,HAS TO,0.24816340542396156,investigation,annapolis
-605,HAS TO,1.9080374627501064,solidarity,annapolis
-606,HAS TO,0.23838417147568014,remembrance,annapolis
-607,HAS TO,2.7795985298275374,other,annapolis
-608,MUST,1.4529921529964798,"shooter's identity
+601,HAVE TO,0.19032628114715563,news,annapolis
+602,HAVE TO,0.0,victims & location,annapolis
+603,HAVE TO,2.700235485180674,laws & policy,annapolis
+604,HAVE TO,0.24816340542396156,investigation,annapolis
+605,HAVE TO,1.9080374627501064,solidarity,annapolis
+606,HAVE TO,0.23838417147568014,remembrance,annapolis
+607,HAVE TO,2.7795985298275374,other,annapolis
+608,MUST,1.5958076210260483,"shooter's identity
 & ideology",pittsburgh
-609,MUST,0.36894410742148304,news,pittsburgh
-610,MUST,0.36310383497867565,victims & location,pittsburgh
-611,MUST,1.5767851275399913,laws & policy,pittsburgh
-612,MUST,2.7350273848161386,investigation,pittsburgh
-613,MUST,1.7262296061164586,solidarity,pittsburgh
-614,MUST,0.45506508404454,remembrance,pittsburgh
-615,MUST,0.4590795208288018,other,pittsburgh
-616,SHOULD,1.1616905806708806,"shooter's identity
+609,MUST,0.2431247066854388,news,pittsburgh
+610,MUST,0.19939676408017018,victims & location,pittsburgh
+611,MUST,1.7317682811016146,laws & policy,pittsburgh
+612,MUST,2.7426500921316794,investigation,pittsburgh
+613,MUST,1.842496063877643,solidarity,pittsburgh
+614,MUST,0.423738139853068,remembrance,pittsburgh
+615,MUST,0.4201689346616883,other,pittsburgh
+616,SHOULD,1.1661245141848917,"shooter's identity
 & ideology",pittsburgh
-617,SHOULD,0.10815813947603171,news,pittsburgh
-618,SHOULD,0.2365467315323692,victims & location,pittsburgh
-619,SHOULD,9.052275454161386,laws & policy,pittsburgh
-620,SHOULD,0.5422730220184309,investigation,pittsburgh
-621,SHOULD,1.3779884597425123,solidarity,pittsburgh
-622,SHOULD,0.3383460432286855,remembrance,pittsburgh
-623,SHOULD,2.093495710953142,other,pittsburgh
+617,SHOULD,0.10857095680227612,news,pittsburgh
+618,SHOULD,0.23744958165272173,victims & location,pittsburgh
+619,SHOULD,9.086826123833758,laws & policy,pittsburgh
+620,SHOULD,0.5443427663772799,investigation,pittsburgh
+621,SHOULD,1.359398854961832,solidarity,pittsburgh
+622,SHOULD,0.3396374403402454,remembrance,pittsburgh
+623,SHOULD,2.1014861525980013,other,pittsburgh
 624,NEED TO,0.7968821667095504,"shooter's identity
 & ideology",pittsburgh
 625,NEED TO,0.267094748189637,news,pittsburgh
@@ -710,33 +710,33 @@
 629,NEED TO,1.8481375092661232,solidarity,pittsburgh
 630,NEED TO,0.25066199822294166,remembrance,pittsburgh
 631,NEED TO,1.3847821226878179,other,pittsburgh
-632,HAS TO,0.9300597342966259,"shooter's identity
+632,HAVE TO,0.9300597342966259,"shooter's identity
 & ideology",pittsburgh
-633,HAS TO,0.779331251567023,news,pittsburgh
-634,HAS TO,0.0,victims & location,pittsburgh
-635,HAS TO,2.0816803652968034,laws & policy,pittsburgh
-636,HAS TO,0.2790955083969615,investigation,pittsburgh
-637,HAS TO,2.2254806536890173,solidarity,pittsburgh
-638,HAS TO,0.41793350780028626,remembrance,pittsburgh
-639,HAS TO,4.040528659349386,other,pittsburgh
-640,MUST,0.6564226030307322,"shooter's identity
+633,HAVE TO,0.779331251567023,news,pittsburgh
+634,HAVE TO,0.0,victims & location,pittsburgh
+635,HAVE TO,2.0816803652968034,laws & policy,pittsburgh
+636,HAVE TO,0.2790955083969615,investigation,pittsburgh
+637,HAVE TO,2.2254806536890173,solidarity,pittsburgh
+638,HAVE TO,0.41793350780028626,remembrance,pittsburgh
+639,HAVE TO,4.040528659349386,other,pittsburgh
+640,MUST,0.7012602125273669,"shooter's identity
 & ideology",thousand_oaks
 641,MUST,0.0,news,thousand_oaks
-642,MUST,0.537337570590767,victims & location,thousand_oaks
-643,MUST,3.0744173367861523,laws & policy,thousand_oaks
+642,MUST,0.4688001145240667,victims & location,thousand_oaks
+643,MUST,3.284418520992857,laws & policy,thousand_oaks
 644,MUST,0.0,investigation,thousand_oaks
-645,MUST,1.8688260197567366,solidarity,thousand_oaks
-646,MUST,0.4870616051490871,remembrance,thousand_oaks
-647,MUST,0.6589404788268006,other,thousand_oaks
-648,SHOULD,0.3966943396986341,"shooter's identity
+645,MUST,1.9964780702865683,solidarity,thousand_oaks
+646,MUST,0.34688722698231883,remembrance,thousand_oaks
+647,MUST,0.6768750715144993,other,thousand_oaks
+648,SHOULD,0.3973084176238642,"shooter's identity
 & ideology",thousand_oaks
-649,SHOULD,0.16479724260822826,news,thousand_oaks
-650,SHOULD,0.24354596997796354,victims & location,thousand_oaks
-651,SHOULD,3.8940710198504798,laws & policy,thousand_oaks
-652,SHOULD,1.9361711015497725,investigation,thousand_oaks
-653,SHOULD,1.066639752131464,solidarity,thousand_oaks
-654,SHOULD,0.39245973748231433,remembrance,thousand_oaks
-655,SHOULD,2.0982917981996922,other,thousand_oaks
+649,SHOULD,0.16505234669895305,news,thousand_oaks
+650,SHOULD,0.24121272083317985,victims & location,thousand_oaks
+651,SHOULD,3.9000989935654182,laws & policy,thousand_oaks
+652,SHOULD,1.9391682704376203,investigation,thousand_oaks
+653,SHOULD,1.0682908972586023,solidarity,thousand_oaks
+654,SHOULD,0.3930672602957545,remembrance,thousand_oaks
+655,SHOULD,2.101539927918268,other,thousand_oaks
 656,NEED TO,0.15991354379128742,"shooter's identity
 & ideology",thousand_oaks
 657,NEED TO,0.06643228409191507,news,thousand_oaks
@@ -746,12 +746,12 @@
 661,NEED TO,2.8985627410478267,solidarity,thousand_oaks
 662,NEED TO,0.05932744162407883,remembrance,thousand_oaks
 663,NEED TO,1.759622148527786,other,thousand_oaks
-664,HAS TO,0.39700114119878777,"shooter's identity
+664,HAVE TO,0.39700114119878777,"shooter's identity
 & ideology",thousand_oaks
-665,HAS TO,0.3298493920109008,news,thousand_oaks
-666,HAS TO,0.19092522302294132,victims & location,thousand_oaks
-667,HAS TO,2.636261810035712,laws & policy,thousand_oaks
-668,HAS TO,0.1937668526995673,investigation,thousand_oaks
-669,HAS TO,2.298188677350757,solidarity,thousand_oaks
-670,HAS TO,0.07364311199276606,remembrance,thousand_oaks
-671,HAS TO,2.6670448293475246,other,thousand_oaks
+665,HAVE TO,0.3298493920109008,news,thousand_oaks
+666,HAVE TO,0.19092522302294132,victims & location,thousand_oaks
+667,HAVE TO,2.636261810035712,laws & policy,thousand_oaks
+668,HAVE TO,0.1937668526995673,investigation,thousand_oaks
+669,HAVE TO,2.298188677350757,solidarity,thousand_oaks
+670,HAVE TO,0.07364311199276606,remembrance,thousand_oaks
+671,HAVE TO,2.6670448293475246,other,thousand_oaks

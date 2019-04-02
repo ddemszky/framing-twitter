@@ -1,8 +1,7 @@
 library(ggplot2)
 library(ggrepel)
 library(RColorBrewer)
-
-setwd('./data/output')
+setwd('/Users/ddemszky/Google_Drive/Research/Framing/NAACL/framing-twitter/data/output')
 data <- read.csv("modal_distributions.csv",header=TRUE)
 meaned <- aggregate(proportion ~ (topic + modal), data, mean)
 g <- ggplot(meaned, aes(x=reorder(topic, proportion), y=proportion, fill=modal))
