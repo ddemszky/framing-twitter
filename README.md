@@ -1,6 +1,6 @@
 # framing-twitter
-This repo contains code for the paper:
-> Demszky, D., Garg, N., Voigt, R., Zou, J., Gentzkow, M., Shapiro, J. & Jurafsky, D. (2019). Analyzing Polarization in Social Media: Method and Application to Tweets on 21 Mass Shootings. In _17th Annual Conference of the North American Chapter of the Association for Computational Linguistics (NAACL).
+This repository contains code for the paper:
+> Demszky, D., Garg, N., Voigt, R., Zou, J., Gentzkow, M., Shapiro, J. & Jurafsky, D. (2019). Analyzing Polarization in Social Media: Method and Application to Tweets on 21 Mass Shootings. In _17th Annual Conference of the North American Chapter of the Association for Computational Linguistics (NAACL)_.
 ```
 @inproceedings{demszky2019analyzing,
  author = {Demszky, Dorottya and Garg, Nikhil and Voigt, Rob and Zou, James and Gentzkow, Matthew and Shapiro, Jesse and Jurafsky, Dan},
