@@ -1,6 +1,15 @@
 # framing-twitter
 This repo contains code for the paper:
-> Demszky, D., Garg, N., Voigt, R., Zou, J., Shapiro, J., Gentzkow, M. & Jurafsky, D. (2019). Analyzing Polarization in Social Media: Method and Application to Tweets on 21 Mass Shootings. To appear at _NAACL 2019_.
+> Demszky, D., Garg, N., Voigt, R., Zou, J., Gentzkow, M., Shapiro, J. & Jurafsky, D. (2019). Analyzing Polarization in Social Media: Method and Application to Tweets on 21 Mass Shootings. In _17th Annual Conference of the North American Chapter of the Association for Computational Linguistics (NAACL).
+```
+@inproceedings{demszky2019analyzing,
+ author = {Demszky, Dorottya and Garg, Nikhil and Voigt, Rob and Zou, James and Gentzkow, Matthew and Shapiro, Jesse and Jurafsky, Dan},
+ booktitle = {17th Annual Conference of the North American Chapter of the Association for Computational Linguistics (NAACL)},
+ title = {{Analyzing Polarization in Social Media: Method and Application to Tweets on 21 Mass Shootings}},
+ url = {https://nlp.stanford.edu/pubs/demszky2019analyzing.pdf},
+ year = {2019}
+}
+```
 
 All the results as well as the plots in the paper were generated using the scripts in this repository. Due to Twitter's privacy policy, we are not able to share the original tweets, but we are sharing the **tweet IDs** under `data/tweet_ids`.
 
