@@ -13,23 +13,26 @@ This repo contains code for the paper:
 
 All the results as well as the plots in the paper were generated using the scripts in this repository. Due to Twitter's privacy policy, we are not able to share the original tweets, but we are sharing the **tweet IDs** under `data/tweet_ids`.
 
-Make sure to use Python3 when running the scripts. The package requirements can be obtained by running `pip install -r requirements.txt`.
+## Requirements 
+
+Make sure to use **Python3** when running the scripts. The package requirements can be obtained by running `pip install -r requirements.txt`.
 
 ## Folders
 
 `paper`
 
-Files and plots used to generate the paper.
+The paper as well as plots and tables.
 
 `data`
 
 - `tweet_ids`: ids of the tweets we used (unfiltered)
 - `input`: inputs for the scripts; this folder also includes all the handles of Democrat and Republican politicians we used to determine partisanship (`all_dems.txt` and `all_reps.txt`)
 - `output`: outputs of the scripts
+- `topic_eval`: the results of our topic model evaluation
 
 `verify_partisanship_assignment`
 
-Code and data for verifying our method for partisanship assignment (Section 2.1 in the paper).
+Code and data for verifying our method for partisanship assignment (Section 2 in the paper).
 
 `1_process_data`
 
@@ -39,10 +42,18 @@ Code for preprocessing the data -- i.e. removing retweets, building vocabularies
 
 Scripts for performing the topic clustering, step by step. The scripts need to be used in ordered sequence:
 - `1_compute_cooccurrence.py`: compute word co-occurrence matrix to use as an input for GloVe
-- `2_glove_train.py`: train GloVe using the mittens package
-- `3_tweet_embeddings.py`: construct tweet embeddings using Arora et al.'s (2016) method
+- `2_glove_train.py`: train GloVe using the [Mittens](https://github.com/roamanalytics/mittens) package
+- `3_tweet_embeddings.py`: construct tweet embeddings using [Arora et al.'s (2017)](https://github.com/PrincetonML/SIF) method
 - `4_compute_cluster_means.py`: compute cluster means using k-means with cosine distance, based on a sample of the data
-- `5_assign_tweets_to_clusters.py`: assign all tweets to clusters
+- `5_get_topic_proximities.py`: compute the proximities of all tweets to each topic
+- For running BTM:
+    - download the scripts from [here](https://github.com/xiaohuiyan/BTM)
+    - set the BTM directory path within `config.json` and within `2_topic_clustering/myBTMexample.sh`
+    - follow the steps in `pre-processing for BTM.ipynb`
+- For MALLET:
+    - download the [MALLET binary](http://mallet.cs.umass.edu/)
+    - set the directory path within `config.json`
+    - follows the steps in `MALLET.ipynb`
 
 `3_leave_out_polarization`
 
@@ -58,8 +69,9 @@ therefore these scripts can be executed only once topics have been assigned.
 Code for measuring and plotting the partisanship (log odds ratio) of words, phrases and semantic categories.
 - `word_partisanship.py`: calculate the partisanship of all words for each event
 - `plot word partisanship.ipynb`: compare partisanship of individual words / phrases across events
-- `event analogies.ipynb`: measure and plot the partisanship of event analogies
+- `event grounding.ipynb`: measure and plot the partisanship of event grounding
 - `modals.ipynb`: measure and plot the partisanship of modals
+- `pronouns.ipynb`: measure and plot the partisanship of pronouns
 
 `5_affect`
 
