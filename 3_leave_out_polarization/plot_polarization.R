@@ -38,5 +38,5 @@ ggplot(data, aes(x=year, y=polarization, color=kind))+
   ylab('Polarization') +
   theme_bw(base_size=13) +
   theme(legend.position="top", legend.direction="horizontal", legend.title = element_blank(), legend.box.margin=margin(0,0,-10,0), legend.text = element_text(margin = margin(r =50, unit = "pt"), size=12), panel.grid.major.x = element_blank(), panel.grid.minor = element_blank()) +
-  scale_color_manual(values=c("darkolivegreen4", "deeppink4")) +
+  scale_color_manual(values=c("khaki1", "deeppink4")) +
   scale_x_continuous(limits = c(2015.5,2019.05), expand = c(0, 0)) 
