@@ -4,6 +4,7 @@ library(RColorBrewer)
 library("knitr")      # for knitting RMarkdown 
 library("tidyverse")  # for wrangling, plotting, etc. 
 library("lme4")
+library("purrr")
 
 setwd('/Users/ddemszky/Google_Drive/Research/Framing/NAACL/framing-twitter/data/output')
 data <- read.csv("polarization_over_time.csv",header=TRUE)
@@ -73,22 +74,28 @@ data %>%
   filter(event == 'roseburg') %>% 
   lm(leaveout ~ time, data=.) %>% 
   summary()
-  
+
+
+others = setdiff(data$event, c("Orlando", "Burlington", "Vegas", "Chattanooga", "Roseburg"))
+levels(data$event) <- c(levels(data$event), "all other")
+
+data$event[data$event %in% others] <- "all other"
 
 
 ggplot(data, aes(x=time, y=leaveout)) + 
   geom_smooth(method ="lm",
               se=TRUE) +
-  geom_point(aes(fill="all other"), size=3, alpha=.1) +
-  geom_point(data = . %>% filter(event %in% c("Orlando", "Burlington", "Vegas", "Chattanooga", "Roseburg")), aes(fill=event), size=3, shape=21, alpha=.7) +
+  geom_point(aes(shape=fct_rev(event), fill=fct_rev(event), alpha=fct_rev(event)), size=3) +
   theme_bw(base_size=14) +
   xlab("Day after event") +
   ylab("Leave-out estimate") +
-  guides(fill=guide_legend(ncol=2, reverse=TRUE)) +
-  theme(legend.position = c(0.24, 0.82), legend.background = element_rect(color = "black", "white", size = .5, linetype = "solid"),legend.title=element_blank()) +
+  guides(shape=guide_legend(ncol=2, reverse = TRUE), fill=guide_legend(ncol=2, reverse = TRUE), alpha=guide_legend(ncol=2, reverse = TRUE)) +
+  theme(legend.position = c(0.2, 0.82), legend.background = element_rect(color = "black", "white", size = .5, linetype = "solid"),legend.title=element_blank()) +
+  scale_alpha_manual(values=(c(.1,1,1,1,1,1))) +
+  scale_shape_manual(values=c(20,21,22,25,23,23)) +
   scale_fill_manual(values=c("#999999", "#E69F00", "#56B4E9", "blue4", "brown3", "lightgreen"))
 
-
+print(data$event[data$event %in% others])
 ggplot(data, aes(x=time, y=leaveout)) + 
   geom_point() + 
   geom_smooth(method ="lm",
