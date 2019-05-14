@@ -101,7 +101,7 @@ def leaveout(dem_counts, rep_counts):
 
     return pi_lo
 
-def get_leaveout_value(event, b, between_topic = False, between_topic_count_func = None):
+def get_values(event, b, method = leaveout, between_topic = False, between_topic_count_func = None):
     if len(b) < 100:   # fewer than a 100 tweets
         return 0.5, 0.5, len(set(b['user_id']))  # return these values when there is not enough data to make predictions on
 
@@ -153,7 +153,7 @@ def get_leaveout_value(event, b, between_topic = False, between_topic_count_func
     gc.collect()
     dem_user_len = dem_counts.shape[0]
 
-    pi_lo = leaveout(dem_counts, rep_counts)
+    pi_lo = method(dem_counts, rep_counts)
 
     all_counts = sp.vstack([dem_counts, rep_counts])
     del dem_counts
@@ -164,7 +164,7 @@ def get_leaveout_value(event, b, between_topic = False, between_topic_count_func
     RNG.shuffle(index)
     all_counts = all_counts[index, :]
 
-    pi_lo_random = leaveout(all_counts[:dem_user_len, :], all_counts[dem_user_len:, :])
+    pi_lo_random = method(all_counts[:dem_user_len, :], all_counts[dem_user_len:, :])
     print(pi_lo, pi_lo_random, dem_length + rep_length)
     sys.stdout.flush()
     del all_counts

@@ -9,7 +9,7 @@ import sys
 
 import pandas as pd
 from joblib import Parallel, delayed
-from calculate_leaveout_polarization import get_leaveout_value
+from calculate_leaveout_polarization import get_values
 sys.path.append('..')
 from helpers.funcs import *
 
@@ -51,7 +51,7 @@ def get_polarization(event, cluster_method = None):
         for j in range(NUM_CLUSTERS):
             print(j)
             t = b[b['topic'] == j]
-            topic_polarization[j] = tuple(get_leaveout_value(event,t))
+            topic_polarization[j] = tuple(get_values(event,t))
         topic_polarization_overtime[i] = topic_polarization
 
     with open(TWEET_DIR + event + '/' + event + '_topic_polarization_over_time' + cluster_method + '.json', 'w') as f:

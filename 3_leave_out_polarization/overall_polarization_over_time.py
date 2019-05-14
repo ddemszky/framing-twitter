@@ -8,7 +8,7 @@ import sys
 import numpy as np
 import pandas as pd
 from joblib import Parallel, delayed
-from calculate_leaveout_polarization import get_leaveout_value
+from calculate_leaveout_polarization import get_values
 sys.path.append('..')
 from helpers.funcs import *
 
@@ -65,7 +65,7 @@ def get_polarization(event, method = "nofilter", cluster_method = None, log=Fals
 
     for i, b in enumerate(buckets):
         print('bucket', i)
-        pol[i, :3] = get_leaveout_value(event, b)
+        pol[i, :3] = get_values(event, b)
         pol[i, 3] = times[i]
         print(pol[i, :])
 
