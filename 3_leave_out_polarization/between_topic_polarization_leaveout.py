@@ -53,3 +53,5 @@ if __name__ == "__main__":
     with open(OUTPUT_DIR + 'between_topic_polarization' + cluster_method + '.json', 'w') as f:
         f.write(json.dumps(between_topic_polarization))
 
+
+
