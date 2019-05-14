@@ -103,7 +103,10 @@ def leaveout(dem_counts, rep_counts):
 
 def get_values(event, b, method = leaveout, between_topic = False, between_topic_count_func = None):
     if len(b) < 100:   # fewer than a 100 tweets
-        return 0.5, 0.5, len(set(b['user_id']))  # return these values when there is not enough data to make predictions on
+        if method == leaveout:
+            return 0.5, 0.5, len(set(b['user_id']))  # return these values when there is not enough data to make predictions on
+        else:
+            return 0, 0, len(set(b['user_id']))
 
     if not between_topic:
         # clean data
