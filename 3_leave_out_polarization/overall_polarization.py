@@ -9,7 +9,7 @@ import pandas as pd
 sys.path.append('..')
 from helpers.funcs import *
 
-from calculate_leaveout_polarization import get_leaveout_value
+from calculate_leaveout_polarization import get_values
 
 config = json.load(open('../config.json', 'r'))
 INPUT_DIR = config['INPUT_DIR']
@@ -39,7 +39,7 @@ def get_polarization(event, method = "nofilter", cluster_method = None):
         return None
 
     print(event, len(data))
-    return get_leaveout_value(event, data)
+    return get_values(event, data)
 
 if __name__ == "__main__":
     event_polarization = {}

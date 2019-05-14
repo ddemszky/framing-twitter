@@ -41,7 +41,7 @@ def get_polarization(event, cluster_method = None):
 
     print(event, len(data))
 
-    return get_leaveout_value(event, data, between_topic=True, between_topic_count_func=user_topic_counts)
+    return get_values(event, data, between_topic=True, between_topic_count_func=user_topic_counts)
 
 if __name__ == "__main__":
     between_topic_polarization = {}
