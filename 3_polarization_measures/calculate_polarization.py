@@ -32,7 +32,6 @@ parser.add_argument('-c','--cluster', help='Kind of cluster method to filter wit
 parser.add_argument('-l','--leaveout', help='Whether to use leave-out.', action="store_true")
 parser.add_argument('-m','--method', help='Which method to use: posterior, mutual_information or chi_square', default='posterior')
 parser.add_argument('-b','--between', help='Whether to calculate between-topic polarization.', action="store_true")
-parser.add_argument('-d','--default', help='Default score.', default=0.5, type=float)
 args = vars(parser.parse_args())
 
 def get_user_token_counts(tweets, vocab):
@@ -286,11 +285,15 @@ def load_data(event, filter_method, cluster_method, only_topics=False):
 if __name__ == "__main__":
     event_polarization = {}
     filter_method = args['filtering']
+    if args['method'] == 'posterior':
+        default_score = .5
+    else:
+        default_score = 0
     if args['between']:
         filter_method = 'clustered'
     for e in events:
         data = load_data(e, filter_method, args['cluster'], args['between'])
-        event_polarization[e] = tuple(get_values(e, data, args['method'], args['leaveout'], args['between'], args['default']))
+        event_polarization[e] = tuple(get_values(e, data, args['method'], args['leaveout'], args['between'], default_score))
 
     cluster_method = method_name(args['cluster'])
     leaveout = '_leaveout' if args['leaveout'] else ''

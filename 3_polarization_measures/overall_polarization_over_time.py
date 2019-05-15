@@ -1,16 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from __future__ import division
-
-import gc
 import json
 import sys
-import numpy as np
 import pandas as pd
 from joblib import Parallel, delayed
-from calculate_leaveout_polarization import get_values
 sys.path.append('..')
 from helpers.funcs import *
+from calculate_polarization import *
 
 # NOTE: only use this for events where there is enough (temporal) data, otherwise it'll be very noisy
 
@@ -25,57 +22,51 @@ day = 24 * hour
 split_by = 24 * hour # split by day
 no_splits = int((day / split_by) * 10)  # 10 days
 
+parser = argparse.ArgumentParser(description='Computes polarization value between two groups of texts.')
+parser.add_argument('-f','--filtering', help='Kind of data filtering.', default='nofilter')
+parser.add_argument('-c','--cluster', help='Kind of cluster method to filter with (only if filtering is "clustered"', default='relative')
+parser.add_argument('-l','--leaveout', help='Whether to use leave-out.', action="store_true")
+parser.add_argument('-m','--method', help='Which method to use: posterior, mutual_information or chi_square', default='posterior')
+parser.add_argument('-b','--between', help='Whether to calculate between-topic polarization.', action="store_true")
+parser.add_argument('-log','--log', help='Whether to log time.', action="store_true")
+parser.add_argument('-ex','--excl_multi', help='Whether to exclude multi-tweet users.', action="store_true")
+args = vars(parser.parse_args())
 
-def get_polarization(event, method = "nofilter", cluster_method = None, log=False):
-    '''
+def get_polarization(event):
+    filter_method = args['filtering']
+    if args['method'] == 'posterior':
+        default_score = .5
+    else:
+        default_score = 0
+    if args['between']:
+        filter_method = 'clustered'
 
-    :param event: name of the event (str)
-    :param method: "nofilter" (default): use all tweets
-                    "noRT": ignore retweets only
-                    "clustered": keep only tweets that were assigned to clusters; this is a subset of "cleaned
-    :param cluster_method: None, "relative" or "absolute" (see 5_assign_tweets_to_clusters.py); must have relevant files
-    :return:
-    '''
-    data = pd.read_csv(TWEET_DIR + event + '/' + event + '.csv', sep='\t', lineterminator='\n',
-                       usecols=['user_id', 'text', 'dem_follows', 'rep_follows', 'timestamp', 'remove', 'isRT'])
-
-    if method == "noRT":
-        data = filter_retweets(data)
-    elif method == 'clustered':
-        data = get_cluster_assignments(event, data, cluster_method)
-    elif method != "nofilter":
-        print("invalid method.")
-        return None
-
-    if not log:
-        # include when want to exclude multitweet users
+    data = load_data(event, filter_method, args['cluster'], args['between'])
+    if args['excl_multi']:
         multi_u = set([int(u) for u in open(TWEET_DIR + event + '/' + event + '_multitweet_users.txt', 'r').read().splitlines()])
         data['user_id'] = data['user_id'].astype(int)
         data = data[~data['user_id'].isin(multi_u)]
+    if not args['log']:
         buckets, times = get_buckets(data, event_times[event], no_splits, split_by)  # split by a fixed time unit (defined above)
     else:
         buckets, times = get_buckets_log(data, event_times[event], no_splits, split_by)  # take log of time and split equally
-        method = 'log_' + method
 
-    del data
-    gc.collect()
-    print(event)
-
-    pol = np.zeros((no_splits, 4))   # timebins x actual vs random x size of bin x time in days
-
+    pol = np.zeros((no_splits, 4))  # timebins x actual vs random x size of bin x time in days
     for i, b in enumerate(buckets):
         print('bucket', i)
-        pol[i, :3] = get_values(event, b)
+        pol[i, :3] = get_values(event, b, args['method'], args['leaveout'], args['between'], default_score)
         pol[i, 3] = times[i]
         print(pol[i, :])
 
-    cluster_method = method_name(cluster_method)
-    np.save(TWEET_DIR + event + '/' + event + '_polarization_over_time_' + method + cluster_method + '_nomulti.npy', pol)
+    cluster_method = method_name(args['cluster'])
+    leaveout = '_leaveout' if args['leaveout'] else ''
+    log = '_log' if args['log'] else ''
+    multi = '_nomulti' if args['excl_multi'] else ''
+    filename = '_temporal_polarization_' + args['method'] + '_' + filter_method + cluster_method + leaveout + log + multi + '.numpy'
+    if args['between']:
+        filename = 'between_topic_' + filename
+    np.save(TWEET_DIR + event + '/' + event + filename, pol)
 
-
-if __name__ == "__main__":
-    event_polarization = {}
-    method = sys.argv[1]
-    cluster_method = None if len(sys.argv) < 3 else sys.argv[2]
-    for e in events:
-        get_polarization(e, method, cluster_method)
+for e in events:
+    get_polarization(e)
+#Parallel(n_jobs=3)(delayed(get_polarization)(e, cluster_method) for e in events)
