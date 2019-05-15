@@ -45,11 +45,9 @@ def mutual_information(dem_counts, rep_counts):
     all_t = dem_t + rep_t
     all_not_t = no_users - all_t + 4
 
-    mi_dem_t = dem_t * np.log2(no_users * (dem_t / (all_t * dem_no)))
-    mi_dem_not_t = dem_not_t * np.log2(no_users * (dem_not_t / (all_not_t * dem_no)))
-    mi_rep_t = rep_t * np.log2(no_users * (rep_t / (all_t * rep_no)))
-    mi_rep_not_t = rep_not_t * np.log2(no_users * (rep_not_t / (all_not_t * rep_no)))
-    mi_values = 1 / no_users * (mi_dem_t + mi_dem_not_t + mi_rep_t + mi_rep_not_t)
+    chi_enum = no_users * (dem_t * rep_not_t - dem_not_t * rep_t) ** 2
+    chi_denom = all_t * all_not_t * (dem_t + dem_not_t) * (rep_t + rep_not_t)
+    chi_values = chi_enum / chi_denom
 
     prev_u = -1
     all_vals = []
@@ -58,13 +56,13 @@ def mutual_information(dem_counts, rep_counts):
         if u != prev_u and len(user_vals) > 0:
             all_vals.append(np.mean(user_vals))
             user_vals = []
-        user_vals.append(mi_values[t])
+        user_vals.append(chi_values[t])
         prev_u = u
     for u, t in zip(rep_nonzero[0], rep_nonzero[1]):
         if u != prev_u and len(user_vals) > 0:
             all_vals.append(np.mean(user_vals))
             user_vals = []
-        user_vals.append(mi_values[t])
+        user_vals.append(chi_values[t])
         prev_u = u
     return np.mean(all_vals)
 
@@ -108,7 +106,7 @@ def get_polarization_topics(event, cluster_method = None):
         topic_polarization[i] = tuple(get_values(event, data[data['topic'] == i], method=mutual_information))
 
     cluster_method = method_name(cluster_method)
-    with open(TWEET_DIR + event + '/' + event + '_mutual_information_topic_polarization' + cluster_method + '.json', 'w') as f:
+    with open(TWEET_DIR + event + '/' + event + '_chi_square_topic_polarization' + cluster_method + '.json', 'w') as f:
         f.write(json.dumps(topic_polarization))
 
 if __name__ == "__main__":
@@ -122,9 +120,10 @@ if __name__ == "__main__":
         event_polarization[e] = tuple(get_polarization(e, method, cluster_method))
 
     cluster_method = method_name(cluster_method)
-    with open(OUTPUT_DIR + 'mutual_information_' + method + cluster_method + '.json', 'w') as f:
+    with open(OUTPUT_DIR + 'chi_square_' + method + cluster_method + '.json', 'w') as f:
         f.write(json.dumps(event_polarization))
     '''
+
     # for between topic polarization
     '''
     between_topic_polarization = {}
@@ -133,7 +132,7 @@ if __name__ == "__main__":
         between_topic_polarization[e] = tuple(get_polarization(e, "clustered", cluster_method, between_topic=True))
 
     cluster_method = method_name(cluster_method)
-    with open(OUTPUT_DIR + 'mutual_information_between_topic_polarization' + cluster_method + '.json', 'w') as f:
+    with open(OUTPUT_DIR + 'chi_square_between_topic_polarization' + cluster_method + '.json', 'w') as f:
         f.write(json.dumps(between_topic_polarization))
     '''
 
@@ -142,3 +141,4 @@ if __name__ == "__main__":
     cluster_method = None if len(sys.argv) < 2 else sys.argv[1]
     for e in events:
         get_polarization_topics(e, cluster_method)
+
