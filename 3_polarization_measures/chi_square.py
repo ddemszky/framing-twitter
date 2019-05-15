@@ -10,8 +10,7 @@ from collections import Counter
 sys.path.append('..')
 from helpers.funcs import *
 
-from calculate_leaveout_polarization import get_values
-from between_topic_polarization_leaveout import user_topic_counts
+from calculate_polarization import get_values
 config = json.load(open('../config.json', 'r'))
 INPUT_DIR = config['INPUT_DIR']
 OUTPUT_DIR = config['OUTPUT_DIR']
@@ -21,10 +20,16 @@ NUM_CLUSTERS = config['NUM_CLUSTERS']
 events = open(INPUT_DIR + 'event_names.txt', 'r').read().splitlines()
 print(events)
 
-def mutual_information(dem_counts, rep_counts):
+def chi_square(dem_counts, rep_counts, exclude_user_party = None, exclude_user_id = None):
     assert(dem_counts.shape[1] == rep_counts.shape[1])
     dem_no = dem_counts.shape[0]
     rep_no = rep_counts.shape[0]
+    if exclude_user_party == 'Dem':
+        dem_no -= 1
+        excl_user_terms = sp.find(dem_counts[exclude_user_id, :])[1]
+    elif exclude_user_party == 'Rep':
+        rep_no -= 1
+        excl_user_terms = sp.find(rep_counts[exclude_user_id, :])[1]
     no_users = dem_no + rep_no
     no_tokens = dem_counts.shape[1]
 
@@ -40,6 +45,12 @@ def mutual_information(dem_counts, rep_counts):
         dem_t[k] += v
     for k, v in rep_t_counts.items():
         rep_t[k] += v
+    if exclude_user_party == 'Dem':
+        for term_idx in excl_user_terms:
+            dem_t[term_idx] -= 1
+    elif exclude_user_party == 'Rep':
+        for term_idx in excl_user_terms:
+            rep_t[term_idx] -= 1
     dem_not_t = dem_no - dem_t + 2  # because of add one smoothing
     rep_not_t = rep_no - rep_t + 2
     all_t = dem_t + rep_t
@@ -47,31 +58,15 @@ def mutual_information(dem_counts, rep_counts):
 
     chi_enum = no_users * (dem_t * rep_not_t - dem_not_t * rep_t) ** 2
     chi_denom = all_t * all_not_t * (dem_t + dem_not_t) * (rep_t + rep_not_t)
-    chi_values = chi_enum / chi_denom
-
-    prev_u = -1
-    all_vals = []
-    user_vals = []
-    for u, t in zip(dem_nonzero[0], dem_nonzero[1]):
-        if u != prev_u and len(user_vals) > 0:
-            all_vals.append(np.mean(user_vals))
-            user_vals = []
-        user_vals.append(chi_values[t])
-        prev_u = u
-    for u, t in zip(rep_nonzero[0], rep_nonzero[1]):
-        if u != prev_u and len(user_vals) > 0:
-            all_vals.append(np.mean(user_vals))
-            user_vals = []
-        user_vals.append(chi_values[t])
-        prev_u = u
-    return np.mean(all_vals)
+    chi_values = (chi_enum / chi_denom).transpose()[:, np.newaxis]
+    return chi_values, chi_values
 
 
-def get_polarization(event, method = "nofilter", cluster_method = None, between_topic=False):
+def get_polarization(event, method = "noRT", cluster_method = None, between_topic=False):
     '''
     :param event: name of the event (str)
-    :param method: "nofilter" (default): use all tweets
-                    "noRT": ignore retweets only
+    :param method: "nofilter": use all tweets
+                    "noRT" (default): ignore retweets only
                     "clustered": keep only tweets that were assigned to clusters; this is a subset of "cleaned
     :param cluster_method: None, "relative" or "absolute" (see 5_assign_tweets_to_clusters.py); must have relevant files --> relative is used in paper
     :return: tuple: (true value, random value)
@@ -86,7 +81,8 @@ def get_polarization(event, method = "nofilter", cluster_method = None, between_
         return None
 
     print(event, len(data))
-    return get_values(event, data, method=mutual_information, between_topic=between_topic, between_topic_count_func=user_topic_counts)
+    return get_values(event, data, token_partisanship_measure=chi_square, leaveout=True,
+                      between_topic=between_topic, default_score=0)
 
 def get_polarization_topics(event, cluster_method = None):
     '''
@@ -103,7 +99,8 @@ def get_polarization_topics(event, cluster_method = None):
     topic_polarization = {}
     for i in range(NUM_CLUSTERS):
         print(i)
-        topic_polarization[i] = tuple(get_values(event, data[data['topic'] == i], method=mutual_information))
+        topic_polarization[i] = tuple(get_values(event, data[data['topic'] == i], token_partisanship_measure=chi_square,
+                                                 leaveout=False, default_score=0))
 
     cluster_method = method_name(cluster_method)
     with open(TWEET_DIR + event + '/' + event + '_chi_square_topic_polarization' + cluster_method + '.json', 'w') as f:
@@ -112,7 +109,7 @@ def get_polarization_topics(event, cluster_method = None):
 if __name__ == "__main__":
 
     # for overall polarization
-    '''
+
     event_polarization = {}
     method = sys.argv[1]
     cluster_method = None if len(sys.argv) < 3 else sys.argv[2]
@@ -120,9 +117,9 @@ if __name__ == "__main__":
         event_polarization[e] = tuple(get_polarization(e, method, cluster_method))
 
     cluster_method = method_name(cluster_method)
-    with open(OUTPUT_DIR + 'chi_square_' + method + cluster_method + '.json', 'w') as f:
+    with open(OUTPUT_DIR + 'chi_square_' + method + cluster_method + '_leaveout.json', 'w') as f:
         f.write(json.dumps(event_polarization))
-    '''
+
 
     # for between topic polarization
     '''
@@ -137,8 +134,9 @@ if __name__ == "__main__":
     '''
 
     # for within topic polarization
+    '''
     topic_polarization = {}
     cluster_method = None if len(sys.argv) < 2 else sys.argv[1]
     for e in events:
         get_polarization_topics(e, cluster_method)
-
+    '''

@@ -2,7 +2,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import division
 import pandas as pd
-from calculate_leaveout_polarization import *
+import random
+from calculate_polarization import *
 sys.path.append('..')
 from helpers.funcs import *
 
@@ -17,7 +18,6 @@ events = open(INPUT_DIR + 'event_names.txt', 'r').read().splitlines()
 
 def get_polarization(event, cluster_method = None):
     '''
-
     :param event: name of the event (str)
     :param cluster_method: None, "relative" (we use this in the paper) or "absolute" (see 5_assign_tweets_to_clusters.py); must have relevant files
     :return: tuple: (true value, random value)
@@ -28,7 +28,7 @@ def get_polarization(event, cluster_method = None):
 
     print(event, len(data))
 
-    return get_values(event, data, between_topic=True, between_topic_count_func=user_topic_counts)
+    return get_values(event, data, leaveout=True, between_topic=True)
 
 if __name__ == "__main__":
     between_topic_polarization = {}
@@ -39,6 +39,3 @@ if __name__ == "__main__":
     cluster_method = method_name(cluster_method)
     with open(OUTPUT_DIR + 'between_topic_polarization' + cluster_method + '.json', 'w') as f:
         f.write(json.dumps(between_topic_polarization))
-
-
-
