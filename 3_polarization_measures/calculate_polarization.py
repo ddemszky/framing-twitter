@@ -29,10 +29,10 @@ events = open(INPUT_DIR + 'event_names.txt', 'r').read().splitlines()
 parser = argparse.ArgumentParser(description='Computes polarization value between two groups of texts.')
 parser.add_argument('-f','--filtering', help='Kind of data filtering.', default='nofilter')
 parser.add_argument('-c','--cluster', help='Kind of cluster method to filter with (only if filtering is "clustered"', default='relative')
-parser.add_argument('-l','--leaveout', help='Whether to use leave-out.', default=True)
+parser.add_argument('-l','--leaveout', help='Whether to use leave-out.', action="store_true")
 parser.add_argument('-m','--method', help='Which method to use: posterior, mutual_information or chi_square', default='posterior')
-parser.add_argument('-b','--between', help='Whether to calculate between-topic polarization.', default=False)
-parser.add_argument('-d','--default', help='Default score.', default=0.5)
+parser.add_argument('-b','--between', help='Whether to calculate between-topic polarization.', action="store_true")
+parser.add_argument('-d','--default', help='Default score.', default=0.5, type=float)
 args = vars(parser.parse_args())
 
 def get_user_token_counts(tweets, vocab):
@@ -161,7 +161,7 @@ def calculate_polarization(dem_counts, rep_counts, measure="posterior", leaveout
             dem_leaveout_not_t = dem_leaveout_no - dem_leaveout_t + 2
             token_scores_dem = func(dem_leaveout_t, rep_t, dem_leaveout_not_t, rep_not_t, dem_leaveout_no, rep_no)
         dem_addup += dem_user_distr[i, :].dot(token_scores_dem)[0, 0]
-    for i in range(dem_no):
+    for i in range(rep_no):
         if measure == 'posterior':
             rep_leaveout_q = get_party_q(rep_counts, i)
             token_scores_rep = get_rho(dem_q, rep_leaveout_q)
@@ -270,7 +270,7 @@ def get_values(event, data, token_partisanship_measure='posterior', leaveout=Tru
 
     return actual_val, random_val, dem_user_len + rep_user_len
 
-def load_data(event, filter_method, only_topics=False):
+def load_data(event, filter_method, cluster_method, only_topics=False):
     usecols = ['user_id', 'dem_follows', 'rep_follows']
     if not only_topics:
         usecols.extend(['text', 'timestamp', 'remove', 'isRT'])
@@ -289,7 +289,7 @@ if __name__ == "__main__":
     if args['between']:
         filter_method = 'clustered'
     for e in events:
-        data = load_data(e, filter_method, args['between'])
+        data = load_data(e, filter_method, args['cluster'], args['between'])
         event_polarization[e] = tuple(get_values(e, data, args['method'], args['leaveout'], args['between'], args['default']))
 
     cluster_method = method_name(args['cluster'])
