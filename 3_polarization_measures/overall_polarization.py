@@ -9,7 +9,7 @@ import pandas as pd
 sys.path.append('..')
 from helpers.funcs import *
 
-from calculate_leaveout_polarization import get_values
+from calculate_polarization import get_values
 
 config = json.load(open('../config.json', 'r'))
 INPUT_DIR = config['INPUT_DIR']

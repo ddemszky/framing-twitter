@@ -15,19 +15,6 @@ RNG = random.Random()  # make everything reproducible
 RNG.seed(config['SEED'])
 events = open(INPUT_DIR + 'event_names.txt', 'r').read().splitlines()
 
-def user_topic_counts(tweets):
-    # user-based
-    users = tweets.groupby('user_id')
-    row_idx = []
-    col_idx = []
-    data = []
-    for group_idx, (u, group), in enumerate(users):
-        for k, v in Counter(group['topic']).items():
-            col_idx.append(group_idx)
-            row_idx.append(k)
-            data.append(v)
-    return sp.csr_matrix((data, (col_idx, row_idx)), shape=(len(users), NUM_CLUSTERS))
-
 def get_polarization(event, cluster_method = None):
     '''
 
