@@ -1,0 +1,512 @@
+# instruction quality word predictors
+mod.iq %>% get_highest()
+# classroom management word predictors
+mod.cm %>% get_highest()
+# negative climate word predictors
+mod.nc %>% get_highest()
+library(ggplot2)
+library(ggrepel)
+library(RColorBrewer)
+setwd('/Users/ddemszky/Google_Drive/Research/Framing/NAACL/framing-twitter')
+data <- read.csv("data/topic_eval/collapsed_tweet_results.csv",header=TRUE)
+ggplot(data=data, aes(x=model, y=accuracy)) +
+geom_bar(stat="identity") +
+geom_errorbar(aes(ymin=accuracy-se, ymax=accuracy+se), width=.2)
+ggplot(data=data, aes(x=model, y=accuracy)) +
+geom_bar(stat="identity") +
+geom_errorbar(aes(ymin=accuracy-se, ymax=accuracy+se), width=.2) +
+xlab("")
+ggplot(data=data, aes(x=model, y=accuracy)) +
+geom_bar(stat="identity") +
+geom_errorbar(aes(ymin=accuracy-se, ymax=accuracy+se), width=.2) +
+xlab("") +
+ylab("Accuracy")
+ggplot(data=data, aes(x=model, y=accuracy)) +
+geom_bar(stat="identity", ) +
+geom_errorbar(aes(ymin=accuracy-se, ymax=accuracy+se), width=.2) +
+xlab("") +
+ylab("Accuracy") +
+theme_bw()
+data2 <- read.csv("data/topic_eval/collapsed_word_results.csv",header=TRUE)
+ggplot(data=data2, aes(x=model, y=accuracy)) +
+geom_bar(stat="identity", ) +
+geom_errorbar(aes(ymin=accuracy-se, ymax=accuracy+se), width=.2) +
+xlab("") +
+ylab("Accuracy") +
+theme_bw()
+ggplot(data=data2, aes(x=model, y=accuracy)) +
+geom_bar(stat="identity", ) +
+geom_errorbar(aes(ymin=accuracy-se, ymax=accuracy+se), width=.2) +
+xlab("") +
+ylab("Accuracy") +
+theme_bw() +
+ggtitle("Word intrusion")
+ggplot(data=data, aes(x=model, y=accuracy)) +
+geom_bar(stat="identity", ) +
+geom_errorbar(aes(ymin=accuracy-se, ymax=accuracy+se), width=.2) +
+xlab("") +
+ylab("Accuracy") +
+theme_bw() +
+ggtitle("Tweet intrusion")
+ggplot(data=data2, aes(x=model, y=accuracy)) +
+geom_bar(stat="identity", ) +
+geom_errorbar(aes(ymin=accuracy-se, ymax=accuracy+se), width=.2) +
+xlab("") +
+ylab("Accuracy") +
+theme_bw() +
+ggtitle("Word intrusion")
+ggplot(data=data, aes(x=model, y=accuracy, fill=model)) +
+geom_bar(stat="identity", ) +
+geom_errorbar(aes(ymin=accuracy-se, ymax=accuracy+se), width=.2) +
+xlab("") +
+ylab("Accuracy") +
+theme_bw() +
+ggtitle("Tweet intrusion")
+ggplot(data=data2, aes(x=model, y=accuracy, fill=model)) +
+geom_bar(stat="identity", ) +
+geom_errorbar(aes(ymin=accuracy-se, ymax=accuracy+se), width=.2) +
+xlab("") +
+ylab("Accuracy") +
+theme_bw() +
+ggtitle("Word intrusion")
+data <- within(data,
+model <- factor(model,
+levels=names(sort(table(accuracy),
+decreasing=TRUE))))
+ggplot(data=data, aes(x=model, y=accuracy, fill=model)) +
+geom_bar(stat="identity", ) +
+geom_errorbar(aes(ymin=accuracy-se, ymax=accuracy+se), width=.2) +
+xlab("") +
+ylab("Accuracy") +
+theme_bw() +
+ggtitle("Tweet intrusion")
+ggplot(data=data, aes(x=model, y=accuracy, fill=model)) +
+geom_bar(stat="identity", ) +
+geom_errorbar(aes(ymin=accuracy-se, ymax=accuracy+se), width=.2) +
+xlab("") +
+ylab("Accuracy") +
+theme_bw() +
+ggtitle("Tweet intrusion")
+ggplot(data=data, aes(x=model, y=accuracy)) +
+geom_bar(stat="identity", ) +
+geom_errorbar(aes(ymin=accuracy-se, ymax=accuracy+se), width=.2) +
+xlab("") +
+ylab("Accuracy") +
+theme_bw() +
+ggtitle("Tweet intrusion")
+data <- read.csv("data/topic_eval/collapsed_tweet_results.csv",header=TRUE)
+data2 <- read.csv("data/topic_eval/collapsed_word_results.csv",header=TRUE)
+ggplot(data=data, aes(x=reorder(model, accuracy), y=accuracy)) +
+geom_bar(stat="identity", ) +
+geom_errorbar(aes(ymin=accuracy-se, ymax=accuracy+se), width=.2) +
+xlab("") +
+ylab("Accuracy") +
+theme_bw() +
+ggtitle("Tweet intrusion")
+ggplot(data=data, aes(x=reorder(model, accuracy), y=accuracy, color=model)) +
+geom_bar(stat="identity", ) +
+geom_errorbar(aes(ymin=accuracy-se, ymax=accuracy+se), width=.2) +
+xlab("") +
+ylab("Accuracy") +
+theme_bw() +
+ggtitle("Tweet intrusion")
+ggplot(data=data, aes(x=reorder(model, accuracy), y=accuracy, fill=model)) +
+geom_bar(stat="identity", ) +
+geom_errorbar(aes(ymin=accuracy-se, ymax=accuracy+se), width=.2) +
+xlab("") +
+ylab("Accuracy") +
+theme_bw() +
+ggtitle("Tweet intrusion")
+cbPalette <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+ggplot(data=data, aes(x=reorder(model, accuracy), y=accuracy, fill=model)) +
+geom_bar(stat="identity", ) +
+geom_errorbar(aes(ymin=accuracy-se, ymax=accuracy+se), width=.2) +
+xlab("") +
+ylab("Accuracy") +
+theme_bw() +
+ggtitle("Tweet intrusion") +
+scale_fill_manual(values=cbPalette)
+ggplot(data=data, aes(x=reorder(model, accuracy), y=accuracy, fill=reorder(model, accuracy))) +
+geom_bar(stat="identity", ) +
+geom_errorbar(aes(ymin=accuracy-se, ymax=accuracy+se), width=.2) +
+xlab("") +
+ylab("Accuracy") +
+theme_bw() +
+ggtitle("Tweet intrusion") +
+scale_fill_manual(values=cbPalette)
+ggplot(data=data, aes(x=reorder(model, accuracy), y=accuracy, fill=reorder(model, accuracy))) +
+geom_bar(stat="identity", ) +
+geom_errorbar(aes(ymin=accuracy-se, ymax=accuracy+se), width=.2) +
+xlab("") +
+ylab("Accuracy") +
+theme_bw() +
+ggtitle("Tweet intrusion") +
+scale_fill_manual(values=cbPalette) +
+guides(fill=guide_legend(title=""))
+data <- read.csv("data/topic_eval/collapsed_tweet_results.csv",header=TRUE)
+data2 <- read.csv("data/topic_eval/collapsed_word_results.csv",header=TRUE)
+cbPalette <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+ggplot(data=data, aes(x=reorder(model, accuracy), y=accuracy, fill=reorder(model, accuracy))) +
+geom_bar(stat="identity", ) +
+geom_errorbar(aes(ymin=accuracy-se, ymax=accuracy+se), width=.2) +
+xlab("") +
+ylab("Accuracy") +
+theme_bw() +
+ggtitle("Tweet intrusion") +
+scale_fill_manual(values=cbPalette) +
+guides(fill=guide_legend(title=""))
+ggplot(data=data2, aes(x=model, y=accuracy, fill=model)) +
+geom_bar(stat="identity", ) +
+geom_errorbar(aes(ymin=accuracy-se, ymax=accuracy+se), width=.2) +
+xlab("") +
+ylab("Accuracy") +
+theme_bw() +
+ggtitle("Word intrusion")
+ggplot(data=data2, aes(x=model, y=accuracy, fill=model)) +
+geom_bar(stat="identity", ) +
+geom_errorbar(aes(ymin=accuracy-se, ymax=accuracy+se), width=.2) +
+xlab("") +
+ylab("Accuracy") +
+theme_bw() +
+ggtitle("Word intrusion")+
+guides(fill=guide_legend(title=""))
+ggplot(data=data2, aes(x=model, y=accuracy, fill=model)) +
+geom_bar(stat="identity", ) +
+geom_errorbar(aes(ymin=accuracy-se, ymax=accuracy+se), width=.2) +
+xlab("") +
+ylab("Accuracy") +
+theme_bw() +
+ggtitle("Word intrusion")+
+scale_fill_manual(values=cbPalette) +
+guides(fill=guide_legend(title=""))
+ggplot(data=data2, aes(x=reorder(model, accuracy), y=accuracy, fill=reorder(model, accuracy))) +
+geom_bar(stat="identity", ) +
+geom_errorbar(aes(ymin=accuracy-se, ymax=accuracy+se), width=.2) +
+xlab("") +
+ylab("Accuracy") +
+theme_bw() +
+ggtitle("Word intrusion")+
+scale_fill_manual(values=cbPalette) +
+guides(fill=guide_legend(title=""))
+ggplot(data=data2, aes(x=reorder(model, accuracy), y=accuracy, fill=rev(reorder(model, accuracy)))) +
+geom_bar(stat="identity", ) +
+geom_errorbar(aes(ymin=accuracy-se, ymax=accuracy+se), width=.2) +
+xlab("") +
+ylab("Accuracy") +
+theme_bw() +
+ggtitle("Word intrusion")+
+scale_fill_manual(values=cbPalette) +
+guides(fill=guide_legend(title=""))
+ggplot(data=data2, aes(x=reorder(model, accuracy), y=accuracy, fill=reorder(model, accuracy))) +
+geom_bar(stat="identity", ) +
+geom_errorbar(aes(ymin=accuracy-se, ymax=accuracy+se), width=.2) +
+xlab("") +
+ylab("Accuracy") +
+theme_bw() +
+ggtitle("Word intrusion")+
+scale_fill_manual(values=cbPalette) +
+guides(fill=guide_legend(title="", reverse=T))
+ggplot(data=data2, aes(x=reorder(model, accuracy), y=accuracy, fill=reorder(model, accuracy))) +
+geom_bar(stat="identity", ) +
+geom_errorbar(aes(ymin=accuracy-se, ymax=accuracy+se), width=.2) +
+xlab("") +
+ylab("Accuracy") +
+theme_bw() +
+ggtitle("Word intrusion")+
+scale_fill_manual(values=cbPalette) +
+guides(fill=FALSE)
+ggplot(data=data, aes(x=reorder(model, accuracy), y=accuracy, fill=reorder(model, accuracy))) +
+geom_bar(stat="identity", ) +
+geom_errorbar(aes(ymin=accuracy-se, ymax=accuracy+se), width=.2) +
+xlab("") +
+ylab("Accuracy") +
+theme_bw() +
+ggtitle("Tweet intrusion") +
+scale_fill_manual(values=cbPalette) +
+guides(fill=FALSE)
+p1 = ggplot(data=data, aes(x=reorder(model, accuracy), y=accuracy, fill=reorder(model, accuracy))) +
+geom_bar(stat="identity", ) +
+geom_errorbar(aes(ymin=accuracy-se, ymax=accuracy+se), width=.2) +
+xlab("") +
+ylab("Accuracy") +
+theme_bw() +
+ggtitle("Tweet intrusion") +
+scale_fill_manual(values=cbPalette) +
+guides(fill=FALSE)
+p2 = ggplot(data=data2, aes(x=reorder(model, accuracy), y=accuracy, fill=reorder(model, accuracy))) +
+geom_bar(stat="identity", ) +
+geom_errorbar(aes(ymin=accuracy-se, ymax=accuracy+se), width=.2) +
+xlab("") +
+ylab("Accuracy") +
+theme_bw() +
+ggtitle("Word intrusion")+
+scale_fill_manual(values=cbPalette) +
+guides(fill=FALSE)
+grid.arrange(p1, p2)
+library(grid)
+library(gridExtra)
+grid.arrange(p1, p2)
+grid.arrange(p1, p2, nrow=1)
+p2 = ggplot(data=data2, aes(x=reorder(model, accuracy), y=accuracy, fill=reorder(model, accuracy))) +
+geom_bar(stat="identity", ) +
+geom_errorbar(aes(ymin=accuracy-se, ymax=accuracy+se), width=.2) +
+xlab("") +
+ylab("") +
+theme_bw() +
+ggtitle("Word intrusion")+
+scale_fill_manual(values=cbPalette) +
+guides(fill=FALSE)
+grid.arrange(p1, p2, nrow=1)
+p1 = ggplot(data=data, aes(x=reorder(model, accuracy), y=accuracy, fill=reorder(model, accuracy))) +
+geom_bar(stat="identity", ) +
+geom_errorbar(aes(ymin=accuracy-se, ymax=accuracy+se), width=.2) +
+xlab("") +
+ylab("Accuracy") +
+theme_bw() +
+ggtitle("Tweet intrusion") +
+scale_fill_manual(values=cbPalette) +
+guides(fill=FALSE) +
+theme(plot.margin=unit(c(-0.5,1,1,1),"cm"))
+p1 = ggplot(data=data, aes(x=reorder(model, accuracy), y=accuracy, fill=reorder(model, accuracy))) +
+geom_bar(stat="identity", ) +
+geom_errorbar(aes(ymin=accuracy-se, ymax=accuracy+se), width=.2) +
+xlab("") +
+ylab("Accuracy") +
+theme_bw() +
+ggtitle("Tweet intrusion") +
+scale_fill_manual(values=cbPalette) +
+guides(fill=FALSE)
+p2 = ggplot(data=data2, aes(x=reorder(model, accuracy), y=accuracy, fill=reorder(model, accuracy))) +
+geom_bar(stat="identity", ) +
+geom_errorbar(aes(ymin=accuracy-se, ymax=accuracy+se), width=.2) +
+xlab("") +
+ylab("") +
+theme_bw() +
+ggtitle("Word intrusion")+
+scale_fill_manual(values=cbPalette) +
+guides(fill=FALSE) +
+theme(plot.margin=unit(c(-0.5,1,1,1),"cm"))
+grid.arrange(p1, p2, nrow=1)
+p2 = ggplot(data=data2, aes(x=reorder(model, accuracy), y=accuracy, fill=reorder(model, accuracy))) +
+geom_bar(stat="identity", ) +
+geom_errorbar(aes(ymin=accuracy-se, ymax=accuracy+se), width=.2) +
+xlab("") +
+ylab("") +
+theme_bw() +
+ggtitle("Word intrusion")+
+scale_fill_manual(values=cbPalette) +
+guides(fill=FALSE) +
+theme(plot.margin=unit(l=-.5,"cm"))
+p2 = ggplot(data=data2, aes(x=reorder(model, accuracy), y=accuracy, fill=reorder(model, accuracy))) +
+geom_bar(stat="identity", ) +
+geom_errorbar(aes(ymin=accuracy-se, ymax=accuracy+se), width=.2) +
+xlab("") +
+ylab("") +
+theme_bw() +
+ggtitle("Word intrusion")+
+scale_fill_manual(values=cbPalette) +
+guides(fill=FALSE) +
+theme(plot.margin=margin(l=-.5, "cm"))
+p2 = ggplot(data=data2, aes(x=reorder(model, accuracy), y=accuracy, fill=reorder(model, accuracy))) +
+geom_bar(stat="identity", ) +
+geom_errorbar(aes(ymin=accuracy-se, ymax=accuracy+se), width=.2) +
+xlab("") +
+ylab("") +
+theme_bw() +
+ggtitle("Word intrusion")+
+scale_fill_manual(values=cbPalette) +
+guides(fill=FALSE) +
+theme(plot.margin=margin(l=-.5, "cm"))
+p2 = ggplot(data=data2, aes(x=reorder(model, accuracy), y=accuracy, fill=reorder(model, accuracy))) +
+geom_bar(stat="identity", ) +
+geom_errorbar(aes(ymin=accuracy-se, ymax=accuracy+se), width=.2) +
+xlab("") +
+ylab("") +
+theme_bw() +
+ggtitle("Word intrusion")+
+scale_fill_manual(values=cbPalette) +
+guides(fill=FALSE)
+grid.arrange(p1, p2, nrow=1)
+p1 = ggplot(data=data, aes(x=reorder(model, accuracy), y=accuracy, fill=reorder(model, accuracy))) +
+geom_bar(stat="identity", ) +
+geom_errorbar(aes(ymin=accuracy-se, ymax=accuracy+se), width=.2) +
+xlab("") +
+ylab("Accuracy") +
+theme_bw() +
+ylim(.3, .8) +
+ggtitle("Tweet intrusion") +
+scale_fill_manual(values=cbPalette) +
+guides(fill=FALSE)
+p2 = ggplot(data=data2, aes(x=reorder(model, accuracy), y=accuracy, fill=reorder(model, accuracy))) +
+geom_bar(stat="identity", ) +
+geom_errorbar(aes(ymin=accuracy-se, ymax=accuracy+se), width=.2) +
+xlab("") +
+ylab("") +
+theme_bw() +
+ylim(.1, .7) +
+ggtitle("Word intrusion")+
+scale_fill_manual(values=cbPalette) +
+guides(fill=FALSE)
+grid.arrange(p1, p2, nrow=1)
+p1 = ggplot(data=data, aes(x=reorder(model, accuracy), y=accuracy, fill=reorder(model, accuracy))) +
+geom_bar(stat="identity", ) +
+geom_errorbar(aes(ymin=accuracy-se, ymax=accuracy+se), width=.2) +
+xlab("") +
+ylab("Accuracy") +
+theme_bw() +
+ylim(0.3, 0.8) +
+ggtitle("Tweet intrusion") +
+scale_fill_manual(values=cbPalette) +
+guides(fill=FALSE)
+p1
+p1 = ggplot(data=data, aes(x=reorder(model, accuracy), y=accuracy, fill=reorder(model, accuracy))) +
+geom_bar(stat="identity", ) +
+geom_errorbar(aes(ymin=accuracy-se, ymax=accuracy+se), width=.2) +
+xlab("") +
+ylab("Accuracy") +
+theme_bw() +
+ggtitle("Tweet intrusion") +
+scale_fill_manual(values=cbPalette) +
+guides(fill=FALSE) +
+scale_y_continuous(limits=c(.3,.8),oob = rescale_none)
+p1
+library(scales)
+p1 = ggplot(data=data, aes(x=reorder(model, accuracy), y=accuracy, fill=reorder(model, accuracy))) +
+geom_bar(stat="identity", ) +
+geom_errorbar(aes(ymin=accuracy-se, ymax=accuracy+se), width=.2) +
+xlab("") +
+ylab("Accuracy") +
+theme_bw() +
+ggtitle("Tweet intrusion") +
+scale_fill_manual(values=cbPalette) +
+guides(fill=FALSE) +
+scale_y_continuous(limits=c(.3,.8),oob = rescale_none)
+p1
+p1 = ggplot(data=data, aes(x=reorder(model, accuracy), y=accuracy, fill=reorder(model, accuracy))) +
+geom_bar(stat="identity", ) +
+geom_errorbar(aes(ymin=accuracy-se, ymax=accuracy+se), width=.2) +
+xlab("") +
+ylab("Accuracy") +
+theme_bw() +
+ggtitle("Tweet intrusion") +
+scale_fill_manual(values=cbPalette) +
+guides(fill=FALSE) +
+scale_y_continuous(limits=c(.4,.8),oob = rescale_none)
+p1
+p2 = ggplot(data=data2, aes(x=reorder(model, accuracy), y=accuracy, fill=reorder(model, accuracy))) +
+geom_bar(stat="identity", ) +
+geom_errorbar(aes(ymin=accuracy-se, ymax=accuracy+se), width=.2) +
+xlab("") +
+ylab("") +
+theme_bw() +
+ylim(.1, .7) +
+ggtitle("Word intrusion")+
+scale_fill_manual(values=cbPalette) +
+guides(fill=FALSE) +
+scale_y_continuous(limits=c(.2,.6),oob = rescale_none)
+p2 = ggplot(data=data2, aes(x=reorder(model, accuracy), y=accuracy, fill=reorder(model, accuracy))) +
+geom_bar(stat="identity", ) +
+geom_errorbar(aes(ymin=accuracy-se, ymax=accuracy+se), width=.2) +
+xlab("") +
+ylab("") +
+theme_bw() +
+ggtitle("Word intrusion")+
+scale_fill_manual(values=cbPalette) +
+guides(fill=FALSE) +
+scale_y_continuous(limits=c(.2,.6),oob = rescale_none)
+grid.arrange(p1, p2, nrow=1)
+p2 = ggplot(data=data2, aes(x=reorder(model, accuracy), y=accuracy, fill=reorder(model, accuracy))) +
+geom_bar(stat="identity", ) +
+geom_errorbar(aes(ymin=accuracy-se, ymax=accuracy+se), width=.2) +
+xlab("") +
+ylab("") +
+theme_bw() +
+ggtitle("Word intrusion")+
+scale_fill_manual(values=cbPalette) +
+guides(fill=FALSE) +
+scale_y_continuous(limits=c(.2,.55),oob = rescale_none)
+grid.arrange(p1, p2, nrow=1)
+library(ggplot2)
+library(ggrepel)
+library(RColorBrewer)
+setwd('/Users/ddemszky/Google_Drive/Research/Framing/NAACL/framing-twitter')
+data <- read.csv("data/output/topic_polarization_relative.csv",header=TRUE)
+ggplot(data, aes(x=year, y=polarization, color=kind))+
+stat_smooth(aes(group=kind), method=lm, se=TRUE, fullrange=TRUE) +
+geom_line(aes(group=label), color='gray75', linetype='dashed') +
+geom_point(aes(fill=kind), pch=21, size=2, colour='gray20')+
+geom_point() +
+geom_point(shape=1, size=2, colour='gray20') +
+geom_text_repel(data=subset(data, kind == 'within-topic'), aes(label=label),color='gray10', show.legend = FALSE) +
+xlab('Year') +
+ylab('Polarization') +
+theme_bw() +
+theme(legend.position="top", legend.direction="horizontal", legend.title = element_blank(), legend.box.margin=margin(0,0,-10,0), legend.text = element_text(margin = margin(r =100, unit = "pt")), panel.grid.major.x = element_blank(), panel.grid.minor = element_blank()) +
+scale_color_manual(values=c("darkolivegreen4", "deeppink4")) +
+scale_x_continuous(limits = c(2015.5,2019.05), expand = c(0, 0))
+ggplot(data, aes(x=year, y=polarization, color=kind))+
+stat_smooth(aes(group=kind), method=lm, se=TRUE, fullrange=TRUE) +
+geom_line(aes(group=label), color='gray75', linetype='dashed') +
+geom_point(aes(fill=kind), pch=21, size=2, colour='gray20')+
+geom_point() +
+geom_point(shape=1, size=2, colour='gray20') +
+geom_text_repel(data=subset(data, kind == 'within-topic'), aes(label=label),color='gray10', show.legend = FALSE) +
+xlab('Year') +
+ylab('Polarization') +
+theme_bw() +
+theme(legend.position="top", legend.direction="horizontal", legend.title = element_blank(), legend.box.margin=margin(0,0,-10,0), legend.text = element_text(margin = margin(r =100, unit = "pt"), size=8), panel.grid.major.x = element_blank(), panel.grid.minor = element_blank()) +
+scale_color_manual(values=c("darkolivegreen4", "deeppink4")) +
+scale_x_continuous(limits = c(2015.5,2019.05), expand = c(0, 0))
+ggplot(data, aes(x=year, y=polarization, color=kind))+
+stat_smooth(aes(group=kind), method=lm, se=TRUE, fullrange=TRUE) +
+geom_line(aes(group=label), color='gray75', linetype='dashed') +
+geom_point(aes(fill=kind), pch=21, size=2, colour='gray20')+
+geom_point() +
+geom_point(shape=1, size=2, colour='gray20') +
+geom_text_repel(data=subset(data, kind == 'within-topic'), aes(label=label),color='gray10', show.legend = FALSE) +
+xlab('Year') +
+ylab('Polarization') +
+theme_bw() +
+theme(legend.position="top", legend.direction="horizontal", legend.title = element_blank(), legend.box.margin=margin(0,0,-10,0), legend.text = element_text(margin = margin(r =100, unit = "pt"), size=10), panel.grid.major.x = element_blank(), panel.grid.minor = element_blank()) +
+scale_color_manual(values=c("darkolivegreen4", "deeppink4")) +
+scale_x_continuous(limits = c(2015.5,2019.05), expand = c(0, 0))
+ggplot(data, aes(x=year, y=polarization, color=kind))+
+stat_smooth(aes(group=kind), method=lm, se=TRUE, fullrange=TRUE) +
+geom_line(aes(group=label), color='gray75', linetype='dashed') +
+geom_point(aes(fill=kind), pch=21, size=2, colour='gray20')+
+geom_point() +
+geom_point(shape=1, size=2, colour='gray20') +
+geom_text_repel(data=subset(data, kind == 'within-topic'), aes(label=label),color='gray10', show.legend = FALSE) +
+xlab('Year') +
+ylab('Polarization') +
+theme_bw() +
+theme(legend.position="top", legend.direction="horizontal", legend.title = element_blank(), legend.box.margin=margin(0,0,-10,0), legend.text = element_text(margin = margin(r =50, unit = "pt"), size=10), panel.grid.major.x = element_blank(), panel.grid.minor = element_blank()) +
+scale_color_manual(values=c("darkolivegreen4", "deeppink4")) +
+scale_x_continuous(limits = c(2015.5,2019.05), expand = c(0, 0))
+ggplot(data, aes(x=year, y=polarization, color=kind))+
+stat_smooth(aes(group=kind), method=lm, se=TRUE, fullrange=TRUE) +
+geom_line(aes(group=label), color='gray75', linetype='dashed') +
+geom_point(aes(fill=kind), pch=21, size=2, colour='gray20')+
+geom_point() +
+geom_point(shape=1, size=2, colour='gray20') +
+geom_text_repel(data=subset(data, kind == 'within-topic'), aes(label=label),color='gray10', show.legend = FALSE) +
+xlab('Year') +
+ylab('Polarization') +
+theme_bw() +
+theme(legend.position="top", legend.direction="horizontal", legend.title = element_blank(), legend.box.margin=margin(0,0,-10,0), legend.text = element_text(margin = margin(r =50, unit = "pt"), size=12), panel.grid.major.x = element_blank(), panel.grid.minor = element_blank()) +
+scale_color_manual(values=c("darkolivegreen4", "deeppink4")) +
+scale_x_continuous(limits = c(2015.5,2019.05), expand = c(0, 0))
+data <- read.csv("data/output/topic_polarization_relative.csv",header=TRUE)
+ggplot(data, aes(x=year, y=polarization, color=kind))+
+stat_smooth(aes(group=kind), method=lm, se=TRUE, fullrange=TRUE) +
+geom_line(aes(group=label), color='gray75', linetype='dashed') +
+geom_point(aes(fill=kind), pch=21, size=2, colour='gray20')+
+geom_point() +
+geom_point(shape=1, size=2, colour='gray20') +
+geom_text_repel(data=subset(data, kind == 'within-topic'), aes(label=label),color='gray10', show.legend = FALSE) +
+xlab('Year') +
+ylab('Polarization') +
+theme_bw() +
+theme(legend.position="top", legend.direction="horizontal", legend.title = element_blank(), legend.box.margin=margin(0,0,-10,0), legend.text = element_text(margin = margin(r =50, unit = "pt"), size=12), panel.grid.major.x = element_blank(), panel.grid.minor = element_blank()) +
+scale_color_manual(values=c("darkolivegreen4", "deeppink4")) +
+scale_x_continuous(limits = c(2015.5,2019.05), expand = c(0, 0))

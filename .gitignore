@@ -105,3 +105,4 @@ venv.bak/
 update.sh
 .DS_Store
 .RHistory
+.idea/
