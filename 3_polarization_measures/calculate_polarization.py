@@ -63,60 +63,50 @@ def get_user_topic_counts(tweets):
             data.append(v)
     return sp.csr_matrix((data, (col_idx, row_idx)), shape=(len(users), NUM_CLUSTERS))
 
-def leaveout(dem_counts, rep_counts):
-
+def posterior_probability(dem_counts, rep_counts, exclude_user_party = None, exclude_user_id = None):
     dem_sum = dem_counts.sum(axis=0)
     rep_sum = rep_counts.sum(axis=0)
+    if exclude_user_party == 'Dem':
+        dem_sum -= dem_counts[exclude_user_id, :]
+    if exclude_user_party == 'Rep':
+        rep_sum -= rep_counts[exclude_user_id, :]
     rep_sum_total = rep_sum.sum()
     rep_q = rep_sum / rep_sum_total
-    np.testing.assert_almost_equal(rep_q.sum(), 1, decimal=5)
     dem_sum_total = dem_sum.sum()
     dem_q = dem_sum / dem_sum_total
-    np.testing.assert_almost_equal(dem_q.sum(), 1, decimal=5)
+    token_scores = (rep_q / (dem_q + rep_q)).transpose()
+    return 1. - token_scores, token_scores
 
+def calculate_polarization(dem_counts, rep_counts, measure = posterior_probability, leaveout = True):
     dem_user_total = dem_counts.sum(axis=1)
     rep_user_total = rep_counts.sum(axis=1)
+    dem_user_distr = (sp.diags(1 / dem_user_total.A.ravel())).dot(dem_counts)  # get row-wise distributions
+    rep_user_distr = (sp.diags(1 / rep_user_total.A.ravel())).dot(rep_counts)
+    dem_no = dem_counts.shape[0]
+    rep_no = rep_counts.shape[0]
+
+    # apply measure without leave-out
+    if not leaveout:
+        token_scores_dem, token_scores_rep = measure(dem_counts, rep_counts)
+        dem_val = 1 / dem_no * dem_user_distr.dot(token_scores_dem).sum()
+        rep_val = 1 / rep_no * rep_user_distr.dot(token_scores_rep).sum()
+        return 1/2 * (dem_val + rep_val)
 
     dem_addup = 0
-    for i, u in enumerate(dem_counts):  # for each user, exclude them and get the empirical phrase frequencies
-        minus_user = dem_sum - u
-        minus_user_sum = minus_user.sum()
-        dem_q_minus_user = minus_user / minus_user_sum
-        np.testing.assert_almost_equal(dem_q_minus_user.sum(), 1, decimal=5)
-        user_weighted = u.T / dem_user_total[i]
-        total_q = dem_q_minus_user + rep_q
-        dem_addup += (1. - rep_q / total_q).dot(user_weighted)[0, 0]
-    dem_val = 1 / 2 * 1 / dem_counts.shape[0] * dem_addup
-
-    del dem_counts
-    del dem_sum
-    gc.collect()
+    for i in range(dem_no):
+        token_scores_dem, _ = measure(dem_counts, rep_counts, 'Dem', i)
+        dem_addup += dem_user_distr[i, :].dot(token_scores_dem)[0, 0]
+    dem_val = 1 / dem_no * dem_addup
 
     rep_addup = 0
-    for i, u in enumerate(rep_counts):  # for each user, exclude them and get the empirical phrase frequencies
-        minus_user = rep_sum - u
-        minus_user_sum = minus_user.sum()
-        rep_q_minus_user = minus_user / minus_user_sum
-        np.testing.assert_almost_equal(rep_q_minus_user.sum(), 1, decimal=5)
-        user_weighted = u.T / rep_user_total[i]
-        total_q = rep_q_minus_user + dem_q
-        rep_addup += (rep_q_minus_user / total_q).dot(user_weighted)[0,0]
-    rep_val = 1 / 2 * 1 / rep_counts.shape[0] * rep_addup
-
-    pi_lo = dem_val + rep_val
-
-    del rep_counts
-    del rep_sum
-    del rep_q
-    del dem_q
-    gc.collect()
-
-    return pi_lo
-
-def calculate_polarization(dem_counts, rep_counts):
+    for i in range(rep_no):
+        _, token_scores_rep = measure(dem_counts, rep_counts, 'Rep', i)
+        rep_addup += token_scores_rep.dot(rep_user_distr[i, :])[0, 0]
+    rep_val = 1 / rep_no * rep_addup
+    return 1/2 * (dem_val + rep_val)
 
 
-def get_values(event, data, token_partisanship_measure = probability, leaveout = False, between_topic = False,
+def get_values(event, data, token_partisanship_measure = posterior_probability, leaveout = True, between_topic = False,
                default_score = 0.5):
     """
     Measure polarization.
@@ -153,6 +143,19 @@ def get_values(event, data, token_partisanship_measure = probability, leaveout =
     del data
     gc.collect()
 
+    # make the prior neutral (i.e. make sure there are the same number of Rep and Dem users)
+    dem_user_len = dem_counts.shape[0]
+    rep_user_len = rep_counts.shape[0]
+    if dem_user_len > rep_user_len:
+        dem_subset = np.array(RNG.sample(range(dem_user_len), rep_user_len))
+        dem_counts = dem_counts[dem_subset, :]
+        dem_user_len = dem_counts.shape[0]
+    elif rep_user_len > dem_user_len:
+        rep_subset = np.array(RNG.sample(range(rep_user_len), dem_user_len))
+        rep_counts = rep_counts[rep_subset, :]
+        rep_user_len = rep_counts.shape[0]
+    assert (dem_user_len == rep_user_len)
+
     all_counts = sp.vstack([dem_counts, rep_counts])
 
     wordcounts = all_counts.nonzero()[1]
@@ -174,20 +177,7 @@ def get_values(event, data, token_partisanship_measure = probability, leaveout =
     del rep_nonzero
     gc.collect()
 
-    # make the prior neutral (i.e. make sure there are the same number of Rep and Dem users)
-    dem_user_len = dem_counts.shape[0]
-    rep_user_len = rep_counts.shape[0]
-    if dem_user_len > rep_user_len:
-        dem_subset = np.random.choice(np.arange(dem_user_len), rep_user_len, replace=False)
-        dem_counts = dem_counts[dem_subset, :]
-        dem_user_len = dem_counts.shape[0]
-    elif rep_user_len > dem_user_len:
-        rep_subset = np.random.choice(np.arange(rep_user_len), dem_user_len, replace=False)
-        rep_counts = rep_counts[rep_subset, :]
-        rep_user_len = rep_counts.shape[0]
-    assert (dem_user_len == rep_user_len)
-
-    actual_val = calculate_polarization(dem_counts, rep_counts)
+    actual_val = calculate_polarization(dem_counts, rep_counts, token_partisanship_measure, leaveout)
 
     all_counts = sp.vstack([dem_counts, rep_counts])
     del dem_counts
@@ -198,10 +188,11 @@ def get_values(event, data, token_partisanship_measure = probability, leaveout =
     RNG.shuffle(index)
     all_counts = all_counts[index, :]
 
-    random_val = calculate_polarization(all_counts[:dem_user_len, :], all_counts[dem_user_len:, :])
-    print(actual_val, random_val, dem_user_len * 2)
+    random_val = calculate_polarization(all_counts[:dem_user_len, :], all_counts[dem_user_len:, :],
+                                        token_partisanship_measure, leaveout)
+    print(actual_val, random_val, dem_user_len + rep_user_len)
     sys.stdout.flush()
     del all_counts
     gc.collect()
 
-    return actual_val, random_val, dem_user_len * 2
+    return actual_val, random_val, dem_user_len + rep_user_len
