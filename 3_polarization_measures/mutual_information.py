@@ -10,8 +10,7 @@ from collections import Counter
 sys.path.append('..')
 from helpers.funcs import *
 
-from calculate_leaveout_polarization import get_values
-from between_topic_polarization_leaveout import user_topic_counts
+from calculate_polarization import get_values
 config = json.load(open('../config.json', 'r'))
 INPUT_DIR = config['INPUT_DIR']
 OUTPUT_DIR = config['OUTPUT_DIR']
@@ -49,24 +48,9 @@ def mutual_information(dem_counts, rep_counts):
     mi_dem_not_t = dem_not_t * np.log2(no_users * (dem_not_t / (all_not_t * dem_no)))
     mi_rep_t = rep_t * np.log2(no_users * (rep_t / (all_t * rep_no)))
     mi_rep_not_t = rep_not_t * np.log2(no_users * (rep_not_t / (all_not_t * rep_no)))
-    mi_values = 1 / no_users * (mi_dem_t + mi_dem_not_t + mi_rep_t + mi_rep_not_t)
+    mi_values = (1 / no_users * (mi_dem_t + mi_dem_not_t + mi_rep_t + mi_rep_not_t)).transpose()[:, np.newaxis]
 
-    prev_u = -1
-    all_vals = []
-    user_vals = []
-    for u, t in zip(dem_nonzero[0], dem_nonzero[1]):
-        if u != prev_u and len(user_vals) > 0:
-            all_vals.append(np.mean(user_vals))
-            user_vals = []
-        user_vals.append(mi_values[t])
-        prev_u = u
-    for u, t in zip(rep_nonzero[0], rep_nonzero[1]):
-        if u != prev_u and len(user_vals) > 0:
-            all_vals.append(np.mean(user_vals))
-            user_vals = []
-        user_vals.append(mi_values[t])
-        prev_u = u
-    return np.mean(all_vals)
+    return mi_values, mi_values
 
 
 def get_polarization(event, method = "nofilter", cluster_method = None, between_topic=False):
@@ -88,7 +72,8 @@ def get_polarization(event, method = "nofilter", cluster_method = None, between_
         return None
 
     print(event, len(data))
-    return get_values(event, data, method=mutual_information, between_topic=between_topic, between_topic_count_func=user_topic_counts)
+    return get_values(event, data, token_partisanship_measure=mutual_information, leaveout=True,
+                      between_topic=between_topic, default_score=0)
 
 def get_polarization_topics(event, cluster_method = None):
     '''
@@ -105,7 +90,7 @@ def get_polarization_topics(event, cluster_method = None):
     topic_polarization = {}
     for i in range(NUM_CLUSTERS):
         print(i)
-        topic_polarization[i] = tuple(get_values(event, data[data['topic'] == i], method=mutual_information))
+        topic_polarization[i] = tuple(get_values(event, data[data['topic'] == i], token_partisanship_measure=mutual_information))
 
     cluster_method = method_name(cluster_method)
     with open(TWEET_DIR + event + '/' + event + '_mutual_information_topic_polarization' + cluster_method + '.json', 'w') as f:
@@ -114,7 +99,7 @@ def get_polarization_topics(event, cluster_method = None):
 if __name__ == "__main__":
 
     # for overall polarization
-    '''
+
     event_polarization = {}
     method = sys.argv[1]
     cluster_method = None if len(sys.argv) < 3 else sys.argv[2]
@@ -122,9 +107,9 @@ if __name__ == "__main__":
         event_polarization[e] = tuple(get_polarization(e, method, cluster_method))
 
     cluster_method = method_name(cluster_method)
-    with open(OUTPUT_DIR + 'mutual_information_' + method + cluster_method + '.json', 'w') as f:
+    with open(OUTPUT_DIR + 'mutual_information_' + method + cluster_method + '_leaveout.json', 'w') as f:
         f.write(json.dumps(event_polarization))
-    '''
+
     # for between topic polarization
     '''
     between_topic_polarization = {}
@@ -138,7 +123,9 @@ if __name__ == "__main__":
     '''
 
     # for within topic polarization
+    '''
     topic_polarization = {}
     cluster_method = None if len(sys.argv) < 2 else sys.argv[1]
     for e in events:
         get_polarization_topics(e, cluster_method)
+    '''
