@@ -22,7 +22,7 @@ RNG = random.Random()  # make everything reproducible
 RNG.seed(config['SEED'])
 
 
-def get_user_counts(tweets, vocab):
+def get_user_token_counts(tweets, vocab):
     # user-based
     users = tweets.groupby('user_id')
     row_idx = []
@@ -50,6 +50,18 @@ def get_user_counts(tweets, vocab):
             data.append(v)
     return sp.csr_matrix((data, (col_idx, row_idx)), shape=(len(users), len(vocab)))
 
+def get_user_topic_counts(tweets):
+    # user-based
+    users = tweets.groupby('user_id')
+    row_idx = []
+    col_idx = []
+    data = []
+    for group_idx, (u, group), in enumerate(users):
+        for k, v in Counter(group['topic']).items():
+            col_idx.append(group_idx)
+            row_idx.append(k)
+            data.append(v)
+    return sp.csr_matrix((data, (col_idx, row_idx)), shape=(len(users), NUM_CLUSTERS))
 
 def leaveout(dem_counts, rep_counts):
 
@@ -101,37 +113,44 @@ def leaveout(dem_counts, rep_counts):
 
     return pi_lo
 
-def get_values(event, b, method = leaveout, between_topic = False, between_topic_count_func = None):
-    if len(b) < 100:   # fewer than a 100 tweets
-        if method == leaveout:
-            return 0.5, 0.5, len(set(b['user_id']))  # return these values when there is not enough data to make predictions on
-        else:
-            return 0, 0, len(set(b['user_id']))
+def calculate_polarization(dem_counts, rep_counts):
 
+
+def get_values(event, data, token_partisanship_measure = probability, leaveout = False, between_topic = False,
+               default_score = 0.5):
+    """
+    Measure polarization.
+    :param event: name of the event
+    :param data: dataframe with 'text' and 'user_id'
+    :param token_partisanship_measure: a function calculating token partisanship based on user-token counts
+    :param leaveout: whether to use leave-out estimation
+    :param between_topic: whether the estimate is between topics or tokens
+    :param default_score: default token partisanship score
+    :return:
+    """
     if not between_topic:
         # clean data
-        b['text'] = b['text'].astype(str).apply(clean_text, args=(False, event))
+        data['text'] = data['text'].astype(str).apply(clean_text, args=(False, event))
 
-    dem_tweets, rep_tweets = split_party(b)  # get partisan tweets
-    dem_length = float(len(dem_tweets))
-    rep_length = float(len(rep_tweets))
+    dem_tweets, rep_tweets = split_party(data)  # get partisan tweets
 
     if not between_topic:
         # get vocab
         vocab = {w: i for i, w in
                  enumerate(open(TWEET_DIR + event + '/' + event + '_vocab.txt', 'r').read().splitlines())}
-        dem_counts = get_user_counts(dem_tweets, vocab)
-        rep_counts = get_user_counts(rep_tweets, vocab)
+        dem_counts = get_user_token_counts(dem_tweets, vocab)
+        rep_counts = get_user_token_counts(rep_tweets, vocab)
     else:
-        dem_counts = between_topic_count_func(dem_tweets)
-        rep_counts = between_topic_count_func(rep_tweets)
+        dem_counts = get_user_topic_counts(dem_tweets)
+        rep_counts = get_user_topic_counts(rep_tweets)
 
     dem_user_len = dem_counts.shape[0]
-    if dem_user_len < 10 or rep_counts.shape[0] < 10:
-        return 0.5, 0.5, dem_length + rep_length
+    rep_user_len = rep_counts.shape[0]
+    if dem_user_len < 10 or rep_user_len < 10:
+        return default_score, default_score, dem_user_len + rep_user_len  # return these values when there is not enough data to make predictions on
     del dem_tweets
     del rep_tweets
-    del b
+    del data
     gc.collect()
 
     all_counts = sp.vstack([dem_counts, rep_counts])
@@ -154,9 +173,21 @@ def get_values(event, b, method = leaveout, between_topic = False, between_topic
     del dem_nonzero
     del rep_nonzero
     gc.collect()
-    dem_user_len = dem_counts.shape[0]
 
-    pi_lo = method(dem_counts, rep_counts)
+    # make the prior neutral (i.e. make sure there are the same number of Rep and Dem users)
+    dem_user_len = dem_counts.shape[0]
+    rep_user_len = rep_counts.shape[0]
+    if dem_user_len > rep_user_len:
+        dem_subset = np.random.choice(np.arange(dem_user_len), rep_user_len, replace=False)
+        dem_counts = dem_counts[dem_subset, :]
+        dem_user_len = dem_counts.shape[0]
+    elif rep_user_len > dem_user_len:
+        rep_subset = np.random.choice(np.arange(rep_user_len), dem_user_len, replace=False)
+        rep_counts = rep_counts[rep_subset, :]
+        rep_user_len = rep_counts.shape[0]
+    assert (dem_user_len == rep_user_len)
+
+    actual_val = calculate_polarization(dem_counts, rep_counts)
 
     all_counts = sp.vstack([dem_counts, rep_counts])
     del dem_counts
@@ -167,10 +198,10 @@ def get_values(event, b, method = leaveout, between_topic = False, between_topic
     RNG.shuffle(index)
     all_counts = all_counts[index, :]
 
-    pi_lo_random = method(all_counts[:dem_user_len, :], all_counts[dem_user_len:, :])
-    print(pi_lo, pi_lo_random, dem_length + rep_length)
+    random_val = calculate_polarization(all_counts[:dem_user_len, :], all_counts[dem_user_len:, :])
+    print(actual_val, random_val, dem_user_len * 2)
     sys.stdout.flush()
     del all_counts
     gc.collect()
 
-    return pi_lo, pi_lo_random, dem_length + rep_length
+    return actual_val, random_val, dem_user_len * 2
