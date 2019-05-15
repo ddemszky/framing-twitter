@@ -39,7 +39,7 @@ def get_polarization(event, method = "nofilter", cluster_method = None):
         return None
 
     print(event, len(data))
-    return get_values(event, data)
+    return get_values(event, data, leaveout=True)
 
 if __name__ == "__main__":
     event_polarization = {}
@@ -49,5 +49,5 @@ if __name__ == "__main__":
         event_polarization[e] = tuple(get_polarization(e, method, cluster_method))
 
     cluster_method = method_name(cluster_method)
-    with open(OUTPUT_DIR + 'polarization_' + method + cluster_method + '.json', 'w') as f:
+    with open(OUTPUT_DIR + 'polarization_' + method + cluster_method + '_neutral.json', 'w') as f:
         f.write(json.dumps(event_polarization))
