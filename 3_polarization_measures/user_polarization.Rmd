@@ -1,0 +1,358 @@
+---
+title: "user_polarization"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      root.dir = '/Users/ddemszky/Google_Drive/Research/Framing/NAACL/framing-twitter')
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+```{r}
+library(ggplot2)
+library(ggrepel)
+library(RColorBrewer)
+library("knitr")      # for knitting RMarkdown 
+library("tidyverse")  # for wrangling, plotting, etc. 
+library("lme4")
+library(plm)
+library(lmtest)
+
+```
+
+
+```{r}
+data <- read.csv("../data/tweets/user_polarization.csv",header=TRUE)
+pol <- read.csv("../data/output/polarization_over_time.csv",header=TRUE)
+```
+
+```{r}
+day = 24 * 60 * 60
+```
+
+```{r}
+data = data %>% 
+  filter(first_timestamp > 0,
+         event != 'fort_lauderdale') %>% 
+  mutate(total_follows = dem_follows + rep_follows,
+         preferred_follows = pmax(dem_follows, rep_follows),
+         not_preferred_follows = pmin(dem_follows, rep_follows),
+         follow_ratio = preferred_follows / total_follows,
+         first_day = first_timestamp / day,
+         avg_day = avg_timestamp / day)
+
+pol = pol %>% 
+  filter(event != 'fort_lauderdale',
+         leaveout != 0.5,
+         leaveout > .49,
+         squared_diff < 0.01) %>% 
+  mutate(log_time = log(time * day))
+
+
+data = data %>% 
+  mutate_at(vars(leaveout_score, total_follows, avg_timestamp, first_timestamp, follow_ratio, avg_day, first_day), funs(scaled=scale))
+```
+
+
+```{r}
+# cluster standard errors by user
+pm1 = plm(leaveout_score ~ event + not_preferred_follows + preferred_follows, data=data, model='pooling')
+
+# compute Stata like df-adjustment
+G <- length(unique(data$user_id))
+G
+N <- length(data$user_id)
+dfa <- (G/(G - 1)) * (N - 1)/pm1$df.residual
+ 
+# display with cluster VCE and df-adjustment
+user_c_vcov <- dfa * vcovHC(pm1, type = "HC0", cluster = "group", adjust = T)
+coeftest(pm1, vcov = user_c_vcov) %>% print()
+waldtest(pm1, vcov = user_c_vcov, test = "F") %>% print()
+```
+
+
+```{r}
+lm(leaveout_score_scaled ~ event + not_preferred_follows + preferred_follows, data=data) %>% summary() %>% print()
+#lm(leaveout_score_scaled ~ event + total_follows + preferred_follows, data=data) %>% summary() %>% print()
+```
+
+
+
+
+
+```{r}
+mean(data$leaveout_score)
+mod.c = lmer(leaveout_score_scaled ~ (1|event), data=data)
+mod.a = lmer(leaveout_score_scaled ~ follow_ratio + (1|event), data=data)
+
+anova(mod.a, mod.c) %>% print()
+mod.a %>% summary() %>% print()
+mod.c %>% summary()
+```
+
+
+```{r}
+mean(data$leaveout_score)
+mod.c = lmer(leaveout_score_scaled ~ (1|event), data=data)
+mod.a = lmer(leaveout_score_scaled ~ follow_ratio + (1|event), data=data)
+
+anova(mod.a, mod.c)
+mod.a %>% summary() %>% print()
+mod.c %>% summary()
+```
+
+
+
+```{r}
+mod.c = lmer(leaveout_score_scaled ~ (1|event), data=data)
+mod.a = lmer(leaveout_score_scaled ~ total_follows + (1|event), data=data)
+anova(mod.a, mod.c)
+mod.a %>% summary()
+```
+
+```{r}
+mod.c = lmer(leaveout_score_scaled ~ (total_follows|event), data=data)
+mod.a = lmer(leaveout_score_scaled ~ total_follows_scak + (total_follows|event), data=data)
+anova(mod.a, mod.c)
+```
+
+
+
+
+```{r}
+ggplot(data, aes(y=leaveout_score, x=avg_day)) +
+  geom_smooth(method='lm', se=TRUE)
+```
+
+
+```{r}
+ggplot(pol, aes(y=leaveout, x=time)) +
+  geom_smooth(method='lm', se=TRUE)
+```
+
+
+
+
+```{r}
+ggplot(data, aes(x=total_follows, y=rep_follows)) +
+  geom_smooth(method='lm', se=TRUE)
+```
+
+
+```{r}
+lm(leaveout_score ~ dem_follows, data=data %>% filter(party == 'dem')) %>% summary() %>% print()
+lm(leaveout_score ~ rep_follows, data=data %>% filter(party == 'rep')) %>% summary() %>% print()
+mod.lmer_simp = lmer(follow_ratio_sc ~ (1 + total_follows|event), data=data)
+mod.lmer = lmer(follow_ratio ~ total_follows + (1 + total_follows|event), data=data)
+anova(mod.lmer, mod.lmer_simp) %>% print()
+```
+
+
+
+```{r}
+mod.lmer_simp = lmer(leaveout_score ~ (1 + log_avg_ts|event), data=data)
+mod.lmer = lmer(leaveout_score ~ log_avg_ts + (1 + log_avg_ts|event), data=data)
+anova(mod.lmer, mod.lmer_simp) %>% print()
+
+```
+
+
+
+
+```{r}
+mod.lm = lm(leaveout_score ~ avg_day, data=data)
+mod.lm %>% summary() %>% print()
+mod.lmer_simp = lmer(leaveout_score ~ (1 + avg_day|event), data=data)
+mod.lmer = lmer(leaveout_score ~ avg_day + (1 + avg_day|event), data=data)
+anova(mod.lmer, mod.lmer_simp) %>% print()
+
+```
+
+
+
+
+```{r}
+mod.lm = lm(leaveout_score_scaled ~ total_follows_scaled, data=data)
+mod.lm %>% summary() %>% print()
+mod.lmer = lmer(leaveout_score_scaled ~ total_follows_scaled + (1|event), data=data)
+mod.lmer_simp = lmer(leaveout_score_scaled ~ (1|event), data=data)
+mod.lm %>% summary() %>% print()
+mod.lmer %>% summary() %>% print()
+anova(mod.lmer, mod.lmer_simp) %>% print()
+```
+
+
+```{r}
+lm(total_follows_scaled ~ avg_timestamp_scaled, data=data) %>% 
+  summary() %>% 
+  print()
+
+lm(total_follows_scaled ~ log_avg_ts_scaled, data=data) %>% 
+  summary() %>% 
+  print()
+
+mod2.lmer = lmer(total_follows_scaled ~ avg_timestamp_scaled + (1|event), data=data)
+mod2.lmer_simp = lmer(total_follows_scaled ~ (1|event), data=data)
+anova(mod2.lmer, mod2.lmer_simp) %>% print()
+```
+
+```{r}
+lm(leave ~ avg_timestamp_scaled, data=data) %>% 
+  summary() %>% 
+  print()
+
+lm(total_follows_scaled ~ log_avg_ts_scaled, data=data) %>% 
+  summary() %>% 
+  print()
+
+mod2.lmer = lmer(total_follows_scaled ~ avg_timestamp_scaled + (1|event), data=data)
+mod2.lmer_simp = lmer(total_follows_scaled ~ (1|event), data=data)
+anova(mod2.lmer, mod2.lmer_simp) %>% print()
+```
+
+
+
+
+```{r}
+ggplot(data, aes(x=log_ts, y=leaveout_score)) + 
+  geom_point(alpha=0.05) + 
+  geom_smooth(method ="lm",
+              se=TRUE) +
+  facet_wrap(~event) +
+  ylim(.5, .6)
+```
+
+
+
+```{r}
+model <- lmer(leaveout_score ~ log_ts + (log_ts|event), data = data)
+
+summary(data)
+
+summary(model)
+```
+
+
+
+```{r}
+data <- read.csv("../data/tweets/chattanooga/chattanooga_user_leaveout.csv",header=TRUE)
+data = data %>% 
+  mutate(log_ts = log(first_timestamp))
+ggplot(data, aes(x=log_ts, y=leaveout_score)) + 
+  geom_point(alpha=0.05) + 
+  geom_smooth(method ="lm",
+              se=TRUE) +
+  ylim(.5, .6)
+```
+
+```{r}
+data <- read.csv("../data/tweets/roseburg/roseburg_user_leaveout.csv",header=TRUE)
+data = data %>% 
+  mutate(log_ts = log(first_timestamp))
+ggplot(data, aes(x=log_ts, y=leaveout_score)) + 
+  geom_point(alpha=0.05) + 
+  geom_smooth(method ="lm",
+              se=TRUE) +
+  ylim(.5, .6)
+```
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r}
+data <- read.csv("../data/tweets/colorado_springs/colorado_springs_user_leaveout.csv",header=TRUE)
+data = data %>% 
+  mutate(log_ts = log(first_timestamp))
+ggplot(data, aes(x=log_ts, y=leaveout_score)) + 
+  geom_point(alpha=0.05) + 
+  geom_smooth(method ="lm",
+              se=TRUE) +
+  ylim(.5, .6)
+```
+
+```{r}
+data <- read.csv("../data/tweets/san_bernardino/san_bernardino_user_leaveout.csv",header=TRUE)
+data = data %>% 
+  mutate(log_ts = log(first_timestamp))
+ggplot(data, aes(x=log_ts, y=leaveout_score)) + 
+  geom_point(alpha=0.05) + 
+  geom_smooth(method ="lm",
+              se=TRUE) +
+  ylim(.5, .6)
+```
+
+```{r}
+data <- read.csv("../data/tweets/kalamazoo/kalamazoo_user_leaveout.csv",header=TRUE)
+data = data %>% 
+  mutate(log_ts = log(first_timestamp))
+ggplot(data, aes(x=log_ts, y=leaveout_score)) + 
+  geom_point(alpha=0.05) + 
+  geom_smooth(method ="lm",
+              se=TRUE) +
+  ylim(.5, .6)
+```
+
+```{r}
+data <- read.csv("../data/tweets/orlando/orlando_user_leaveout.csv",header=TRUE)
+data = data %>% 
+  mutate(log_ts = log(first_timestamp))
+ggplot(data, aes(x=log_ts, y=leaveout_score)) + 
+  geom_point(alpha=0.05) + 
+  geom_smooth(method ="lm",
+              se=TRUE) +
+  ylim(.5, .6)
+```
+
+```{r}
+data <- read.csv("../data/tweets/dallas/dallas_user_leaveout.csv",header=TRUE)
+data = data %>% 
+  mutate(log_ts = log(first_timestamp))
+ggplot(data, aes(x=log_ts, y=leaveout_score)) + 
+  geom_point(alpha=0.05) + 
+  geom_smooth(method ="lm",
+              se=TRUE) +
+  ylim(.5, .6)
+```
+
+```{r}
+data <- read.csv("../data/tweets/baton_rouge/baton_rouge_user_leaveout.csv",header=TRUE)
+data = data %>% 
+  mutate(log_ts = log(first_timestamp))
+ggplot(data, aes(x=log_ts, y=leaveout_score)) + 
+  geom_point(alpha=0.05) + 
+  geom_smooth(method ="lm",
+              se=TRUE) +
+  ylim(.5, .6)
+```
+
+
+```{r}
+data <- read.csv("../data/tweets/burlington/burlington_user_leaveout.csv",header=TRUE)
+data = data %>% 
+  mutate(log_ts = log(first_timestamp))
+ggplot(data, aes(x=log_ts, y=leaveout_score)) + 
+  geom_point(alpha=0.05) + 
+  geom_smooth(method ="lm",
+              se=TRUE) +
+  ylim(.5, .6)
+```
+
+```{r}
+
+```
+
+```{r}
+data <- read.csv("../data/tweets/vegas/vegas_user_leaveout.csv",header=TRUE)
+data = data %>% 
+  mutate(log_ts = log(first_timestamp))
+ggplot(data, aes(x=log_ts, y=leaveout_score, color=party)) + 
+  geom_point(alpha=0.05) + 
+  geom_smooth(method ="lm",
+              se=TRUE)
+```
+
