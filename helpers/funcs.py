@@ -53,9 +53,9 @@ def split_party(data):
     part_tweets = data[~data['dem_follows'].isnull() & ~data['rep_follows'].isnull() & (data['dem_follows'] != data['rep_follows'])]
     return part_tweets[part_tweets['dem_follows'] > part_tweets['rep_follows']], part_tweets[part_tweets['dem_follows'] < part_tweets['rep_follows']]
 
-def method_name(cluster_method):
-    if cluster_method:
-        return '_' + cluster_method
+def method_name(method, name):
+    if method:
+        return '_' + name
     else:
         return ''
 
