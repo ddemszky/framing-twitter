@@ -28,7 +28,7 @@ events = open(INPUT_DIR + 'event_names.txt', 'r').read().splitlines()
 
 parser = argparse.ArgumentParser(description='Computes polarization value between two groups of texts.')
 parser.add_argument('-f','--filtering', help='Kind of data filtering.', default='nofilter')
-parser.add_argument('-c','--cluster', help='Kind of cluster method to filter with (only if filtering is "clustered"', default='relative')
+parser.add_argument('-c','--cluster', help='Kind of cluster method to filter with (only if filtering is "clustered"', default=None)
 parser.add_argument('-l','--leaveout', help='Whether to use leave-out.', action="store_true")
 parser.add_argument('-m','--method', help='Which method to use: posterior, mutual_information or chi_square', default='posterior')
 parser.add_argument('-b','--between', help='Whether to calculate between-topic polarization.', action="store_true")
@@ -112,14 +112,16 @@ def chi_square(dem_t, rep_t, dem_not_t, rep_not_t, dem_no, rep_no):
     chi_denom = all_t * all_not_t * (dem_t + dem_not_t) * (rep_t + rep_not_t)
     return (chi_enum / chi_denom).transpose()[:, np.newaxis]
 
-
 def calculate_polarization(dem_counts, rep_counts, measure="posterior", leaveout=True):
     dem_user_total = dem_counts.sum(axis=1)
     rep_user_total = rep_counts.sum(axis=1)
+
     dem_user_distr = (sp.diags(1 / dem_user_total.A.ravel())).dot(dem_counts)  # get row-wise distributions
     rep_user_distr = (sp.diags(1 / rep_user_total.A.ravel())).dot(rep_counts)
     dem_no = dem_counts.shape[0]
     rep_no = rep_counts.shape[0]
+    assert (set(dem_user_total.nonzero()[0]) == set(range(dem_no)))  # make sure there are no zero rows
+    assert (set(rep_user_total.nonzero()[0]) == set(range(rep_no)))  # make sure there are no zero rows
     if measure not in ('posterior', 'mutual_information', 'chi_square'):
         print('invalid method')
         return
@@ -232,7 +234,7 @@ def get_values(event, data, token_partisanship_measure='posterior', leaveout=Tru
 
     wordcounts = all_counts.nonzero()[1]
 
-    # filter words used by less than 1 person
+    # filter words used by fewer than 2 people
     all_counts = all_counts[:, np.array([(np.count_nonzero(wordcounts == i) > 1) for i in range(all_counts.shape[1])])]
 
     dem_counts = all_counts[:dem_user_len, :]
@@ -295,8 +297,8 @@ if __name__ == "__main__":
         data = load_data(e, filter_method, args['cluster'], args['between'])
         event_polarization[e] = tuple(get_values(e, data, args['method'], args['leaveout'], args['between'], default_score))
 
-    cluster_method = method_name(args['cluster'])
-    leaveout = '_leaveout' if args['leaveout'] else ''
+    cluster_method = method_name(args['cluster'], args['cluster'])
+    leaveout = method_name(args['leaveout'], 'leaveout')
     filename = 'polarization_' + args['method'] + '_' + filter_method + cluster_method + leaveout + '.json'
     if args['between']:
         filename = 'between_topic_' + filename

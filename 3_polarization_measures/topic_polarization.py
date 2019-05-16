@@ -33,8 +33,8 @@ def get_polarization(event):
         print(i)
         topic_polarization[i] = tuple(get_values(e, data[data['topic'] == i], args['method'], args['leaveout'], False, default_score))
 
-    cluster_method = method_name(args['cluster'])
-    leaveout = '_leaveout' if args['leaveout'] else ''
+    cluster_method = method_name(args['cluster'], args['cluster'])
+    leaveout = method_name(args['leaveout'], 'leaveout')
     filename = '_topic_polarization_' + args['method'] + '_' + cluster_method + leaveout + '.json'
     with open(TWEET_DIR + event + '/' + event + filename, 'w') as f:
         f.write(json.dumps(topic_polarization))
