@@ -1,0 +1,41 @@
+year,polarization,label,is_actual
+2018.5777777777778,26.820031529641632,Annapolis,actual value
+2016.6305555555555,27.268871798477083,Baton Rouge,actual value
+2016.8138888888889,23.482795805057165,Burlington,actual value
+2015.6277777777777,11.110898757341234,Chattanooga,actual value
+2015.9916666666666,68.05566970428444,Colorado Springs,actual value
+2016.6027777777779,97.99828141429364,Dallas,actual value
+2017.3833333333334,12.688125672347663,Fresno,actual value
+2016.2222222222222,15.448692854560582,Kalamazoo,actual value
+2018.3944444444444,149.00512359673897,Nashville,actual value
+2016.5333333333333,2242.4188538483004,Orlando,actual value
+2018.2055555555555,102.79916326839032,Parkland,actual value
+2018.9083333333333,44.43417556543802,Pittsburgh,actual value
+2015.8361111111112,11.671620110412945,Roseburg,actual value
+2016.0055555555555,124.7119672524014,San Bernardino,actual value
+2017.5388888888888,37.292684318902886,San Francisco,actual value
+2018.4666666666667,46.62742399728563,Santa Fe,actual value
+2017.9305555555557,153.89047043192124,Sutherland Springs,actual value
+2017.9194444444445,101.04799400687406,Thornton,actual value
+2018.9361111111111,62.36319620459659,Thousand Oaks,actual value
+2017.8361111111112,616.6566163537525,Vegas,actual value
+2018.5777777777778,0.6275603008665935,Annapolis,value resulting from random party assignment
+2016.6305555555555,1.1249029483683395,Baton Rouge,value resulting from random party assignment
+2016.8138888888889,0.2448722403411469,Burlington,value resulting from random party assignment
+2015.6277777777777,0.7575194422185514,Chattanooga,value resulting from random party assignment
+2015.9916666666666,0.6057977064015989,Colorado Springs,value resulting from random party assignment
+2016.6027777777779,0.5851042161410305,Dallas,value resulting from random party assignment
+2017.3833333333334,1.5830177728514656,Fresno,value resulting from random party assignment
+2016.2222222222222,0.5188707226719699,Kalamazoo,value resulting from random party assignment
+2018.3944444444444,1.2427089718817266,Nashville,value resulting from random party assignment
+2016.5333333333333,0.715074923394909,Orlando,value resulting from random party assignment
+2018.2055555555555,1.5349152044231689,Parkland,value resulting from random party assignment
+2018.9083333333333,0.8425377892642647,Pittsburgh,value resulting from random party assignment
+2015.8361111111112,0.38964687027020695,Roseburg,value resulting from random party assignment
+2016.0055555555555,1.7076789521644904,San Bernardino,value resulting from random party assignment
+2017.5388888888888,1.0146871817166536,San Francisco,value resulting from random party assignment
+2018.4666666666667,1.4225964921959775,Santa Fe,value resulting from random party assignment
+2017.9305555555557,0.6905195435307115,Sutherland Springs,value resulting from random party assignment
+2017.9194444444445,0.4685132355596912,Thornton,value resulting from random party assignment
+2018.9361111111111,0.2683090996335774,Thousand Oaks,value resulting from random party assignment
+2017.8361111111112,1.5184627991510138,Vegas,value resulting from random party assignment
