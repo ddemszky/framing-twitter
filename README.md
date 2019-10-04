@@ -20,7 +20,7 @@ I added scripts that can be used for obtaining tweets and followers for the poli
 The following scripts are included in there:
 
 - `lookup_tweets.py`: Obtain tweets by ID. Use this to get the tweets, based on the tweet ids in `data/tweet_ids`.
-- `get_followers.py`: Download follower ids for politicians.
+- `get_followers.py`: Download follower ids for politicians. Since getting the followees (friends) of each Twitter user takes a very long time, we instead take the reverse approach: take the followers of all politicians and check if the users in our data are among the followers.
 - `get_user_tweets.py`: Get tweets for particular users (we don't use this in our paper).
 - `stream_tweets.py`:	Stream tweets for a particular event (Thousand Oaks, Pittsburgh.)
 - `user_lookup.py`: Lookup users (whether they have been deactivated or not).
