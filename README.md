@@ -17,6 +17,15 @@ All the results as well as the plots in the paper were generated using the scrip
 
 I added scripts that can be used for obtaining tweets and followers for the politicians in `obtain_tweets_and_followers`. These can be used with minimal modification!
 
+The following scripts are included in there:
+
+- `lookup_tweets.py`: Obtain tweets by ID. Use this to get the tweets, based on the tweet ids in `data/tweet_ids`.
+- `get_followers.py`: Download follower ids for politicians.
+- `get_user_tweets.py`: Get tweets for particular users (we don't use this in our paper).
+- `stream_tweets.py`:	Stream tweets for a particular event (Thousand Oaks, Pittsburgh.)
+- `user_lookup.py`: Lookup users (whether they have been deactivated or not).
+
+
 ## Requirements 
 
 Make sure to use **Python3** when running the scripts. The package requirements can be obtained by running `pip install -r requirements.txt`.
