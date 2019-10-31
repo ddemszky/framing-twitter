@@ -13,7 +13,7 @@ This repository contains code for the paper:
 
 All the results as well as the plots in the paper were generated using the scripts in this repository. Due to Twitter's privacy policy, we are not able to share the original tweets, but we are sharing the **tweet IDs** under `data/tweet_ids` and the scripts for obtaining the tweets and the followers of politicians (see below).
 
-## *NEW!*
+## Obtaining Data via the Twitter API
 
 I added scripts that can be used for obtaining tweets and followers for the politicians in `obtain_tweets_and_followers`. These can be used with minimal modification!
 
