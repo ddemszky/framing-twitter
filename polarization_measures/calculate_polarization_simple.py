@@ -24,7 +24,6 @@ parser.add_argument('-v','--vocab_file', help='Text file, where each line is a w
 parser.add_argument('-s','--stopword_file', help='Text file, where each line is a stopword to remove (it can be an empty file).')
 parser.add_argument('-g1','--group1_name', help='Name of group 1 in the partisanship column.')
 parser.add_argument('-g2','--group2_name', help='Name of group 2 in the partisanship column.')
-parser.add_argument('-o','--output_file', help='Output file')
 parser.add_argument('-sw','--stem_words', help='Whether to stem words.', action="store_true")
 args = vars(parser.parse_args())
 
