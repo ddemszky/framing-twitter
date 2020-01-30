@@ -6,7 +6,7 @@ library("tidyverse")  # for wrangling, plotting, etc.
 library("lme4")
 library("purrr")
 
-setwd('/Users/ddemszky/Google_Drive/Research/Framing/NAACL/framing-twitter/data/output')
+setwd('.')
 data <- read.csv("polarization_over_time.csv",header=TRUE)
 data2 <- read.csv("polarization_over_time_nomulti.csv",header=TRUE)
 
