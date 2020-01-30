@@ -5,7 +5,7 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE,
-                      root.dir = '/Users/ddemszky/Google_Drive/Research/Framing/NAACL/framing-twitter')
+                      root.dir = '.')
 ```
 
 ## R Markdown
